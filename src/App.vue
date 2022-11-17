@@ -1,12 +1,31 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <vue-loading v-if="isLoading"></vue-loading>
+        <div id="nav">
+          <router-link to="/">Home</router-link> |
+          <router-link to="/about">About</router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import VueLoading from './components/VueLoading.vue';
+
+export default {
+    components: { VueLoading },
+  data () {
+    return {
+      isLoading: true,
+    }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
