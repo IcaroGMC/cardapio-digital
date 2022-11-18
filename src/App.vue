@@ -1,17 +1,22 @@
 <template>
   <div id="app">
     <vue-loading v-if="isLoading"></vue-loading>
+    <InfoModal />
+    <ProductModal />
     <router-view />
   </div>
 </template>
 
 <script>
-import VueLoading from './views/SplashScreen/VueLoading.vue'
-
+import VueLoading from './views/SplashScreen/VueLoading.vue';
+import InfoModal from './components/core/InfoModal.vue';
+import ProductModal from "./components/core/ProductModal.vue";
 
 export default {
   components: {
-    VueLoading
+    VueLoading,
+    InfoModal,
+    ProductModal,
   },
   data () {
     return {
