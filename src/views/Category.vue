@@ -8,38 +8,16 @@
                     <h2>Hamburguer Gourmet</h2>
                 </div>
                 <section class="cards">
-                    <div class="card">
+                    <button class="card" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#productModal">
                         <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
                         <div class="card-text">
                             <h1>Hamburguer</h1>
                             <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
                             <span class="price">R$10,00</span>
                         </div>
-                    </div>
-                    <div class="card">
-                        <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
-                        <div class="card-text">
-                            <h1>Hamburguer</h1>
-                            <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
-                            <span class="price">R$10,00</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
-                        <div class="card-text">
-                            <h1>Hamburguer</h1>
-                            <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
-                            <span class="price">R$10,00</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
-                        <div class="card-text">
-                            <h1>Hamburguer</h1>
-                            <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
-                            <span class="price">R$10,00</span>
-                        </div>
-                    </div>
+                    </button>
                 </section>
             </section>
             <button class="menu-button">
@@ -54,6 +32,7 @@
 <script>
 import ComponentHeader from "../components/ComponentHeader.vue";
 import ComponentFooter from "../components/ComponentFooter.vue";
+
 export default {
     data() {
         return {
@@ -62,7 +41,8 @@ export default {
     },
     components: {
         ComponentHeader,
-        ComponentFooter
+        ComponentFooter,
+
     }
 }
 </script>
@@ -116,6 +96,7 @@ export default {
                         font-style: normal;
                         font-weight: 800;
                         font-size: 24px;
+                        margin: 0;
                     }
                 }
 
@@ -149,9 +130,13 @@ export default {
                         }
 
                         .card-text {
+                            display: flex;
+                            align-items: flex-start;
+                            flex-direction: column;
                             margin: 21px;
                             
                             h1 {
+                                text-align: start;
                                 font-style: normal;
                                 font-weight: 800;
                                 font-size: 18px;
@@ -164,6 +149,7 @@ export default {
                             }
 
                             p {
+                                text-align: start;
                                 font-style: normal;
                                 font-weight: 400;
                                 font-size: 15px;
@@ -302,6 +288,7 @@ export default {
                             max-width: 900px;
                             height: 140px;
                             border: none;
+                            border-bottom: 1.5px solid #EBEBEB;
                             border-radius: 0;
                             margin: 0;
                             margin-bottom: 32px;
