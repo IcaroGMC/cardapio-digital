@@ -3,8 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import loader from "vue-ui-preloader";
+import SkeletonCards from 'vue-ultimate-skeleton-cards'
 
 Vue.use(loader);
+Vue.use(SkeletonCards)
 
 Vue.config.productionTip = false;
 
