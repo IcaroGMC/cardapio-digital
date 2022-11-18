@@ -5,10 +5,8 @@
 </template>
 
 <script>
-import VueLoading from './components/VueLoading.vue';
 
 export default {
-    components: { VueLoading },
   data () {
     return {
       isLoading: true,
