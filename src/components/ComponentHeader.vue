@@ -38,7 +38,7 @@ export default {
         display: flex;
         justify-content: center;
         width: 100%;
-        box-shadow: 0px 9px 8px -6px rgba(158,158,158,0.67);
+        box-shadow: 0px 10px 8px -6px rgba(158,158,158,0.67);
         z-index: 100;
         background-color: white;
         .navbar {
