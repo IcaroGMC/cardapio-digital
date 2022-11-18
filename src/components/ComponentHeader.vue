@@ -80,6 +80,11 @@ export default {
                                 border: none;
                             }
                         }
+                        
+                        ::placeholder {
+                            font-weight: 400;
+                            color: #343A40;
+                        }
 
                         button {
                             width: 16px; height: 16px;
