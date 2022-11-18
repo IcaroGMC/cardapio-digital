@@ -1,7 +1,7 @@
 <template>
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="@/assets/img/cardImage.jpeg" alt="" srcset="">

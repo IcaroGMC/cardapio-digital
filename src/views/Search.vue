@@ -4,8 +4,11 @@
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
-                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
-                    <h2>Hamburguer Gourmet</h2>
+                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p> Voltar</p></button>
+                    <div>
+                        <h2>Resultados para <span>"Salsicha"</span></h2>
+                        <p>4 resultados encontrados</p>
+                    </div>
                 </div>
                 <section class="cards">
                     <button class="card" 
@@ -81,7 +84,6 @@ export default {
                         color: #868E96;
 
                         img {
-                            width: 5px;
                             margin-right: 2px;
                             background-position: center;
                         }
@@ -92,13 +94,32 @@ export default {
                         }
                     }
 
-                    h2 {
-                        padding-left: 4px;
-                        color: #343A40;
-                        font-style: normal;
-                        font-weight: 800;
-                        font-size: 24px;
-                        margin: 0;
+                    div {
+                        display: flex;
+
+                        :last-child {
+                            margin-left: auto;
+                        }
+                        h2 {
+                            color: #343A40;
+                            font-style: normal;
+                            font-weight: 800;
+                            font-size: 24px;
+                            margin: 0;
+
+                            span {
+                                color: #F75B5D;
+                            }
+                        }
+
+                        p {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 15px;
+                            line-height: 150%;
+                            text-align: right;
+                            color: #868E96;
+                        }
                     }
                 }
 
