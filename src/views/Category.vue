@@ -33,6 +33,30 @@
 import ComponentHeader from "../components/ComponentHeader.vue";
 import ComponentFooter from "../components/ComponentFooter.vue";
 
+//              -------------------- Para fazer --------------------
+
+//              Modal da empresa:
+//                  Diminuir o tamanho e aumentar a letra (Melhor vizualização)
+//                  Alinhar o horário com o dia
+//                  Tentar achar ícones melhores (Ligar e falar no Whatsapp)
+//                  Usar função tel:
+//                  Usar API do Whatsapp
+//              URGENTE:
+//                  Decidir o que fazer no modal dos produtos               
+
+// -------------------- Análise dos models dos produtos --------------------
+
+//  Modal do produto:
+//      Produto sem sub-produto:
+//          Tirar opcionais (Ou adicionar no back-end)
+//          Exemplos de adicionais:
+//              Batata Grátis!
+//              Acompanha Molhos
+//      Produto com sub-produto:
+//          Mesmas coisas dos produtos sem sub-produtos
+//          Categorias de sub-produtos possui descrição (adicionar no back-end ou não adicionar)
+//          Sub-produtos possuem promoções próprias (Adicionar no back-end ou não adicionar)                                  
+
 export default {
     data() {
         return {
@@ -79,16 +103,18 @@ export default {
                         font-weight: 400;
                         font-size: 18px;
                         color: #868E96;
+                        padding-left: 15px;
+                        padding-bottom: 12px;
 
                         img {
-                            width: 5px;
-                            margin-right: 2px;
+                            width: 20px;
+                            margin-right: 2px;     
                             background-position: center;
                         }
 
                         p {
                             text-align: center;
-                            margin: 0;
+                            margin: 0;                            
                         }
                     }
 
@@ -99,6 +125,7 @@ export default {
                         font-weight: 800;
                         font-size: 24px;
                         margin: 0;
+                        padding-left: 23px;
                     }
                 }
 
