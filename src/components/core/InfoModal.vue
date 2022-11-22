@@ -5,51 +5,49 @@
                 <div class="modal-header border border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
                     <h1>Sauto Delivery LTDA</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
-                    <div class="phones d-flex flex-column my-2">
-                        <a href="#">(88) 3411-6372</a>
-                        <a href="#">(88) 9 9688-7667</a>
+                    <div class="phones d-flex flex-column my-3">
+                        <a href="#">(88) 3411 - 6372</a>
+                        <a href="#">(88) 9 9688 - 7667</a>
                     </div>
-                    <h2>Horários de funcionamento</h2>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <h3 class="me-auto my-0">Domingo</h3>
-                        <p class="m-0">8:00 - 14:00</p>
+                    <div class="mt-3">
+                        <h2>Horários de funcionamento</h2>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Domingo</h3>
+                            <p class="mb-0 ">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Segunda-Feira</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Terça-Feira</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Quarta-Feira</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Quinta-Feira</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Sexta-Feira</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Sábado</h3>
+                            <p class="mb-0">8:00 - 14:00</p>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex flex-column align-items-start">
-                    <button type="button" data-bs-dismiss="modal"><img src="@/assets/img/phone.svg" alt="">Ligar</button>
-                    <button type="button" data-bs-dismiss="modal"><img src="@/assets/img/number.svg" alt="">Falar no WhatsApp</button>
+                    <a class="text-reset text-decoration-none" type="button" href="tel:+8834116372"><img src="@/assets/img/phone.svg" alt=""><span class="font-weight-bold ml-2"> Ligar </span></a>
+                    <a class="text-reset text-decoration-none" type="button" href="https://api.whatsapp.com/send?phone=558834116372"><img src="@/assets/img/number.svg" alt=""><span class="font-weight-bold ml-2">Falar no WhatsApp</span></a>
                 </div>
             </div>
         </div>
@@ -65,16 +63,20 @@ export default {
 <style lang="scss" scoped>
     @import '@/scss/GeneralStyle.scss';
 
+    p {
+        margin-right: 150px;
+    }
+
     h1{
         font-weight: 800;
-        font-size: 18px;
+        font-size: 24px;
         line-height: 25.2px;
         color: #343A40;
     }
 
     h3 {
         font-weight: 800;
-        font-size: 15px;
+        font-size: 17px;
         line-height: 22.5px;
         color: #343A40;
     }
@@ -100,7 +102,7 @@ export default {
 
     h2 {
         font-weight: 800;
-        font-size: 14px;
+        font-size: 20px;
         line-height: 25.2px;
         color: #343A40;
     }
@@ -134,7 +136,7 @@ export default {
     }
 
     .modal-footer {
-        button {
+        a {
             font-weight: 700;
             font-size: 15px;
             line-height: 20.46px;
@@ -144,7 +146,7 @@ export default {
     }
 
     .modal-footer {
-        button:first-child {
+        a:first-child {
             margin-bottom: 15px;
         }
     }
