@@ -3,12 +3,7 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <a href="/"><img src="@/assets/img/logo.svg" alt="" srcset=""></a>
-                <div class="ms-auto" id="navbarSupportedContent">
-                    <form class="" role="search">
-                        <button type="submit"></button>
-                        <input class="search" type="search" placeholder="O que você procura?" aria-label="Search">
-                    </form>
-                </div>
+                <CoreInput :placeholder="'O que você procura?'" :maxCharacters="25" />
                 <InfoButton></InfoButton>
             </div>
         </nav>
@@ -16,7 +11,8 @@
 </template>
 
 <script>
-import InfoButton from "../components/core/InfoButton.vue";
+import InfoButton from "@/components/core/InfoButton.vue";
+import CoreInput from "@/components/core/Input.vue";
 export default {
     data() {
         return {
@@ -25,6 +21,7 @@ export default {
     },
     components: {
         InfoButton,
+        CoreInput
     }
 }
 </script>
@@ -50,47 +47,6 @@ export default {
                 a {
                     img {
                         width: 100%;
-                    }
-                }
-
-                #navbarSupportedContent {
-                    margin: auto;
-                    
-                    form {
-                        background-color: #E9ECEF;
-                        width: 480px;
-                        height: 48px;
-                        border-radius: 25px;
-                        border: none;
-                        display: flex;
-                        align-items: center;
-                        padding: 0 19px;
-
-                        input {
-                            background: none;
-                            border: none;
-                            width: 100%;
-                            height: 20px;
-                            font-size: 15px;
-                            color: #868E96;
-                            margin-left: 14px;
-                            :focus {
-                                border: none;
-                            }
-                        }
-                        
-                        ::placeholder {
-                            font-weight: 400;
-                            color: #343A40;
-                        }
-
-                        button {
-                            width: 16px; height: 16px;
-                            background-image: url('../assets/img/searchLogo.svg');
-                            background-color: transparent;
-                            border: none;
-                        }
-
                     }
                 }
             }
@@ -123,42 +79,6 @@ export default {
                     a {
                         img {
                             width: 100%;
-                        }
-                    }
-
-                    #navbarSupportedContent {
-                        margin: auto;
-                        
-                        form {
-                            background-color: #E9ECEF;
-                            width: 340px;
-                            height: 48px;
-                            border-radius: 25px;
-                            border: none;
-                            display: flex;
-                            align-items: center;
-                            padding: 0 19px;
-
-                            input {
-                                background: none;
-                                border: none;
-                                width: 100%;
-                                height: 20px;
-                                font-size: 15px;
-                                color: #868E96;
-                                margin-left: 14px;
-                                :focus {
-                                    border: none;
-                                }
-                            }
-
-                            button {
-                                width: 16px; height: 16px;
-                                background-image: url('../assets/img/searchLogo.svg');
-                                background-color: transparent;
-                                border: none;
-                            }
-
                         }
                     }
                 }

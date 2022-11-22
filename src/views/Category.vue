@@ -257,6 +257,7 @@ export default {
                                 align-self: center;
                                 justify-self: center;
                                 height: 20px;
+                                width: 20px;
                                 margin-right: 2px;
                                 background-position: center;
                             }
