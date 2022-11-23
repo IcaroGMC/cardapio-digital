@@ -4,26 +4,23 @@
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
-                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p> Voltar</p></button>
+                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
                     <div>
                         <h2>Resultados para <span>"Salsicha"</span></h2>
                         <p>4 resultados encontrados</p>
                     </div>
                 </div>
                 <section class="cards">
-                    <button class="card" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#productModal">
-                        <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
-                        <div class="card-text">
-                            <h1>Hamburguer</h1>
-                            <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
-                            <span class="price">R$10,00</span>
-                        </div>
-                    </button>
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
                 </section>
+                <CorePagination />
             </section>
-            <button class="menu-button">
+            <button class="menu-button" data-bs-toggle="modal" data-bs-target="#categoryBackdrop">
                 <img src="@/assets/img/list.svg" alt="" srcset="">
                 Cardápio
             </button>
@@ -33,8 +30,10 @@
 </template>
 
 <script>
-import ComponentHeader from "../components/ComponentHeader.vue";
-import ComponentFooter from "../components/ComponentFooter.vue";
+import ComponentHeader from "@/components/ComponentHeader.vue";
+import ComponentFooter from "@/components/ComponentFooter.vue";
+import CoreCard from "@/components/core/CoreCard.vue";
+import CorePagination from "@/components/core/CorePagination.vue";
 
 export default {
     data() {
@@ -45,7 +44,8 @@ export default {
     components: {
         ComponentHeader,
         ComponentFooter,
-
+        CoreCard,
+        CorePagination
     }
 }
 </script>
@@ -135,65 +135,12 @@ export default {
                     :nth-child(3n-1) {
                         justify-self: center;
                     }
-                    .card {
-                        max-width: calc(100vw / 3);
-                        width: 311px;
-                        height: 336px;
-                        border: 1.5px solid #EBEBEB;
-                        border-radius: 24px;
-                        margin: 0 16px;
-                        margin-bottom: 32px;
-                        padding: 0;
-                        overflow: hidden;
-
-                        img {
-                            width: 100%;
-                            height: 168px;
-                            object-fit: cover;
-                        }
-
-                        .card-text {
-                            display: flex;
-                            align-items: flex-start;
-                            flex-direction: column;
-                            margin: 21px;
-                            
-                            h1 {
-                                text-align: start;
-                                font-style: normal;
-                                font-weight: 800;
-                                font-size: 18px;
-                                line-height: 130%;
-
-                                /* or 23px */
-
-                                /* grey / g1 */
-                                color: #343A40;
-                            }
-
-                            p {
-                                text-align: start;
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 15px;
-                                line-height: 150%;
-                                color: #868E96;
-                            }
-
-                            span {
-                                font-style: normal;
-                                font-weight: 800;
-                                font-size: 18px;
-                                line-height: 130%;
-                                color: #F75B5D;
-                            }
-                        }
-                    }
                 }
             }
 
             .menu-button {
                 position: fixed;
+                z-index: 4;
                 bottom: 51px;
                 color: white;
                 background-color: #F75B5D;
@@ -206,6 +153,11 @@ export default {
                 font-weight: 700;
                 font-size: 15px;
                 line-height: 130%;
+                transition: .6s ease-out;
+
+                &:hover {
+                    background-color: #f84548;
+                }
             }
         }
     }
@@ -221,13 +173,6 @@ export default {
                         width: 100%;
                         display: grid;
                         grid-template-columns: repeat(3, 1fr);
-
-                        .card {
-                            width: 221px;
-                            justify-self: center;
-                        }
-
-                        
                     }
                 }
             }
@@ -285,6 +230,7 @@ export default {
 
                             p {
                                 display: none;
+                                margin: 0 !important;
                             }
                         }
 
@@ -293,6 +239,10 @@ export default {
                             font-style: normal;
                             font-weight: 800;
                             font-size: 24px;
+                        }
+
+                        p {
+                            margin: 0;
                         }
                     }
 
@@ -304,60 +254,6 @@ export default {
 
                         :last-child {
                             margin-bottom: 0 !important;
-                        }
-                        .card {
-                            display: flex;
-                            flex-direction: row;
-                            width: 100%;
-                            max-width: 900px;
-                            height: 140px;
-                            border: none;
-                            border-bottom: 1.5px solid #EBEBEB;
-                            border-radius: 0;
-                            margin: 0;
-                            margin-bottom: 32px;
-                            padding: 0;
-                            overflow: hidden;
-
-                            img {
-                                width: 78px;
-                                height: 78px;
-                                object-fit: cover;
-                                border-radius: 16px;
-                            }
-
-                            .card-text {
-                                margin: 0;
-                                margin-left: 16px;
-                                
-                                h1 {
-                                    font-style: normal;
-                                    font-weight: 800;
-                                    font-size: 18px;
-                                    line-height: 130%;
-
-                                    /* or 23px */
-
-                                    /* grey / g1 */
-                                    color: #343A40;
-                                }
-
-                                p {
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    font-size: 15px;
-                                    line-height: 150%;
-                                    color: #868E96;
-                                }
-
-                                span {
-                                    font-style: normal;
-                                    font-weight: 800;
-                                    font-size: 18px;
-                                    line-height: 130%;
-                                    color: #F75B5D;
-                                }
-                            }
                         }
                     }
                 }

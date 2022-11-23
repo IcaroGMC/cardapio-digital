@@ -82,16 +82,17 @@
                 width: 100%;
                 height: 20px;
                 font-size: 15px;
-                color: #868E96;
+                color: #646a70;
                 margin-left: 14px;
+
                 :focus {
                     border: none;
                 }
             }
-            
-            ::placeholder {
-                font-weight: 400;
-                color: #343A40;
+
+            input::placeholder {
+                font-weight: 600;
+                color: #474b50;
             }
 
             button {
