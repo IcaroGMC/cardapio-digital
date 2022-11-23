@@ -17,31 +17,50 @@
                         <h2>Horários de funcionamento</h2>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Domingo</h3>
-                            <p class="mb-0 ">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">Fechado</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Segunda-Feira</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Terça-Feira</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Quarta-Feira</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Quinta-Feira</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Sexta-Feira</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
                             <h3 class="me-auto my-0">Sábado</h3>
-                            <p class="mb-0">8:00 - 14:00</p>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                            </div>
                         </div>
                     </div>
                 </div>
