@@ -36,11 +36,12 @@ import ComponentFooter from "../components/ComponentFooter.vue";
 //              -------------------- Para fazer --------------------
 
 //              Modal da empresa:
-//                  Diminuir o tamanho e aumentar a letra (Melhor vizualização)
-//                  Alinhar o horário com o dia
-//                  Tentar achar ícones melhores (Ligar e falar no Whatsapp)
-//                  Usar função tel:
-//                  Usar API do Whatsapp
+//                      FEITO: 
+//                          (Diminuir o tamanho e aumentar a letra (Melhor vizualização))
+//                          Tentar achar ícones melhores (Ligar e falar no Whatsapp)
+//                          Usar função tel:
+//                          Usar API do Whatsapp
+//                          Alinhar o horário com o dia
 //              URGENTE:
 //                  Decidir o que fazer no modal dos produtos               
 
