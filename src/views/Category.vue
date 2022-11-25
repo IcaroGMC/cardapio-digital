@@ -1,6 +1,6 @@
 <template>
     <div class="site-container">
-        <ComponentHeader></ComponentHeader>
+        <ComponentHeader remove-header="yes"></ComponentHeader>
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
@@ -204,9 +204,8 @@ export default {
         .site-container {
 
             .main-content {
-
+                padding-top: 178px;
                 .container-fluid {
-
                     .cards {
                         width: 100%;
                         display: grid;
@@ -290,7 +289,7 @@ export default {
                         width: 100%;
                         display: flex;
                         flex-direction: column;
-                        padding: 90px 18px 0 18px;
+                        padding: 120px 18px 0 18px;
 
                         :last-child {
                             margin-bottom: 0 !important;
