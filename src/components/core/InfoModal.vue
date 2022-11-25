@@ -33,6 +33,15 @@
                              <div class="workingtime d-flex flex-column">
                                 <p class="mb-0">08:00 - 12:00</p>
                                 <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
                             </div>
                         </div>
                         <div class="d-flex align-items-center mb-4">
