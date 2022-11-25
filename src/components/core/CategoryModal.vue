@@ -9,111 +9,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="category-body">
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
+                        <button class="category-content">
+                            <h1>Nome da Categoria</h1>
                             <div class="category-info">
                                 <span>3</span>
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
-                        <div class="category-content">
-                            <h1>Bebidas</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -139,9 +41,10 @@ export default {
                 width: 475px;
                 height: 100%;
                 border-radius: 0;
-                border-top-right-radius: 35px;
+                border-radius: 0px 24px 24px 0px;
 
                 .modal-header {
+                    border: 0;
                     h1 {
                         font-style: normal;
                         font-weight: 800;
@@ -170,11 +73,18 @@ export default {
                     .category-body {
                         border-bottom: 1px solid #E9ECEF;
                         .category-content {
+                            background: 0;
+                            border: 0;
                             display: flex;
+                            width: 100%;
                             align-items: center;
-                            margin: 0 20px;
+
+                            &:hover .category-info button{
+                                margin-left: 8px;
+                            }
 
                             h1 {
+                                word-break: break-all;
                                 margin: 16px;
                                 font-style: normal;
                                 font-weight: 700;
@@ -184,9 +94,17 @@ export default {
                             }
 
                             .category-info {
+                                display: flex;
+                                align-items: center;
+                                min-width: 15%;
                                 margin-left: auto;
+                                padding: 10px;
 
                                 span {
+                                    color: #868E96;
+                                    flex: none;
+                                    order: 0;
+                                    flex-grow: 0;
                                     background-color: #E9ECEF;
                                     padding: 1px 8px;
                                     border-radius: 24px;
@@ -197,7 +115,7 @@ export default {
                                     background: none;
                                     border: 0;
                                     padding: 0;
-                                    margin-left: 8px;
+                                    transition: 0.2s linear;
                                     img {
                                         margin: auto 0;
                                         rotate: 180deg;

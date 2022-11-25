@@ -1,6 +1,10 @@
 <template>
-    <div class="ms-auto" id="navbarSupportedContent">
-        <div class="input-content">
+    <div
+        id="navbarSupportedContent">
+        <div
+            :style="(widthsize == 'large-100vw') ? 'width:calc(100vw - 158px)' : null"
+            :widthsize="widthsize"
+            class="input-content">
             <button type="submit"></button>
             <input
             v-model="name"
@@ -25,6 +29,7 @@
         props: {
 			label: str(null),
 			id: str(null),
+            widthsize: str(null),
 			//name: str(null),
 			placeholder: str(null),
             maxCharacters: number(null),
@@ -109,7 +114,7 @@
                 padding: 0;
                 display: flex;
                 z-index: 1002;
-                right: 15px;
+                right: 18px;
                 width: 16px;
                 height: 16px;
                 background: 0;

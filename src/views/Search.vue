@@ -1,6 +1,6 @@
 <template>
     <div class="site-container">
-        <ComponentHeader></ComponentHeader>
+        <ComponentHeader removeHeader="true"></ComponentHeader>
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
@@ -9,8 +9,30 @@
                         <h2>Resultados para <span>"Salsicha"</span></h2>
                         <p>4 resultados encontrados</p>
                     </div>
+                    <CoreInput 
+                        :widthsize="'large-100vw'" 
+                        class="searchinput" 
+                        :maxCharacters="50" />
                 </div>
                 <section class="cards">
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
+                    <CoreCard />
                     <CoreCard />
                     <CoreCard />
                     <CoreCard />
@@ -34,6 +56,7 @@ import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
 import CorePagination from "@/components/core/CorePagination.vue";
+import CoreInput from "@/components/core/Input.vue";
 
 export default {
     data() {
@@ -45,7 +68,8 @@ export default {
         ComponentHeader,
         ComponentFooter,
         CoreCard,
-        CorePagination
+        CorePagination,
+        CoreInput
     }
 }
 </script>
@@ -120,6 +144,9 @@ export default {
                             text-align: right;
                             color: #868E96;
                         }
+                    }
+                    .searchinput {
+                        display: none;
                     }
                 }
 
@@ -235,14 +262,16 @@ export default {
                         }
 
                         h2 {
-                            color: #343A40;
-                            font-style: normal;
-                            font-weight: 800;
-                            font-size: 24px;
+                            display: none;
                         }
 
                         p {
+                            display: none;
+                        }
+
+                        .searchinput {
                             margin: 0;
+                            display: block;
                         }
                     }
 

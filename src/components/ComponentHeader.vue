@@ -1,10 +1,13 @@
 <template>
-    <header class="header">
+    <header
+    :removeHeader="RemoveHeader" 
+    :class="(RemoveHeader == 'yes') ? 'remove-header' : null"
+    class="header">
         <nav class="navbar">
             <div class="container-fluid">
-                <a href="/"><img src="@/assets/img/logo.svg" alt="" srcset=""></a>
-                <CoreInput :placeholder="'O que você procura?'" :maxCharacters="25" />
-                <InfoButton></InfoButton>
+                <router-link to="/" replace><img class=".unselectable" draggable="false" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>	
+                <CoreInput class="info-input" :placeholder="'O que você procura?'" :maxCharacters="30" />
+                <InfoButton :remove-info="'yes-ss'" class="info-button"></InfoButton>
             </div>
         </nav>
     </header>
@@ -13,7 +16,16 @@
 <script>
 import InfoButton from "@/components/core/InfoButton.vue";
 import CoreInput from "@/components/core/Input.vue";
+import { str, bool, number } from '@/utils/props';
 export default {
+
+    props: {
+        A: str(''),
+        B:number(0),
+        C: bool(false),
+        RemoveHeader: str(''),
+    },
+
     data() {
         return {
             SearchLogoImage: '../assets/img/searchLogo.svg',
@@ -46,6 +58,7 @@ export default {
 
                 a {
                     img {
+                        image-rendering: optimizeQuality;
                         width: 100%;
                     }
                 }
@@ -54,8 +67,44 @@ export default {
     }
 
     @media screen and (max-width: 1100px) {
-        .header {
+        .remove-header {
             display: none !important;
+        }
+
+        .header {
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            box-shadow: 0px 9px 8px -6px rgba(158,158,158,0.67);
+            z-index: 100;
+            background-color: white;
+            .navbar {
+                width: $max-width;
+                padding: 0;
+                .container-fluid {
+                    display: flex;
+                    align-items: center;
+                    margin: 25px 179px;
+                    padding: 0;
+
+                    a {
+                        order: 1;
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+                    .info-input {
+                        order: 3;
+                        margin-top: 10px !important;
+                    }
+
+                    .info-button {
+                        order: 2;
+                    }
+                }
+            }
         }
     }
 
@@ -73,13 +122,22 @@ export default {
                 padding: 0;
                 .container-fluid {
                     display: flex;
+                    flex-direction: column;
+                    align-items: center;
                     margin: 25px 179px;
                     padding: 0;
 
                     a {
+                        order: 0;
                         img {
                             width: 100%;
                         }
+                    }
+                    .info-input {
+                        order: 1;
+                    }
+                    .info-button {
+                        order: 2;
                     }
                 }
             }

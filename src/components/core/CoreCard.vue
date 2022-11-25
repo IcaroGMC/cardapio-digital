@@ -2,7 +2,7 @@
     <button class="card" 
     data-bs-toggle="modal" 
     data-bs-target="#productModal">
-        <img src="@/assets/img/no_image.jpg" alt="" srcset="">
+        <div class="card-img-content"><img src="@/assets/img/cardImage.jpeg" loading="lazy" alt=""></div>
         <div class="card-text">
             <h1>{{ cardName }}</h1>
             <p>{{ cardDescription }}</p>
@@ -34,11 +34,24 @@ export default {
         margin-bottom: 32px;
         padding: 0;
         overflow: hidden;
-
-        img {
+        .card-img-content {
+            overflow: hidden;
             width: 100%;
             height: 168px;
-            object-fit: cover;
+
+            img {
+                transform: scale(120%);
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform .25s ease-out;
+                filter: saturate(75%);
+            }
+        }
+
+        &:hover .card-img-content img {
+            transform: scale(100%);
+            filter: saturate(100%);
         }
 
         .card-text {
@@ -85,8 +98,8 @@ export default {
         .card {
             display: flex;
             flex-direction: row;
-            max-width: 900px;
             height: 140px;
+            width: 100%;
             border: none;
             border-bottom: 1.5px solid #EBEBEB;
             border-radius: 0;
@@ -95,12 +108,21 @@ export default {
             padding: 0;
             overflow: hidden;
 
-            img {
-                width: 78px;
-                height: 78px;
-                object-fit: cover;
-                border-radius: 16px;
+            .card-img-content {
+                overflow: hidden;
+                width: auto;
+                height: auto;
+
+                img {
+                    transform: scale(100%);
+                    width: 78px;
+                    height: 78px;
+                    object-fit: cover;
+                    border-radius: 16px;
+                }
             }
+
+            
 
             .card-text {
                 margin: 0;

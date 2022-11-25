@@ -5,17 +5,29 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#infoModal">
-            <div class="info">
-                <img src="@/assets/img/trueInfo.svg" alt="" srcset="">
+            <div 
+                :removeInfo="removeInfo" 
+                :class="(removeInfo == 'yes-ss') ? 'remove-info' : null"
+                class="info">
+                <img src="@/assets/img/trueInfo.svg" alt="">
                 <p>Aberto Agora</p>
             </div>
-            <span></span>
+            <span :class="(removeInfo == 'yes-ss') ? 'info' : null"></span>
         </button>
     </div>
 </template>
 
 <script>
+import { str, bool, number } from '@/utils/props';
 export default {
+
+    props: {
+        A: str(''),
+        B:number(0),
+        C: bool(false),
+        removeInfo: str(''),
+    },
+
     data() {
         return {
             
@@ -62,6 +74,15 @@ export default {
 
         #staticBackdrop {
             z-index: 10000000;
+        }
+    }
+
+    @media screen and (max-width: 1100px) {
+        .remove-info {
+            display: none !important;
+        }
+        .info {
+            margin: 0 !important;
         }
     }
 </style>

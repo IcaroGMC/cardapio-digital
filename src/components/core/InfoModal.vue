@@ -149,9 +149,25 @@ export default {
         width: 142px;
         height: 36px;
     }
-    .modal-body::-webkit-scrollbar {
-        width: 4px;
-        background: var(--lightgray-color);
+    .modal-body {
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
     }
 
     .modal-footer {

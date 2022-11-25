@@ -7,14 +7,34 @@
                     <img src="@/assets/img/cardImage.jpeg" alt="" srcset="">
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <small>#2004</small>
+                <div v-if="!productCategories" class="modal-body">
+                    <small class="tag">#2004</small>
                     <h1>Classicburger gourmet</h1>
                     <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface e tomate e mais algumas coisas gostosas</p>
                     <div class="categories-content">
                         <div class="categories">Acompanha Molhos</div>
                     </div>
                     <span class="price">R$10,00</span>
+                </div>
+                <div v-if="productCategories" class="modal-body">
+                    <h1>Classicburger gourmet</h1>
+                    <h3>Sabores</h3>
+                    <div class="subcategories-content">
+                        <div class="subcategories-body">
+                            <div class="subcategories-info">
+                                <h4>Coca-Cola</h4>
+                                <small class="tag">#2004</small>
+                            </div>
+                            <span class="price">R$10,00</span>
+                        </div>
+                        <div class="subcategories-body">
+                            <div class="subcategories-info">
+                                <h4>Coca-Cola</h4>
+                                <small class="tag">#2004</small>
+                            </div>
+                            <span class="price">R$10,00</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,7 +43,11 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            productCategories: true,
+        }
+    }
 }
 </script>
 
@@ -37,7 +61,7 @@ export default {
             .modal-content {
                 height: 500px !important;
                 width: 420px !important;
-                border: 0;
+                border: 1px solid rgba($color: #2c2c2c, $alpha: 0.1);
                 transform: scale(calc(100% - 1px));
                 overflow: hidden;
                 border-radius: 24px;
@@ -45,6 +69,7 @@ export default {
                     padding: 0;
                     border: 0;
                     img {
+                        border-radius: 0;
                         height: 223px;
                         object-fit: cover;
                         width: 100%;
@@ -61,6 +86,8 @@ export default {
                 .modal-body {
                     padding: 28px 31px;
                     small {
+                        display: flex;
+                        align-items: center;
                         font-style: normal;
                         font-weight: 400;
                         font-size: 12px;
@@ -73,6 +100,14 @@ export default {
                         font-weight: 800;
                         font-size: 18px;
                         line-height: 140%;
+                        color: #343A40;
+                    }
+
+                    h3 {
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 15px;
+                        line-height: 130%;
                         color: #343A40;
                     }
 
@@ -99,6 +134,37 @@ export default {
 
                             /* grey / g3 */
                             color: #868E96;
+                        }
+                    }
+                    .subcategories-content {
+                        width: 100%;
+                        .subcategories-body {
+                            position: relative;
+                            padding: 9px 0;
+                            display: flex;
+                            width: 100%;
+                            border-bottom: 1px solid #E9ECEF;
+
+                            :nth-child(2) {
+                                margin-left: auto !important;
+                            }
+
+                            .subcategories-info {
+                                display: flex;
+
+                                h4 {
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    font-size: 18px;
+                                    line-height: 130%;
+                                    color: #495057;
+                                    margin: 0;
+                                }
+
+                                small {
+                                    margin-left: 6px !important;
+                                }
+                            }
                         }
                     }
 
