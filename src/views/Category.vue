@@ -5,7 +5,7 @@
             <section class="container-fluid">
                 <div class="return-content">
                     <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
-                    <h2>Hamburguer Gourmet</h2>
+                    <h2>{{ products.items }}</h2>
                 </div>
                 <section class="cards">
                     <button class="card" 
@@ -32,6 +32,7 @@
 <script>
 import ComponentHeader from "../components/ComponentHeader.vue";
 import ComponentFooter from "../components/ComponentFooter.vue";
+import axios from 'axios';
 
 // -------------------- Análise dos models dos produtos --------------------
 
@@ -44,13 +45,25 @@ import ComponentFooter from "../components/ComponentFooter.vue";
 export default {
     data() {
         return {
-
+            info: null,
+            products: {
+                items: []
+            }
         }
     },
     components: {
         ComponentHeader,
         ComponentFooter,
 
+    },
+    mounted () {
+        axios
+            .get('https://estagio.sauto.com.br/api/v1/product')
+            .then(response => (this.info = response))
+
+            const { records } = this.info;
+
+            this.products.items = records;
     }
 }
 </script>

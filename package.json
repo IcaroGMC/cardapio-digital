@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.2.1",
+    "axios": "^1.2.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-custom-scrollbar": "^1.4.4",
     "vue-router": "^3.2.0",
     "vue-ui-preloader": "^1.2.1",
     "vue-ultimate-skeleton-cards": "^1.0.3",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.19",
