@@ -9,7 +9,7 @@
         <div class="card-text">
             <h1 tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
             <p>{{ cardDescription | str_limit(100) }}</p>
-            <span class="price">{{ cardPrice | price_number('BR') }}</span>
+            <span class="price">{{ cardPrice | toCurrency() }}</span>
         </div>
     </button>
 </template>
