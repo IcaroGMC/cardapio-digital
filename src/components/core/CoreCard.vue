@@ -1,31 +1,39 @@
 <template>
     <button class="card"
-    :card-name="cardName"
-    :card-description="cardDescription"
-    :card-price="cardPrice"
     data-bs-toggle="modal" 
     data-bs-target="#productModal">
-        <div class="card-img-content"><img src="@/assets/img/cardImage.jpeg" loading="lazy" alt=""></div>
+        <div class="card-img-content">
+            <img 
+                :card-image-url="cardImageUrl" 
+                :src="cardImageUrl.name ? showCardImageURL : no_image"
+                loading="eager"
+                :alt="cardImageUrl.name">
+        </div>
         <div class="card-text">
-            <h1 tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
-            <p>{{ cardDescription | str_limit(100) }}</p>
-            <span class="price">{{ cardPrice | toCurrency() }}</span>
+            <h1 :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
+            <p :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
+            <span :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
         </div>
     </button>
 </template>
 
 <script>
-import { str, number } from "@/utils/props";
+import { str, number, obj } from "@/utils/props";
 export default {
     props: {
         cardName: str(''),
         cardDescription: str(''),
-        cardPrice: number(0)
+        cardPrice: number(0),
+        cardImageUrl: obj()
     },
     data() {
         return {
-            image: '',
+            showCardImageURL: `https://estagio.sauto.com.br//storage/${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
+            no_image: require('@/assets/img/no_image.jpg'),
         }
+    },
+    mounted() {
+        console.log(this.cardImageUrl)
     }
 }
 </script>
@@ -36,8 +44,6 @@ export default {
         height: 336px;
         border: 1.5px solid #EBEBEB;
         border-radius: 24px;
-        margin: 0 16px;
-        margin-bottom: 32px;
         padding: 0;
         overflow: hidden;
         .card-img-content {
@@ -46,12 +52,12 @@ export default {
             height: 168px;
 
             img {
-                transform: scale(120%);
+                transform: scale(105%);
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 transition: transform .25s ease-out;
-                filter: saturate(75%);
+                filter: saturate(85%);
             }
         }
 
@@ -62,9 +68,11 @@ export default {
 
         .card-text {
             display: flex;
+            height: 100%;
+            max-height: 172px;
             align-items: flex-start;
             flex-direction: column;
-            margin: 21px;
+            padding: 21px;
             
             h1 {
                 text-align: start;
@@ -85,6 +93,7 @@ export default {
             }
 
             span {
+                margin-top: auto;
                 font-style: normal;
                 font-weight: 800;
                 font-size: 18px;
@@ -110,7 +119,7 @@ export default {
             border-bottom: 1.5px solid #EBEBEB;
             border-radius: 0;
             margin: 0;
-            margin-bottom: 32px;
+            margin-bottom: 0;
             padding: 0;
             overflow: hidden;
 
@@ -128,11 +137,8 @@ export default {
                     border-radius: 16px;
                 }
             }
-
-            
-
             .card-text {
-                margin: 0;
+                padding: 0;
                 margin-left: 16px;
                 
                 h1 {
@@ -152,6 +158,7 @@ export default {
                 }
 
                 span {
+                    margin-top: 0;
                     font-style: normal;
                     font-weight: 800;
                     font-size: 18px;

@@ -1,10 +1,11 @@
 <template>
     <div
         :size="spinnerSize"
-        :class="`${spinnerSize} d-flex align-items-center justify-content-center`">
+        
+        :class="`${isLoading ? '' : 'd-none'} ${spinnerSize} d-flex align-items-center justify-content-center`">
         <div 
             :isLoading="isLoading" 
-            :class="`${isLoading ? 'd-none' : ''} h-auto w-auto`">
+            :class="`h-auto w-auto`">
             <div 
                 :spinner-class="spinnerClass" 
                 :class="`spinner-border ${spinnerClass}`" 

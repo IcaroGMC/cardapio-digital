@@ -21,6 +21,7 @@ export default {
 
 <style lang="scss" scoped>
     nav {
+        margin-top: auto;
         width: 320px;
         ul {
             margin: 10px 0;

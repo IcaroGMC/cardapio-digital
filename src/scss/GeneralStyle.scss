@@ -38,10 +38,11 @@ i {
 }
 
 * {
-    font-family: 'Nunito', sans-serif;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
 }
 
-*.unselectable {
+.unselectable {
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;

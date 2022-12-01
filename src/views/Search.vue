@@ -16,8 +16,14 @@
                 </div>
                     <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
-                    <CoreCard :class="`${products.isLoading ? 'd-block' : 'd-flex'}`"
+                    <CoreCard :class="`${products.isLoading ? 'd-none' : null}`"
                         v-for="item in products.items" v-bind:key="item.id"
+                        :card-image-url="{
+                            id:item.upload ? item.upload.id : null,
+                            name:item.upload ? item.upload.name : null,
+                            scope:item.upload ? item.upload.scope : null
+                            
+                        }"
                         :card-name="item.name" 
                         :card-description="item.description" 
                         :card-price="item.price" />
@@ -41,6 +47,7 @@ import CorePagination from "@/components/core/CorePagination.vue";
 import CoreInput from "@/components/core/Input.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import axios from 'axios';
+import { baseURL } from '@/config/index.js'
 
 export default {
     data() {
@@ -62,7 +69,7 @@ export default {
     methods: {
         async get_products() {
             try {
-                let response = await axios.get('https://estagio.sauto.com.br/api/v1/product');
+                let response = await axios.get(baseURL + 'product');
 
                 const { errors } = response.data;
                 if(errors) throw { errors };
@@ -71,12 +78,12 @@ export default {
 
                 this.products.items = records;
 
+                this.products.isLoading = false;
+
             } catch({ errors }){
 
                 this.handle_server_errors(errors);
 
-            } finally {
-                this.products.isLoading = false;
             }
             
             
@@ -169,14 +176,7 @@ export default {
                     width: 100%;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-
-                    :nth-child(3n) {
-                        justify-self: end;
-                    }
-
-                    :nth-child(3n-1) {
-                        justify-self: center;
-                    }
+                    row-gap: 32px;
                 }
             }
 

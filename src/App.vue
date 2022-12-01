@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-loading v-if="isLoading"></vue-loading>
+    
     <InfoModal />
     <ProductModal />
     <router-view />
@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import VueLoading from '@/views/SplashScreen/VueLoading.vue';
 import InfoModal from '@/components/core/InfoModal.vue';
 import ProductModal from "@/components/core/ProductModal.vue";
 import CategoryModal from "@/components/core/CategoryModal.vue";
 
 export default {
   components: {
-    VueLoading,
     InfoModal,
     ProductModal,
     CategoryModal

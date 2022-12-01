@@ -12,3 +12,8 @@ export const number = number => ({
     type: Number,
     default: number
 });
+
+export const obj = Object =>  ({
+    type: Object,
+    default: () => ({})
+})
