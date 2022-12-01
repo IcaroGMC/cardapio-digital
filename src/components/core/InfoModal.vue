@@ -10,8 +10,8 @@
                     <h1>Sauto Delivery LTDA</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
-                        <a href="#">(88) 3411 - 6372</a>
-                        <a href="#">(88) 9 9688 - 7667</a>
+                        <a href="tel:+8834116372">(88) 3411 - 6372</a>
+                        <a href="tel:+88996887667">(88) 9 9688 - 7667</a>
                     </div>
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
