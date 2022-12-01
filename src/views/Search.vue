@@ -14,31 +14,13 @@
                         class="searchinput" 
                         :maxCharacters="50" />
                 </div>
+                    <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
-                    <CoreCard />
+                    <CoreCard :class="`${products.isLoading ? 'd-block' : 'd-flex'}`"
+                        v-for="item in products.items" v-bind:key="item.id"
+                        :card-name="item.name" 
+                        :card-description="item.description" 
+                        :card-price="item.price" />
                 </section>
                 <CorePagination />
             </section>
@@ -57,11 +39,16 @@ import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
 import CorePagination from "@/components/core/CorePagination.vue";
 import CoreInput from "@/components/core/Input.vue";
+import CoreSpinner from "@/components/core/CoreSpinner.vue";
+import axios from 'axios';
 
 export default {
     data() {
         return {
-
+            products: {
+                items: [],
+                isLoading: true
+            },
         }
     },
     components: {
@@ -69,7 +56,35 @@ export default {
         ComponentFooter,
         CoreCard,
         CorePagination,
+        CoreSpinner,
         CoreInput
+    },
+    methods: {
+        async get_products() {
+            try {
+                let response = await axios.get('https://estagio.sauto.com.br/api/v1/product');
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.products.items = records;
+
+            } catch({ errors }){
+
+                this.handle_server_errors(errors);
+
+            } finally {
+                this.products.isLoading = false;
+            }
+            
+            
+        }
+        
+    },
+    created(){
+        this.get_products();
     }
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
     <div
-        id="navbarSupportedContent">
+        id="navbarSupportedContent" 
+        :class="`${margin}`"
+        :margin="margin">
         <div
             :style="(widthsize == 'large-100vw') ? 'width:calc(100vw - 158px)' : null"
             :widthsize="widthsize"
@@ -22,7 +24,7 @@
 
 <script>
 
-    import { str, bool, number } from '@/utils/props';
+    import { str, number } from '@/utils/props';
 
     export default {
 
@@ -30,17 +32,9 @@
 			label: str(null),
 			id: str(null),
             widthsize: str(null),
-			//name: str(null),
 			placeholder: str(null),
             maxCharacters: number(null),
-			disabled: bool(false),
-			type: str('text'),
-			sm: bool(false),
-			lg: bool(false),
-			focus: bool(false),
-			readonly: bool(false),
-			autocomplete: str('off'),
-			'text-align': str('left')
+            margin: str(''),
 		},
 
         data() {
@@ -68,8 +62,6 @@
 
 <style lang="scss" scoped>
     #navbarSupportedContent {
-        margin: auto;
-        
         .input-content {
             position: relative;
             background-color: #E9ECEF;

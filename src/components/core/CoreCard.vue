@@ -1,24 +1,30 @@
 <template>
-    <button class="card" 
+    <button class="card"
+    :card-name="cardName"
+    :card-description="cardDescription"
+    :card-price="cardPrice"
     data-bs-toggle="modal" 
     data-bs-target="#productModal">
         <div class="card-img-content"><img src="@/assets/img/cardImage.jpeg" loading="lazy" alt=""></div>
         <div class="card-text">
-            <h1>{{ cardName }}</h1>
-            <p>{{ cardDescription }}</p>
-            <span class="price">{{ cardPrice }}</span>
+            <h1 tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
+            <p>{{ cardDescription | str_limit(100) }}</p>
+            <span class="price">{{ cardPrice | price_number('BR') }}</span>
         </div>
     </button>
 </template>
 
 <script>
+import { str, number } from "@/utils/props";
 export default {
+    props: {
+        cardName: str(''),
+        cardDescription: str(''),
+        cardPrice: number(0)
+    },
     data() {
         return {
             image: '',
-            cardName: 'Hamburguer',
-            cardDescription: 'Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...',
-            cardPrice: 'R$ 10,00'
         }
     }
 }
@@ -111,6 +117,7 @@ export default {
             .card-img-content {
                 overflow: hidden;
                 width: auto;
+                min-width: fit-content;
                 height: auto;
 
                 img {

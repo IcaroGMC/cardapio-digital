@@ -65,9 +65,10 @@ i {
 
     @include keyframes(gravity) {
     0% {
-        margin-top: 40px;
+        margin-top: 60px;
     }
     100% {
         margin-top: 30px;
     }
+
 }

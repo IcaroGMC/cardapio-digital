@@ -5,14 +5,13 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#infoModal">
-            <div 
-                :removeInfo="removeInfo" 
-                :class="(removeInfo == 'yes-ss') ? 'remove-info' : null"
+            <div
+                :info-class="infoClass"
                 class="info">
                 <img src="@/assets/img/trueInfo.svg" alt="">
                 <p>Aberto Agora</p>
             </div>
-            <span :class="(removeInfo == 'yes-ss') ? 'info' : null"></span>
+            <span :class="infoClass"></span>
         </button>
     </div>
 </template>
@@ -26,6 +25,7 @@ export default {
         B:number(0),
         C: bool(false),
         removeInfo: str(''),
+        infoClass: str('')
     },
 
     data() {
@@ -70,6 +70,10 @@ export default {
                 padding: 0;
                 margin-left: 21px;
             }
+
+            .remove-info {
+                display: none;
+            }
         }
 
         #staticBackdrop {
@@ -78,7 +82,7 @@ export default {
     }
 
     @media screen and (max-width: 1100px) {
-        .remove-info {
+        .remove-info-sm {
             display: none !important;
         }
         .info {

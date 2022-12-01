@@ -56,14 +56,18 @@ export default {
         ComponentFooter,
 
     },
-    mounted () {
-        axios
-            .get('https://estagio.sauto.com.br/api/v1/product')
-            .then(response => (this.info = response))
-
-            const { records } = this.info;
+    methods: {
+        async get_products() {
+            let response = await axios.get('https://estagio.sauto.com.br/api/v1/product');
+            const { records } = response.data;
+            console.log(records);
 
             this.products.items = records;
+        }
+        
+    },
+    created(){
+        this.get_products();
     }
 }
 </script>
