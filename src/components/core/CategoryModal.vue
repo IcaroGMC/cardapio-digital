@@ -16,6 +16,34 @@
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
                         </button>
+                        <button class="category-content">
+                            <h1>Nome da Categoria</h1>
+                            <div class="category-info">
+                                <span>3</span>
+                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
+                            </div>
+                        </button>
+                        <button class="category-content">
+                            <h1>Nome da Categoria</h1>
+                            <div class="category-info">
+                                <span>3</span>
+                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
+                            </div>
+                        </button>
+                        <button class="category-content">
+                            <h1>Nome da Categoria</h1>
+                            <div class="category-info">
+                                <span>3</span>
+                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
+                            </div>
+                        </button>
+                        <button class="category-content">
+                            <h1>Nome da Categoria</h1>
+                            <div class="category-info">
+                                <span>3</span>
+                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -78,6 +106,7 @@ export default {
                             display: flex;
                             width: 100%;
                             align-items: center;
+                            border-bottom: 1px solid #E9ECEF;
 
                             &:hover .category-info button{
                                 margin-left: 8px;
@@ -91,6 +120,7 @@ export default {
                                 font-size: 18px;
                                 line-height: 130%;
                                 color: #343A40;
+                                
                             }
 
                             .category-info {
