@@ -7,7 +7,7 @@
                     <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
                     <div>
                         <h2>Resultados para <span>"Salsicha"</span></h2>
-                        <p>4 resultados encontrados</p>
+                        <p>{{ products.items.length }} resultados encontrados</p>
                     </div>
                     <CoreInput 
                         :widthsize="'large-100vw'" 
@@ -21,6 +21,7 @@
                         :card-name="item.name" 
                         :card-description="item.description" 
                         :card-price="item.price" />
+                        
                 </section>
                 <CorePagination />
             </section>
