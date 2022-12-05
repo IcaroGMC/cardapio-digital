@@ -1,9 +1,9 @@
 <template>
     <div class="modal fade m-auto" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content rounded-5">
+            <div class="modal-content rounded-5 position-absolute">
                 <div class="modal-header border border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close-btn btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
@@ -90,6 +90,13 @@ export default {
 
 <style lang="scss" scoped>
     @import '@/scss/GeneralStyle.scss';
+
+    .modal-header {
+        .close-btn {
+            right: 1.5em;
+            top: 1.5em;
+        }
+    }
 
     p {
         margin-right: 150px;

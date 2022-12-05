@@ -16,34 +16,6 @@
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
                         </button>
-                        <button class="category-content">
-                            <h1>Nome da Categoria</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </button>
-                        <button class="category-content">
-                            <h1>Nome da Categoria</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </button>
-                        <button class="category-content">
-                            <h1>Nome da Categoria</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </button>
-                        <button class="category-content">
-                            <h1>Nome da Categoria</h1>
-                            <div class="category-info">
-                                <span>3</span>
-                                <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
-                            </div>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -52,8 +24,38 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { baseURL } from '@/config/index.js'
 export default {
+    data() {
+        return {
+            categories: {
+                items: [],
+                isLoading: true
+            },
+        }
+    },
+    methods: {
+        async get_categories() {
+            try {
+                let response = await axios.get(baseURL + 'categories');
 
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.categories.items = records;
+
+                this.categories.isLoading = false;
+
+            } catch({ errors }){
+
+                this.handle_server_errors(errors);
+
+            }
+        }
+    },
 }
 </script>
 
