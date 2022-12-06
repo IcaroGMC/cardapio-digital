@@ -6,7 +6,12 @@
         <nav class="navbar">
             <div class="container-fluid">
                 <router-link to="/" replace><img draggable="false" class="unselectable" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>	
-                <CoreInput class="info-input" :margin="'py-1'" :placeholder="'O que você procura?'" :maxCharacters="30" />
+                <CoreInput
+                    name="search"
+                    class="info-input" 
+                    :margin="'py-1'" 
+                    :placeholder="'O que você procura?'" 
+                    :maxCharacters="30" />
                 <InfoButton :remove-info="'yes-ss'" class="info-button"></InfoButton>
             </div>
         </nav>

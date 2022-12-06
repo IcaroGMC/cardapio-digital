@@ -4,7 +4,7 @@
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
-                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
+                    <button v-on:click="Back()"><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
                     <div>
                         <h2>Resultados para <span>"Salsicha"</span></h2>
                         <p>{{ products.items.length }} resultados encontrados</p>
@@ -14,7 +14,7 @@
                         class="searchinput" 
                         :maxCharacters="50" />
                 </div>
-                    <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
+                <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
                     <CoreCard :class="`${products.isLoading ? 'd-none' : null}`"
                         v-for="item in products.items" v-bind:key="item.id"
@@ -48,15 +48,16 @@ import CorePagination from "@/components/core/CorePagination.vue";
 import CoreInput from "@/components/core/Input.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import axios from 'axios';
-import { baseURL } from '@/config/index.js'
+import { baseURL } from '@/config/index.js';
 
 export default {
     data() {
         return {
             products: {
                 items: [],
-                isLoading: true
+                isLoading: true,
             },
+            search: ''
         }
     },
     components: {
@@ -68,6 +69,9 @@ export default {
         CoreInput
     },
     methods: {
+        Back() {
+            this.$router.back();
+        },
         async get_products() {
             try {
                 let response = await axios.get(baseURL + 'product');
@@ -86,10 +90,13 @@ export default {
                 this.handle_server_errors(errors);
 
             }
-            
-            
-        }
-        
+        },
+
+        filteredProduct(search) {
+            return this.products.items.filter((item) =>
+                item.name.toLowerCase().includes(search.toLowerCase())
+            );
+        },
     },
     created(){
         this.get_products();

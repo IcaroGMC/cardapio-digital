@@ -32,9 +32,6 @@ export default {
             no_image: require('@/assets/img/no_image.jpg'),
         }
     },
-    mounted() {
-        console.log(this.cardImageUrl)
-    }
 }
 </script>
 

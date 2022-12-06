@@ -9,13 +9,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="category-body">
-                        <button class="category-content">
-                            <h1>Nome da Categoria</h1>
+                        <router-link
+                            :to="`/categoria/${item.name.toLowerCase().replace(/\s/g, '-')}-${item.id}`"
+                            v-for="item in categories.items" 
+                            :key="item.id" 
+                            class="category-content">
+                            <h1>{{ item.name }}</h1>
                             <div class="category-info">
                                 <span>3</span>
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
-                        </button>
+                        </router-link>
                     </div>
                 </div>
             </div>
@@ -56,6 +60,10 @@ export default {
             }
         }
     },
+
+    created() {
+        this.get_categories();
+    }
 }
 </script>
 
@@ -103,6 +111,7 @@ export default {
                     .category-body {
                         border-bottom: 1px solid #E9ECEF;
                         .category-content {
+                            text-decoration: none;
                             background: 0;
                             border: 0;
                             display: flex;

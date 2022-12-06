@@ -5,70 +5,126 @@
             <section class="container-fluid">
                 <div class="return-content">
                     <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
-                    <h2>{{ products.items }}</h2>
+                    <h2>{{ category.item.name }}</h2>
                 </div>
+                <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
-                    <button class="card" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#productModal">
-                        <img src="@/assets/img/cardImage2.jpeg" alt="" srcset="">
-                        <div class="card-text">
-                            <h1>Hamburguer</h1>
-                            <p>Pão de leite, molho da casa, creme de cheddar, blend 130g, alface...</p>
-                            <span class="price">R$10,00</span>
-                        </div>
-                    </button>
+                    <CoreCard 
+                        :class="`${products.isLoading ? 'd-none' : null}`"
+                        v-for="item in products.items" v-bind:key="item.id"
+                        :v-if="item.length"
+                        :card-image-url="{
+                            id:item.upload ? item.upload.id : null,
+                            name:item.upload ? item.upload.name : null,
+                            scope:item.upload ? item.upload.scope : null    
+                        }"
+                        :card-name="item.name" 
+                        :card-description="item.description" 
+                        :card-price="item.price" />
+                    <div v-if="!products.items.length">
+                        Nenhum Produto encontrado
+                    </div>
                 </section>
+                <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
+                <CorePagination />
             </section>
-            <button class="menu-button">
-                <img src="@/assets/img/list.svg" alt="" srcset="">
-                Cardápio
-            </button>
+           
         </main>
         <ComponentFooter></ComponentFooter>
     </div>
 </template>
 
 <script>
-import ComponentHeader from "../components/ComponentHeader.vue";
-import ComponentFooter from "../components/ComponentFooter.vue";
+import ComponentHeader from "@/components/ComponentHeader.vue";
+import ComponentFooter from "@/components/ComponentFooter.vue";
+import CoreCard from "@/components/core/CoreCard.vue";
+import CorePagination from "@/components/core/CorePagination.vue";
+import CoreSpinner from "@/components/core/CoreSpinner.vue";
+import CoreMenuButton from "@/components/core/CoreMenuButton.vue";
 import axios from 'axios';
-
-// -------------------- Análise dos models dos produtos --------------------
-
-//  Modal do produto:
-//      Produto sem sub-produto:
-//          Tirar opcionais (Ou adicionar no back-end)
-//      Produto com sub-produto:
-//          Sub-produtos possuem promoções próprias (Adicionar no back-end ou não adicionar)                                  
+import { baseURL } from '@/config/index.js';                               
 
 export default {
     data() {
         return {
             info: null,
             products: {
-                items: []
-            }
+                items: [],
+                isLoading: true,
+            },
+            category: {
+                item: [],
+            },
+            filter: []
         }
     },
     components: {
         ComponentHeader,
         ComponentFooter,
-
+        CoreCard,
+        CorePagination,
+        CoreSpinner,
+        CoreMenuButton
     },
-    methods: {
-        async get_products() {
-            let response = await axios.get('https://estagio.sauto.com.br/api/v1/product');
-            const { records } = response.data;
-            console.log(records);
 
-            this.products.items = records;
-        }
+    watch: {
+        '$route.params.id': {
+            handler(categoryId) {
+                this.get_category(categoryId);
+                this.get_products(this.$route.params.id)
+            }
+        },
         
     },
-    created(){
-        this.get_products();
-    }
+
+    mounted() {
+        this.get_category(this.$route.params.id);
+        this.get_products(this.$route.params.id);
+    },
+
+    methods: {
+        async get_products(filterId) {
+            try {
+
+                this.products.isLoading = true;
+                
+                let response = await axios.get(baseURL + 'product');
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.filter = records.filter(item => item.category_id == filterId);
+
+                this.products.items = this.filter;
+
+                this.products.isLoading = false;
+
+            } catch({ errors }){
+
+                console.error(errors)
+
+            }
+        },
+
+        async get_category(id) {
+            try {
+                let response = await axios.get(baseURL + `categories/${id}`);
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                this.category.item = response.data.record;
+
+            } catch({ errors }){
+
+                console.error(errors);
+
+            }
+        },
+        
+    },
 }
 </script>
 
@@ -197,22 +253,6 @@ export default {
                         }
                     }
                 }
-            }
-
-            .menu-button {
-                position: fixed;
-                bottom: 51px;
-                color: white;
-                background-color: #F75B5D;
-                border: none;
-                box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
-                width: 135px;
-                height: 48px;
-                border-radius: 25px;
-                font-style: normal;
-                font-weight: 700;
-                font-size: 15px;
-                line-height: 130%;
             }
         }
     }
@@ -366,22 +406,6 @@ export default {
                             }
                         }
                     }
-                }
-
-                .menu-button {
-                    position: fixed;
-                    bottom: 51px;
-                    color: white;
-                    background-color: #F75B5D;
-                    border: none;
-                    box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
-                    width: 135px;
-                    height: 48px;
-                    border-radius: 25px;
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 15px;
-                    line-height: 130%;
                 }
             }
         }

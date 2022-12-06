@@ -9,15 +9,16 @@
             class="input-content">
             <button type="submit"></button>
             <input
-            v-model="name"
+            @input="filteredProduct($event)"
+            v-model="inputName"
             class="search"
-            :name="name"
+            :name="inputName"
             :maxCharacters="maxCharacters"
             :maxlength="maxCharacters"
             type="search" 
             :placeholder="placeholder" 
             aria-label="Search">
-            <button v-on:click="buttonDelete()" class="close-active-btn" :class="name.length === 0 ? 'close-btn' : 'active-btn'"><i class="fa-solid fa-xmark"></i></button>
+            <button v-on:click="buttonDelete()" class="close-active-btn" :class="inputName.length === 0 ? 'close-btn' : 'active-btn'"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
 </template>
@@ -35,24 +36,25 @@
 			placeholder: str(null),
             maxCharacters: number(null),
             margin: str(''),
+            input: str(''),
 		},
 
         data() {
             return {
                 closeBtnIsActive: true,
-                name: '',
+                inputName: ''
             }
         },
 
         computed: {
             nameLength: function () {
-                return this.name.length;
+                return this.inputName.length;
             }
         },
 
         methods: {
             buttonDelete: function () {
-                this.name = '';
+                this.inputName = '';
             }
         },
 
