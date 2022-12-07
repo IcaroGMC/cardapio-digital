@@ -7,7 +7,7 @@
                 </div>
                 <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>Sauto Delivery LTDA</h1>
+                    <h1>{{ company.items }}</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
                         <a href="tel:+8834116372">(88) 3411 - 6372</a>
