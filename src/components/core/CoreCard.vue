@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 export default {
     props: {
@@ -39,7 +38,6 @@ export default {
         }
     },
     components: {
-        ProductModal
     }
 }
 </script>
