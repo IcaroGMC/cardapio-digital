@@ -1,7 +1,6 @@
 <template>
     <button class="card"
-    data-bs-toggle="modal" 
-    data-bs-target="#productModal">
+        v-on:click="showDetails(product)">
         <div class="card-img-content">
             <img 
                 :card-image-url="cardImageUrl" 
@@ -15,9 +14,17 @@
             <span :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
         </div>
     </button>
+    <portal to="modals" v-if="showModal">
+        <product-modal
+            v-bind:product="product"
+            v-bind:show="showModal"
+            v-on:hide="showModal = false"
+        />
+    </portal>
 </template>
 
 <script>
+import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 export default {
     props: {
@@ -30,8 +37,17 @@ export default {
         return {
             showCardImageURL: `https://estagio.sauto.com.br//storage/${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
             no_image: require('@/assets/img/no_image.jpg'),
+            card: {
+                name: this.cardName,
+                description: this.cardDescription,
+                price: this.cardPrice,
+                imageURL: this.cardImageUrl
+            }
         }
     },
+    components: {
+        ProductModal
+    }
 }
 </script>
 
