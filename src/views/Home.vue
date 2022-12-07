@@ -33,6 +33,7 @@
           </div>
       </div>
     </main>
+    <component-footer />
   </div>
 </template>
 
@@ -41,6 +42,7 @@ import InfoButton from "@/components/core/InfoButton.vue";
 import Input from "@/components/core/Input.vue";
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';
+import ComponentFooter from '../components/ComponentFooter.vue';
 
 export default {
   name: "Home",
@@ -84,7 +86,8 @@ export default {
       },
   components: {
     InfoButton,
-    Input
+    Input,
+    ComponentFooter
   }
 };
 </script>
