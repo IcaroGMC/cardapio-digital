@@ -1,6 +1,6 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="categoryBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="categoryBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="categoryBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="categoryBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,10 +8,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="category-body">
-                        <router-link
-                            :to="`/categoria/${item.name.toLowerCase().replace(/\s/g, '-')}-${item.id}`"
-                            v-for="item in categories.items" 
+                    <div class="category-body" data-bs-dismiss="modal">
+                        <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="categories.isLoading"  />
+                        <button
+                            @click="filterCategory(index)"
+                            v-for="(item, index) in categories.items"
+                            :class="`${categories.isLoading ? 'd-none' : null}`"
                             :key="item.id" 
                             class="category-content">
                             <h1>{{ item.name }}</h1>
@@ -19,7 +21,7 @@
                                 <span>3</span>
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
-                        </router-link>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -28,8 +30,9 @@
 </template>
 
 <script>
+import CoreSpinner from '@/components/core/CoreSpinner'
 import axios from 'axios';
-import { baseURL } from '@/config/index.js'
+import { baseURL } from '@/config/index.js';
 export default {
     data() {
         return {
@@ -39,10 +42,20 @@ export default {
             },
         }
     },
+    components: {
+        CoreSpinner
+    },
+
     methods: {
         async get_categories() {
             try {
-                let response = await axios.get(baseURL + 'categories');
+                this.categories.isLoading = true;
+
+                let response = await axios.get(`${baseURL}categories`, {
+                    params:{
+                        'page[size]': 1000
+                    }
+                });
 
                 const { errors } = response.data;
                 if(errors) throw { errors };
@@ -58,6 +71,21 @@ export default {
                 this.handle_server_errors(errors);
 
             }
+        },
+
+        filterCategory(itemId) {
+            console.log(this.categories.items[itemId].name);
+            this.$router.push({
+                name: '/categoria',
+                params: {
+                    name: this.categories.items[itemId].name.toLowerCase(),
+                    id: this.categories.items[itemId].id
+                },
+            }).catch(error => {
+                if (error.name != "NavigationDuplicated") {
+                    throw error;
+                }
+            });
         }
     },
 

@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss" scoped>
     .card {
-        width: calc(100% - 32px);
+        width: 100%;
         height: 336px;
         border: 1.5px solid #EBEBEB;
         border-radius: 24px;
@@ -97,12 +97,6 @@ export default {
                 line-height: 130%;
                 color: #F75B5D;
             }
-        }
-    }
-
-    @media screen and (max-width: 1360px) {
-        .card {
-            justify-self: center;
         }
     }
 

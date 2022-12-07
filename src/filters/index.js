@@ -1,3 +1,4 @@
+// import { is } from 'core-js/core/object';
 import Vue from 'vue';
 
 Vue.filter('str_limit', function (value, size) {
@@ -20,3 +21,9 @@ Vue.filter('toCurrency', function (value) {
     });
     return formatter.format(value);
 });
+
+Vue.filter('capitalize', function (value) {
+    if (!value) return '';
+
+    return value.charAt(0).toUpperCase() + value.slice(1);
+})

@@ -5,13 +5,16 @@
     class="header">
         <nav class="navbar">
             <div class="container-fluid">
-                <router-link to="/" replace><img draggable="false" class="unselectable" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>	
-                <CoreInput
+                <router-link to="/" replace><img draggable="false" class="unselectable" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>
+                <form v-on:submit.prevent v-on:submit="search_products()">
+                    <CoreInput
+                    @inputChanged="defineSearch"
                     name="search"
-                    class="info-input" 
+                    class="info-input"
                     :margin="'py-1'" 
                     :placeholder="'O que você procura?'" 
                     :maxCharacters="30" />
+                </form>
                 <InfoButton :remove-info="'yes-ss'" class="info-button"></InfoButton>
             </div>
         </nav>
@@ -34,11 +37,31 @@ export default {
     data() {
         return {
             SearchLogoImage: '../assets/img/searchLogo.svg',
+            input_name: ''
         }
     },
     components: {
         InfoButton,
         CoreInput
+    },
+
+    methods: {
+        defineSearch( data ) {
+            this.input_name = data;
+        },
+
+        search_products() {
+            this.$router.push({
+                path: '/busca', 
+                query: { 
+                    q: this.input_name.toLowerCase()
+                } 
+            }).catch(error => {
+                if (error.name != "NavigationDuplicated") {
+                    throw error;
+                }
+            });
+        }
     }
 }
 </script>
