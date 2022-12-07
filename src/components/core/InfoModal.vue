@@ -7,7 +7,7 @@
                 </div>
                 <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>Sauto Delivery LTDA</h1>
+                    <h1>{{ company.items }}</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
                         <a href="tel:+8834116372">(88) 3411 - 6372</a>
@@ -83,8 +83,42 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios';
+import { baseURL } from '@/config/index.js';
 
+export default {
+    data () {
+        return {
+                company: {
+                    items: [],
+                    isLoading: true
+                }
+        }
+    },
+    methods: {
+        async get_company() {
+            try {
+                let response = await axios.get(baseURL + 'company');
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.company.items = records;
+
+                this.company.isLoading = false;
+
+            } catch({ errors }){
+
+                this.handle_server_errors(errors);
+
+            }
+        },
+    },
+    created(){
+        this.get_company();
+    }
 }
 </script>
 
