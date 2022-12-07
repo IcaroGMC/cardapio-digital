@@ -15,67 +15,31 @@
                     </div>
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Domingo</h3>
+                        <div class="d-flex align-items-center mb-4"
+                            v-for="item in days" v-bind:key="item.id">
+                            <h3 class="me-auto my-0">{{item.name}}</h3>
                              <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">Fechado</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Segunda-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Terça-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Quarta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Quinta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Sexta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Sábado</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0"
+                                    v-for="item in days.times" v-bind:key="item.id">
+                                    {{ item.start_time }}&nbsp;-&nbsp;{{ item.finish_time }}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex flex-column align-items-start">
-                    <a class="text-reset text-decoration-none" type="button" href="tel:+8834116372"><img src="@/assets/img/phone.svg" alt=""><span class="font-weight-bold ml-2"> Ligar </span></a>
-                    <a class="text-reset text-decoration-none" type="button" href="https://api.whatsapp.com/send?phone=558834116372"><img src="@/assets/img/number.svg" alt=""><span class="font-weight-bold ml-2">Falar no WhatsApp</span></a>
+                    <a 
+                        class="text-reset text-decoration-none" 
+                        type="button" href="tel:+8834116372">
+                        <img src="@/assets/img/phone.svg" alt="">
+                        <span class="font-weight-bold ml-2"> Ligar </span>
+                    </a>
+                    <a 
+                        class="text-reset text-decoration-none" 
+                        type="button" href="https://api.whatsapp.com/send?phone=558834116372">
+                        <img src="@/assets/img/number.svg" alt="">
+                        <span class="font-weight-bold ml-2">Falar no WhatsApp</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -84,40 +48,60 @@
 
 <script>
 import axios from 'axios';
-import { baseURL } from '@/config/index.js';
-
+import { baseURL } from '@/config/index.js'; 
 export default {
-    data () {
+    data() {
         return {
-                company: {
-                    items: [],
-                    isLoading: true
-                }
+            name: 'InfoModal',
+            workingtime: {
+                items: []
+            },
+            days: [
+                {id: 1, name: 'Domingo', times: []},
+                {id: 2, name: 'Segunda-Feira', times: []},
+                {id: 3, name: 'Terça-Feira', times: []},
+                {id: 4, name: 'Quarta-Feira', times: []},
+                {id: 5, name: 'Quinta-Feira', times: []},
+                {id: 6, name: 'Sexta-Feira', times: []},
+                {id: 7, name: 'Sábado', times: []},
+            ],
+            filter: []
         }
     },
+
     methods: {
-        async get_company() {
+        async get_workingtime() {
             try {
-                let response = await axios.get(baseURL + 'company');
+                let response = await axios.get(baseURL + 'workingtime');
 
                 const { errors } = response.data;
                 if(errors) throw { errors };
 
                 const { records } = response.data;
 
-                this.company.items = records;
+                console.log(records);
 
-                this.company.isLoading = false;
+                this.workingtime.items = records;
+
+                for (const day in this.days.id) {
+                    
+                    this.days[day].times = {
+                        start_time: this.workingtime[day].items.start_time,
+                        finish_time: this.workingtime[day].items.finish_time,
+                    }
+                    
+                }
 
             } catch({ errors }){
 
-                this.handle_server_errors(errors);
+                console.error(errors);
 
             }
         },
     },
-    created(){
-        this.get_company();
+
+    created() {
+        this.get_workingtime();
     }
 }
 </script>

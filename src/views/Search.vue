@@ -6,13 +6,18 @@
                 <div class="return-content">
                     <button v-on:click="Back()"><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
                     <div>
-                        <h2>Resultados para <span>"Salsicha"</span></h2>
+                        <h2>Resultados para <span>“{{ $route.query.q | capitalize() }}”</span></h2>
                         <p>{{ products.items.length }} resultados encontrados</p>
                     </div>
-                    <CoreInput 
-                        :widthsize="'large-100vw'" 
-                        class="searchinput" 
-                        :maxCharacters="50" />
+                    <form v-on:submit.prevent>
+                        <CoreInput
+                            :name="input_name"
+                            v-on:submit="search_products()"
+                            @inputChanged="defineSearch"
+                            :widthsize="'large-100vw'"
+                            class="searchinput"
+                            :maxCharacters="50" />
+                    </form>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
@@ -57,7 +62,8 @@ export default {
                 items: [],
                 isLoading: true,
             },
-            search: ''
+            input_name: '',
+            filter: []
         }
     },
     components: {
@@ -68,26 +74,74 @@ export default {
         CoreSpinner,
         CoreInput
     },
+
+    watch: {
+        '$route.query.q': {
+            handler() {
+                this.get_products(this.$route.query.q);
+            }
+        },
+    },
+
+    mounted() {
+        this.get_products(this.$route.query.q);
+    },
+
     methods: {
         Back() {
             this.$router.back();
         },
-        async get_products() {
+
+        defineSearch( data ) {
+            this.input_name = data;
+        },
+
+        search_products() {
+            this.$router.push({
+                path: '/busca', 
+                query: { 
+                    q: this.input_name.toLowerCase()
+                } 
+            }).catch(error => {
+                if (error.name != "NavigationDuplicated") {
+                    throw error;
+                }
+            });
+        },
+
+        async get_products(filterName) {
             try {
-                let response = await axios.get(baseURL + 'product');
+                this.products.isLoading = true;
+
+                let response = await axios.get(baseURL + 'product', {
+                    params:{
+                        'page[size]': 1000,
+                        'order_by[name]': 'asc'
+                    }
+                });
 
                 const { errors } = response.data;
                 if(errors) throw { errors };
 
                 const { records } = response.data;
 
-                this.products.items = records;
+                if (filterName) {
+                    this.filter = records.filter(
+                        item => item.name.toLowerCase().includes(filterName.toLowerCase())
+                    );
+
+                    this.products.items = this.filter;
+                } else {
+                    this.products.items = records;
+                }
+                
+                console.log(this.products.items)
 
                 this.products.isLoading = false;
 
             } catch({ errors }){
 
-                this.handle_server_errors(errors);
+                console.error(errors);
 
             }
         },
@@ -98,9 +152,6 @@ export default {
             );
         },
     },
-    created(){
-        this.get_products();
-    }
 }
 </script>
 
@@ -184,7 +235,7 @@ export default {
                     width: 100%;
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
-                    row-gap: 32px;
+                    gap: 32px;
                 }
             }
 

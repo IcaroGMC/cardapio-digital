@@ -7,18 +7,19 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "/menu",
     component: Home,
   },
   {
-    path: "/categoria/:username-:id",
-    name: "Category",
+    path: "/categoria/:name-:id",
+    name: "/categoria",
     component: () =>
       import("../views/Category.vue"),
   },
   {
     path: "/busca",
-    name: "Search",
+    query: { q: ':search' }, 
+    name: "/busca",
     component: () =>
       import("../views/Search.vue"),
   },

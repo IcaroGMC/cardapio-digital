@@ -5,7 +5,7 @@
             <section class="container-fluid">
                 <div class="return-content">
                     <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
-                    <h2>{{ category.item.name }}</h2>
+                    <h2>{{ category.item.name | capitalize() }}</h2>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
@@ -21,9 +21,7 @@
                         :card-name="item.name" 
                         :card-description="item.description" 
                         :card-price="item.price" />
-                    <div v-if="!products.items.length">
-                        Nenhum Produto encontrado
-                    </div>
+                        <CoreNotFoundItems v-if="!products.items" />
                 </section>
                 <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
                 <CorePagination />
@@ -41,6 +39,7 @@ import CoreCard from "@/components/core/CoreCard.vue";
 import CorePagination from "@/components/core/CorePagination.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import CoreMenuButton from "@/components/core/CoreMenuButton.vue";
+import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';                               
 
@@ -55,7 +54,12 @@ export default {
             category: {
                 item: [],
             },
-            filter: []
+            filter: [],
+            metadata: {
+                quantity: 0,
+                items_per_page: 0,
+                numbers_of_pages: 0
+            }
         }
     },
     components: {
@@ -64,12 +68,14 @@ export default {
         CoreCard,
         CorePagination,
         CoreSpinner,
-        CoreMenuButton
+        CoreMenuButton,
+        CoreNotFoundItems
     },
 
     watch: {
         '$route.params.id': {
             handler(categoryId) {
+                console.log(categoryId);
                 this.get_category(categoryId);
                 this.get_products(this.$route.params.id)
             }
@@ -88,16 +94,24 @@ export default {
 
                 this.products.isLoading = true;
                 
-                let response = await axios.get(baseURL + 'product');
+                let response = await axios.get(baseURL + 'product', { 
+                    params: { 
+                        'filter_by[category_id]': filterId,
+                        'page[size]': 1000
+                    }
+                });
 
                 const { errors } = response.data;
                 if(errors) throw { errors };
 
-                const { records } = response.data;
+                const { records, metadata } = response.data;
 
-                this.filter = records.filter(item => item.category_id == filterId);
+                this.metadata = metadata;
+                this.metadata.items_per_page = metadata.pagination.items_per_page;
+                this.metadata.quantity = metadata.quantity;
+                this.metadata.numbers_of_pages = Math.ceil(this.metadata.quantity / this.metadata.items_per_page);
 
-                this.products.items = this.filter;
+                this.products.items = records;
 
                 this.products.isLoading = false;
 
@@ -189,69 +203,8 @@ export default {
                 .cards {
                     width: 100%;
                     display: grid;
+                    gap: 32px;
                     grid-template-columns: repeat(3, 1fr);
-
-                    :nth-child(3n) {
-                        justify-self: end;
-                    }
-
-                    :nth-child(3n-1) {
-                        justify-self: center;
-                    }
-                    .card {
-                        max-width: calc(100vw / 3);
-                        width: 311px;
-                        height: 336px;
-                        border: 1.5px solid #EBEBEB;
-                        border-radius: 24px;
-                        margin: 0 16px;
-                        margin-bottom: 32px;
-                        padding: 0;
-                        overflow: hidden;
-
-                        img {
-                            width: 100%;
-                            height: 168px;
-                            object-fit: cover;
-                        }
-
-                        .card-text {
-                            display: flex;
-                            align-items: flex-start;
-                            flex-direction: column;
-                            margin: 21px;
-                            
-                            h1 {
-                                text-align: start;
-                                font-style: normal;
-                                font-weight: 800;
-                                font-size: 18px;
-                                line-height: 130%;
-
-                                /* or 23px */
-
-                                /* grey / g1 */
-                                color: #343A40;
-                            }
-
-                            p {
-                                text-align: start;
-                                font-style: normal;
-                                font-weight: 400;
-                                font-size: 15px;
-                                line-height: 150%;
-                                color: #868E96;
-                            }
-
-                            span {
-                                font-style: normal;
-                                font-weight: 800;
-                                font-size: 18px;
-                                line-height: 130%;
-                                color: #F75B5D;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -267,13 +220,6 @@ export default {
                         width: 100%;
                         display: grid;
                         grid-template-columns: repeat(3, 1fr);
-
-                        .card {
-                            width: 221px;
-                            justify-self: center;
-                        }
-
-                        
                     }
                 }
             }
@@ -314,6 +260,7 @@ export default {
                         button {
                             display: flex;
                             border: 0;
+                            padding: 0;
                             background: 0;
                             font-style: normal;
                             font-weight: 400;
@@ -347,64 +294,6 @@ export default {
                         display: flex;
                         flex-direction: column;
                         padding: 120px 18px 0 18px;
-
-                        :last-child {
-                            margin-bottom: 0 !important;
-                        }
-                        .card {
-                            display: flex;
-                            flex-direction: row;
-                            width: 100%;
-                            max-width: 900px;
-                            height: 140px;
-                            border: none;
-                            border-bottom: 1.5px solid #EBEBEB;
-                            border-radius: 0;
-                            margin: 0;
-                            margin-bottom: 32px;
-                            padding: 0;
-                            overflow: hidden;
-
-                            img {
-                                width: 78px;
-                                height: 78px;
-                                object-fit: cover;
-                                border-radius: 16px;
-                            }
-
-                            .card-text {
-                                margin: 0;
-                                margin-left: 16px;
-                                
-                                h1 {
-                                    font-style: normal;
-                                    font-weight: 800;
-                                    font-size: 18px;
-                                    line-height: 130%;
-
-                                    /* or 23px */
-
-                                    /* grey / g1 */
-                                    color: #343A40;
-                                }
-
-                                p {
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    font-size: 15px;
-                                    line-height: 150%;
-                                    color: #868E96;
-                                }
-
-                                span {
-                                    font-style: normal;
-                                    font-weight: 800;
-                                    font-size: 18px;
-                                    line-height: 130%;
-                                    color: #F75B5D;
-                                }
-                            }
-                        }
                     }
                 }
             }
