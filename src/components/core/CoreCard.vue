@@ -14,13 +14,6 @@
             <span :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
         </div>
     </button>
-    <portal to="modals" v-if="showModal">
-        <product-modal
-            v-bind:product="product"
-            v-bind:show="showModal"
-            v-on:hide="showModal = false"
-        />
-    </portal>
 </template>
 
 <script>
