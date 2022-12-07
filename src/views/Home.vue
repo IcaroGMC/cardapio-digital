@@ -20,30 +20,15 @@
           <h1>Cardápio</h1>
           <div class="group-content">
             <div class="group-34">
-              <div 
-                  v-for="item in items.slice(0, 7)" 
-                  :key="item.message"
-                  class="text-group">
-
-                <h3>{{ item.message }}</h3>
-                <span>{{ item.count }}</span>
+              <div
+                v-for="item in categories.items" 
+                :class="`${categories.isLoading ? 'd-none' : null}`"
+                :key="item.id" 
+                class="text-group">
+                <h3>{{ item.name }}</h3>
+                <span>3</span>
                 <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
-
-              </div>
-
-            </div>
-            <div class="group-34">
-
-              <div 
-                  class="text-group" 
-                  v-for="item in items.slice(0, 7)" 
-                  :key="item.message">
-
-                <h3>{{ item.message }}</h3>
-                <span>{{ item.count }}</span>
-                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
-
-              </div>
+                </div>
             </div>
           </div>
       </div>
@@ -54,22 +39,49 @@
 <script>
 import InfoButton from "@/components/core/InfoButton.vue";
 import Input from "@/components/core/Input.vue";
+import axios from 'axios';
+import { baseURL } from '@/config/index.js';
 
 export default {
   name: "Home",
   data() {
     return {
-      items: [
-        { message: 'Hamburguers', count: '9' },
-        { message: 'Hamburguers', count: '12' },
-        { message: 'Hamburguers', count: '12' },
-        { message: 'Hamburguers', count: '12' },
-        { message: 'Hamburguers', count: '12' },
-        { message: 'Hamburguers', count: '12' },
-        { message: 'Hamburguers', count: '12' }
-      ],
+      categories: {
+                items: [],
+                isLoading: true
+            },
     }
   },
+  methods: {
+        async get_categories() {
+            try {
+                this.categories.isLoading = true;
+
+                let response = await axios.get(`${baseURL}categories`, {
+                    params:{
+                        'page[size]': 1000
+                    }
+                });
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.categories.items = records;
+
+                this.categories.isLoading = false;
+
+            } catch({ errors }){
+
+                this.handle_server_errors(errors);
+
+            }
+        },
+      },
+  created() {
+        this.get_categories();
+      },
   components: {
     InfoButton,
     Input
@@ -79,7 +91,7 @@ export default {
 
 <style lang="scss" scoped>
   .site-container {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -142,43 +154,44 @@ export default {
           font-size: 36px;
           line-height: 48.6px;
           font-weight: bolder;
-          color: gray;
+          color: #343A40;
           font-size: 36px;
           line-height: 48.6px;
         }
         .group-content {
           display: flex;
-          justify-content: space-between;
+          justify-content: space-around;
           width: 100%;
           .group-34 {
             display: grid;
-            grid-template-rows: repeat(7, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            column-gap: 50px;
             width: 526px;
             .text-group {
               width: 100%;
               padding: 16px 10px;
               display: flex;
               align-items: center;
-              border-bottom: 1px solid cyan;
+              border-bottom: 1px solid #DEE2E6;
               h3 {
-                color: gray;
+                color: #343A40;
                 font-weight: 700;
                 font-size: 18px;
                 line-height: 23.4px;
               }
               a {
                 font-weight: 200;
-                color: cyan;
+                color: #868E96;
                 margin-left: 8px;
               }
               span {
-                background-color: cyan;
+                background-color: #DEE2E6;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 border-radius: 25px;
                 padding: 1px 8px;
-                color: black;
+                color: #868E96;
                 font-size: 14px;
                 margin-left: auto;
                 width: 33px;

@@ -1,13 +1,28 @@
 <template>
-    <div class="modal fade m-auto" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal fade m-auto" 
+    id="infoModal" 
+    tabindex="-1" 
+    aria-labelledby="infoModalLabel" 
+    aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content rounded-5 position-absolute">
                 <div class="modal-header border border-0">
-                    <button type="button" class="close-btn btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button 
+                    type="button" 
+                    class="close-btn btn-close position-absolute" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close">
+                    </button>
                 </div>
                 <div class="modal-body m-2">
-                    <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>{{ company.items }}</h1>
+                    <a href="" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close">
+                    <img class="mb-4" 
+                    src="@/assets/img/logo.svg" 
+                    alt="">
+                    </a>
+                    <h1>Sauto Delivery</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
                         <a href="tel:+8834116372">(88) 3411 - 6372</a>
