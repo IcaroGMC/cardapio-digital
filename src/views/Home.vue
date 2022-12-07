@@ -12,7 +12,6 @@
         <Input :placeholder="'O que você procura?'" :maxCharacters="46" />
       </div>
     </header>
-<<<<<<< HEAD
     <main class="main-content">
       <div class="slider-section">
         <Slider class="content" />
@@ -33,9 +32,6 @@
             </div>
           </div>
       </div>
-=======
-    <main class="main-container">
->>>>>>> 3feec2094f58e35646aae5d867b835e0beb20ffe
     </main>
   </div>
 </template>
@@ -126,7 +122,6 @@ export default {
         }
       }
     }
-<<<<<<< HEAD
     .main-content {
       width: 100%;
       min-height: 100vh;
@@ -255,7 +250,5 @@ export default {
         }
       }
     }
-=======
->>>>>>> 3feec2094f58e35646aae5d867b835e0beb20ffe
   }
 </style>
