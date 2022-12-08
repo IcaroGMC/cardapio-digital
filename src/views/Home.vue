@@ -17,21 +17,23 @@
         <Slider class="content" />
       </div>
       <div class="cardapio">
+        <div class="main-text">
           <h1>Cardápio</h1>
-          <div class="group-content">
-            <div class="group-34">
-              <div
-                @click="filterCategory(index)"
-                v-for="(item, index) in categories.items" 
-                :class="`${categories.isLoading ? 'd-none' : null}`"
-                :key="item.id" 
-                class="text-group">
-                <h3>{{ item.name }}</h3>
-                <span>{{ number_of_products[item.id] || 0 }}</span>
-                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-            </div>
+        </div>  
+        <div class="group-content">
+          <div class="group-34">
+            <div
+              @click="filterCategory(index)"
+              v-for="(item, index) in categories.items" 
+              :class="`${categories.isLoading ? 'd-none' : null}`"
+              :key="item.id" 
+              class="text-group">
+              <h3>{{ item.name }}</h3>
+              <span>{{ number_of_products[item.id] || 0 }}</span>
+              <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+              </div>
           </div>
+        </div>
       </div>
     </main>
     <component-footer />
@@ -149,6 +151,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '@/scss/GeneralStyle.scss';
   .site-container {
     width: 100%;
     display: flex;
@@ -205,30 +208,41 @@ export default {
         }
       }
       .cardapio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 41px 0;
         width: 100%;
         padding: 0px 178px;
-        h1 {
-          font-weight: 800;
-          font-size: 36px;
-          line-height: 48.6px;
-          font-weight: bolder;
-          color: #343A40;
-          font-size: 36px;
-          line-height: 48.6px;
-          display: grid;
-          justify-content: space-around;
-          margin-right: 410px;
+
+        .main-text {
+          display: flex;
+          width: 100%;
+          max-width: $max-width;
+          h1 {
+            font-weight: 800;
+            font-size: 36px;
+            line-height: 48.6px;
+            font-weight: bolder;
+            color: #343A40;
+            font-size: 36px;
+            line-height: 48.6px;
+            display: grid;
+            justify-content: space-around;
+            margin-right: auto;
+          }
         }
         .group-content {
           display: flex;
           justify-content: space-around;
           width: 100%;
+          max-width: $max-width;
           .group-34 {
+            cursor: pointer;
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            column-gap: 50px;
-            width: 526px;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 26px;
             .text-group {
               width: 100%;
               padding: 16px 10px;
@@ -260,55 +274,23 @@ export default {
                 height: 23px;
               }
             }
-            &:first-child {
-              margin-right: 26px;
-            }
           }
         }
       }
     }
   }
 
-  @media screen and (max-width: 996px) {
-    .main-content {
-      .content {
-        display: none;
-      }
-    }
-  }
-  @media screen and (max-width: 760px) {
-    .main-content {
-      .cardapio {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 60px;
-      }
-    }
-  }
-  @media screen and (max-width: 524px) {
-    .main-content {
-      .cardapio {
-        padding: 0;
-        .group-content {
-          display: flex;
-          flex-direction: column;
-          justify-content: none;
-          align-items: center;
-          width: 100%;
-          .group-34 {
-            display: grid;
-            grid-template-rows: repeat(7, 1fr);
-            width: 360px;
-            padding: 0;
-            margin: 0 !important;
+  @media screen and (max-width: 920px) {
+    .site-container {
+      .main-content {
+        .cardapio {
+          padding: 0px 8%;
+          .group-content {
+            .group-34 {
+              display: flex;
+              flex-direction: column;
+            }
           }
-        }
-        h1 {
-          font-weight: 800;
-          font-size: 24px;
-          line-height: 32.4px;
-          padding: 18px;
         }
       }
     }

@@ -188,6 +188,16 @@ export default {
         border-top: 1px solid #E9ECEF;
     }
 
+    .modal-body {
+        overflow-x: hidden;
+    }
+
+    .btn-close {
+        position: absolute;
+        right: 1.5em;
+        top: 1.5em;
+    }
+
     .modal-body img {
         object-fit: cover;
         width: 142px;
