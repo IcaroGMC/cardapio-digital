@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import { str, number, obj, bool } from "@/utils/props";
+import { str, number, obj } from "@/utils/props";
 export default {
     props: {
         cardName: str(''),
         cardDescription: str(''),
         cardPrice: number(0),
-        cardType: bool(0),
+        cardType: number(0),
         cardImageUrl: obj()
     },
 

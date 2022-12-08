@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <InfoModal />
     <router-view />
     <CategoryModal />
@@ -41,6 +40,7 @@ export default {
   @import '@/scss/GeneralStyle.scss';
 
   #app {
+    overflow-x: hidden;
     font-family: 'Nunito', sans-serif;
   }
 </style>

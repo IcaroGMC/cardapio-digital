@@ -158,6 +158,7 @@ export default {
             position: absolute;
             .modal-content {
                 width: 475px;
+                max-width: calc(100vw - 20px);
                 height: 100%;
                 border-radius: 0;
                 border-radius: 0px 24px 24px 0px;
