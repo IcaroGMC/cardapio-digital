@@ -2,7 +2,6 @@
   <div id="app">
     
     <InfoModal />
-    <ProductModal />
     <router-view />
     <CategoryModal />
   </div>
@@ -10,13 +9,11 @@
 
 <script>
 import InfoModal from '@/components/core/InfoModal.vue';
-import ProductModal from "@/components/core/ProductModal.vue";
 import CategoryModal from "@/components/core/CategoryModal.vue";
 
 export default {
   components: {
     InfoModal,
-    ProductModal,
     CategoryModal
   },
   data () {

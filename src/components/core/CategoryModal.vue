@@ -1,11 +1,19 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="categoryBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="categoryBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="categoryBackdrop" 
+    data-bs-keyboard="false" 
+    tabindex="-1" 
+    aria-labelledby="categoryBackdropLabel" 
+    aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="categoryBackdropLabel">Cardápio</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button 
+                    type="button" 
+                    class="btn-close" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="category-body" data-bs-dismiss="modal">

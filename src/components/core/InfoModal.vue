@@ -1,5 +1,9 @@
 <template>
-    <div class="modal fade m-auto" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal fade m-auto" 
+    id="infoModal" 
+    tabindex="-1" 
+    aria-labelledby="infoModalLabel" 
+    aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content rounded-5">
                 <div class="modal-header border border-0">

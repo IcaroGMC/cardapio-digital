@@ -11,8 +11,15 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="@/assets/img/cardImage.jpeg" alt="" srcset="">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <img src="@/assets/img/cardImage.jpeg" 
+                    alt="" 
+                    srcset="">
+                    <button 
+                    type="button" 
+                    class="btn-close btn-close-white" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close">
+                    </button>
                 </div>
                 <div v-if="!productCategories" class="modal-body">
                     <small class="tag">#2004</small>
