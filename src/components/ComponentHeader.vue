@@ -5,7 +5,16 @@
     class="header">
         <nav class="navbar">
             <div class="container-fluid">
-                <router-link to="/" replace><img draggable="false" class="unselectable" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>
+                <router-link 
+                to="/" 
+                replace>
+                <img 
+                draggable="false" 
+                class="unselectable" 
+                src="@/assets/img/logo.svg" 
+                alt="" 
+                srcset="">
+                </router-link>
                 <form v-on:submit.prevent v-on:submit="search_products()">
                     <CoreInput
                     @inputChanged="defineSearch"
@@ -15,7 +24,10 @@
                     :placeholder="'O que você procura?'" 
                     :maxCharacters="30" />
                 </form>
-                <InfoButton :remove-info="'yes-ss'" class="info-button"></InfoButton>
+                <InfoButton 
+                :remove-info="'yes-ss'" 
+                class="info-button">
+                </InfoButton>
             </div>
         </nav>
     </header>

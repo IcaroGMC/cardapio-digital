@@ -1,10 +1,15 @@
 <template>
     <nav aria-label="...">
         <ul class="pagination pagination-sm">
-            <li class="page-item active" aria-current="page">
+            <li 
+            class="page-item active" 
+            aria-current="page">
                 <span class="page-link"></span>
             </li>
-            <li class="page-item"><a class="page-link" href="#"></a></li>
+            <li 
+            class="page-item">
+            <a class="page-link" 
+            href="#"></a></li>
         </ul>
     </nav>
 </template>

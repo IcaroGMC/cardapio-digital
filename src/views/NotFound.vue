@@ -7,7 +7,7 @@
                     <div class="notfound-text">
                         <h1>Oops!</h1>
                         <p>
-                            Por favor, retorne a página anterior ou retorne ao menu do site.<br>
+                            Por favor, retorne a página anterior ou ao menu do site.<br>
                             Esta página não foi encontrada ou não está no ar 
                         </p>
                     </div>

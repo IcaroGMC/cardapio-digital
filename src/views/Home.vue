@@ -26,7 +26,7 @@
                 :key="item.id" 
                 class="text-group">
                 <h3>{{ item.name }}</h3>
-                <span>3</span>
+                <span>{{ item.name.length }}</span>
                 <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>

@@ -1,6 +1,12 @@
 <template>
-    <button :button-name="buttonName" class="menu-button" data-bs-toggle="modal" data-bs-target="#categoryBackdrop">
-        <img src="@/assets/img/list.svg" alt="" srcset="">
+    <button 
+    :button-name="buttonName" 
+    class="menu-button" 
+    data-bs-toggle="modal" 
+    data-bs-target="#categoryBackdrop">
+        <img src="@/assets/img/list.svg" 
+        alt="" 
+        srcset="">
         {{ buttonName }}
     </button>
 </template>
