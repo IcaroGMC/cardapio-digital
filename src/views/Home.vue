@@ -50,92 +50,92 @@ export default {
   data() {
     return {
       categories: {
-                items: [],
-                isLoading: true
-            },
-            get_category_id: [],
-            number_of_products: []
+          items: [],
+          isLoading: true
+      },
+      get_category_id: [],
+      number_of_products: []
     }
   },
   methods: {
-        async get_categories() {
-            try {
-                this.categories.isLoading = true;
+    async get_categories() {
+        try {
+            this.categories.isLoading = true;
 
-                let response = await axios.get(`${baseURL}categories`, {
-                    params:{
-                        'page[size]': 1000,
-                        'order_by[id]': 'asc',
-                    }
-                });
-
-                const { errors } = response.data;
-                if(errors) throw { errors };
-
-                const { records } = response.data;
-
-                this.categories.items = records;
-
-                this.categories.isLoading = false;
-
-                this.get_products();
-
-            } catch({ errors }){
-
-                this.handle_server_errors(errors);
-
-            }
-        },
-
-        async get_products() {
-            try {
-
-                let response = await axios.get(`${baseURL}product`, {
-                    params:{
-                        'page[size]': 1000,
-                        'order_by[category_id]': 'asc',
-                    }
-                });
-
-                const { errors } = response.data;
-
-                if(errors) throw { errors };
-
-                const { records } = response.data;
-
-                for (let index = 0; index < records.length; index++) {
-                    this.get_category_id.push(records[index].category_id);
-                    
-                }
-
-                var count = {}
-
-                this.get_category_id.forEach(
-                    function(i) { 
-                        count[i] = (count[i]||0) + 1;
-                    }
-                )
-
-                this.number_of_products = count;
-
-            } catch({ errors }){
-                console.error(errors)
-            }
-        },
-
-        filterCategory(itemId) {
-            this.$router.push({
-                name: '/categoria',
-                params: {
-                    name: this.categories.items[itemId].name.toLowerCase(),
-                    id: this.categories.items[itemId].id
-                },
-            }).catch(error => {
-                if (error.name != "NavigationDuplicated") {
-                    throw error;
+            let response = await axios.get(`${baseURL}categories`, {
+                params:{
+                    'page[size]': 1000,
+                    'order_by[id]': 'asc',
                 }
             });
+
+            const { errors } = response.data;
+            if(errors) throw { errors };
+
+            const { records } = response.data;
+
+            this.categories.items = records;
+
+            this.categories.isLoading = false;
+
+            this.get_products();
+
+        } catch({ errors }){
+
+            this.handle_server_errors(errors);
+
         }
+    },
+
+    async get_products() {
+        try {
+
+            let response = await axios.get(`${baseURL}product`, {
+                params:{
+                    'page[size]': 1000,
+                    'order_by[category_id]': 'asc',
+                }
+            });
+
+            const { errors } = response.data;
+
+            if(errors) throw { errors };
+
+            const { records } = response.data;
+
+            for (let index = 0; index < records.length; index++) {
+                this.get_category_id.push(records[index].category_id);
+                
+            }
+
+            var count = {}
+
+            this.get_category_id.forEach(
+                function(i) { 
+                    count[i] = (count[i]||0) + 1;
+                }
+            )
+
+            this.number_of_products = count;
+
+        } catch({ errors }){
+            console.error(errors)
+        }
+    },
+
+    filterCategory(itemId) {
+        this.$router.push({
+            name: '/categoria',
+            params: {
+                name: this.categories.items[itemId].name.toLowerCase(),
+                id: this.categories.items[itemId].id
+            },
+        }).catch(error => {
+            if (error.name != "NavigationDuplicated") {
+                throw error;
+            }
+        });
+    }
       },
   created() {
         this.get_categories();

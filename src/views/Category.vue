@@ -78,7 +78,6 @@ export default {
     watch: {
         '$route.params.id': {
             handler(categoryId) {
-                console.log(categoryId);
                 this.get_category(categoryId);
                 this.get_products(this.$route.params.id)
             }

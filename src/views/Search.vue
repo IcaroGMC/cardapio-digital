@@ -96,8 +96,6 @@ export default {
 
         defineSearch( data ) {
             this.input_name = data;
-
-            console.log(this.input_name)
         },
 
         search_products() {
@@ -140,8 +138,6 @@ export default {
                 } else {
                     this.products.items = records;
                 }
-                
-                console.log(this.products.items)
 
                 this.products.isLoading = false;
 

@@ -3,7 +3,7 @@
         <button
         type="button" 
         data-bs-toggle="modal" 
-        data-bs-target="#infoBackdrop"
+        data-bs-target="#infoModal"
         class="info-content">
             <div
                 :info-class="infoClass"

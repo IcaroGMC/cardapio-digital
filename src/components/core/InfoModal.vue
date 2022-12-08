@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>Sauto Delivery LTDA</h1>
+                    <h1>Sauto Tecnologia LTDA</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
                         <a href="#">(88) 3411 - 6372</a>
@@ -19,60 +19,16 @@
                     </div>
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Domingo</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">Fechado</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Segunda-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Terça-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Quarta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Quinta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Sexta-Feira</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
-                                <p class="mb-0">13:30 - 17:30</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center mb-4">
-                            <h3 class="me-auto my-0">Sábado</h3>
-                             <div class="workingtime d-flex flex-column">
-                                <p class="mb-0">08:00 - 12:00</p>
+                        <div class="d-flex align-items-center mb-3"
+                            v-for="item in days" v-bind:key="item.id">
+                            <h3 class="me-auto my-0">{{ item.name }}</h3>
+                             <div class="workingtime d-flex flex-column justify-content-center">
+                                <p 
+                                    v-for="work in item.workingtime" :v-if="item.workingtime.length" v-bind:key="work.id" 
+                                    class="mb-0">
+                                    {{ `${work.start_time}-${work.finish_time}` }}
+                                </p>
+                                <p class="mb-0" v-if="!item.workingtime.length">fechado</p>
                             </div>
                         </div>
                     </div>
@@ -87,8 +43,83 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { baseURL } from '@/config/index.js';  
 export default {
+    data() {
+        return {
+            name: 'InfoModal',
+            days: [
+                {id: 1, name: 'Domingo'},
+                {id: 2, name: 'Segunda-Feira'},
+                {id: 3, name: 'Terça-Feira'},
+                {id: 4, name: 'Quarta-Feira'},
+                {id: 5, name: 'Quinta-Feira'},
+                {id: 6, name: 'Sexta-Feira'},
+                {id: 7, name: 'Sábado'},
+            ],
+            company: {
+                items: []
+            }
+        }
+    },
 
+    methods: {
+        async get_workingtime() {
+            try {
+
+                let response = await axios.get(`${baseURL}workingtime`, {
+                    params:{
+                        'page[size]': 1000,
+                        'order_by[day_id]': 'asc',
+                    }
+                });
+
+                const { errors } = response.data;
+
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                const composed = this.days.map(d => {
+                    return {
+                        ...d,
+                        workingtime: records.filter(({day_id}) => d.id === day_id)
+                    }
+                })
+
+                this.days = composed;
+
+            } catch({ errors }){
+                console.error(errors)
+            }
+        },
+
+        async get_company() {
+            try {
+
+                let response = await axios.get(`${baseURL}company`, {
+                });
+
+                const { errors } = response.data;
+
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                this.company.items = records;
+
+
+            } catch({ errors }){
+                console.error(errors)
+            }
+        },
+    },
+
+    created() {
+        this.get_workingtime();
+        this.get_company();
+    }
 }
 </script>
 
