@@ -160,6 +160,9 @@ export default {
           color: #343A40;
           font-size: 36px;
           line-height: 48.6px;
+          display: grid;
+          justify-content: space-around;
+          margin-right: 410px;
         }
         .group-content {
           display: flex;
