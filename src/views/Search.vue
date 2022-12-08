@@ -4,8 +4,7 @@
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
-                    <button v-on:click="Back()"><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
-                    <button v-on:click="Back()" class="return-btn"><img src="@/assets/img/arrow-left.svg" alt=""></button>
+                    <CoreReturnButton></CoreReturnButton>
                     <div>
                         <h2>Resultados para <span>“{{ $route.query.q | capitalize() }}”</span></h2>
                         <p>{{ products.items.length }} de {{ total_products }} resultado(s) encontrado(s)</p>
@@ -26,27 +25,26 @@
                         :card-image-url="{
                             id:item.upload ? item.upload.id : null,
                             name:item.upload ? item.upload.name : null,
-                            scope:item.upload ? item.upload.scope : null
+                            scope:item.upload ? item.upload.scope : null,
                             
                         }"
-                        :card-name="item.name" 
+                        :card-name="item.name"
                         :card-description="item.description" 
-                        :card-price="item.price" />
+                        :card-price="item.price"
+                        :card-type="item.type"/>
                         
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
                 <CorePagination />
+                <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
             </section>
-            <button class="menu-button" data-bs-toggle="modal" data-bs-target="#categoryBackdrop">
-                <img src="@/assets/img/list.svg" alt="" srcset="">
-                Cardápio
-            </button>
         </main>
         <ComponentFooter></ComponentFooter>
     </div>
 </template>
 
 <script>
+import CoreMenuButton from '@/components/core/CoreMenuButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
@@ -56,6 +54,7 @@ import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';
 import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
+import CoreReturnButton from '@/components/core/CoreReturnButton.vue';
 
 export default {
     data() {
@@ -76,7 +75,9 @@ export default {
         CorePagination,
         CoreSpinner,
         CoreInput,
-        CoreNotFoundItems
+        CoreNotFoundItems,
+        CoreMenuButton,
+        CoreReturnButton
     },
 
     watch: {
@@ -92,9 +93,6 @@ export default {
     },
 
     methods: {
-        Back() {
-            this.$router.push('/');
-        },
 
         defineSearch( data ) {
             this.input_name = data;
@@ -187,29 +185,6 @@ export default {
                     width: 100%;
                     margin: 32px 0;
 
-                    button {
-                        display: flex;
-                        border: 0;
-                        background: 0;
-                        font-style: normal;
-                        font-weight: 400;
-                        font-size: 18px;
-                        color: #868E96;
-
-                        img {
-                            margin-right: 2px;
-                            background-position: center;
-                        }
-
-                        p {
-                            text-align: center;
-                            margin: 0;
-                        }
-                    }
-                    .return-btn {
-                        display: none;
-                    }
-
                     div {
                         display: flex;
 
@@ -249,28 +224,6 @@ export default {
                     gap: 32px;
                 }
             }
-
-            .menu-button {
-                position: fixed;
-                z-index: 4;
-                bottom: 51px;
-                color: white;
-                background-color: #F75B5D;
-                border: none;
-                box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
-                width: 135px;
-                height: 48px;
-                border-radius: 25px;
-                font-style: normal;
-                font-weight: 700;
-                font-size: 15px;
-                line-height: 130%;
-                transition: .6s ease-out;
-
-                &:hover {
-                    background-color: #f84548;
-                }
-            }
         }
     }
 
@@ -305,39 +258,6 @@ export default {
                         margin: 0;
                         padding: 23px 12px;
 
-                        button {
-                            display: none;
-                            border: 0;
-                            background: 0;
-                            font-style: normal;
-                            font-weight: 400;
-                            font-size: 18px;
-                            color: #868E96;
-
-                            img {
-                                align-self: center;
-                                justify-self: center;
-                                height: 20px;
-                                width: 20px;
-                                margin-right: 2px;
-                                background-position: center;
-                            }
-
-                            p {
-                                display: none;
-                                margin: 0 !important;
-                            }
-                        }
-
-                        .return-btn {
-                            display: block;
-
-                            img {
-                                width: 26px;
-                                aspect-ratio: 1/1;
-                            }
-                        }
-
                         h2 {
                             display: none;
                         }
@@ -362,22 +282,6 @@ export default {
                             margin-bottom: 0 !important;
                         }
                     }
-                }
-
-                .menu-button {
-                    position: fixed;
-                    bottom: 51px;
-                    color: white;
-                    background-color: #F75B5D;
-                    border: none;
-                    box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
-                    width: 135px;
-                    height: 48px;
-                    border-radius: 25px;
-                    font-style: normal;
-                    font-weight: 700;
-                    font-size: 15px;
-                    line-height: 130%;
                 }
             }
         }

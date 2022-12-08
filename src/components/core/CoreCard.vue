@@ -3,27 +3,29 @@
         data-bs-toggle="modal" 
         data-bs-target="#productBackdrop">
         <div class="card-img-content">
-            <img 
+            <img
                 :card-image-url="cardImageUrl" 
                 :src="cardImageUrl.name ? showCardImageURL : no_image"
                 loading="lazy"
                 :alt="cardImageUrl.name">
         </div>
         <div class="card-text">
-            <h1 :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
+            <h1 :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
             <p :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
-            <span :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
+            <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
+            <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
         </div>
     </button>
 </template>
 
 <script>
-import { str, number, obj } from "@/utils/props";
+import { str, number, obj, bool } from "@/utils/props";
 export default {
     props: {
         cardName: str(''),
         cardDescription: str(''),
         cardPrice: number(0),
+        cardType: bool(0),
         cardImageUrl: obj()
     },
 
@@ -103,6 +105,14 @@ export default {
                 font-size: 18px;
                 line-height: 130%;
                 color: #F75B5D;
+
+                small {
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 130%;
+                    color: #ADB5BD;
+                }
             }
         }
     }

@@ -27,10 +27,9 @@ export default {
 
 <style lang="scss" scoped>
     .menu-button {
-        z-index: 1000;
         position: fixed;
+        z-index: 4;
         bottom: 51px;
-        margin: 0 100% !important;
         color: white;
         background-color: #F75B5D;
         border: none;
@@ -42,5 +41,10 @@ export default {
         font-weight: 700;
         font-size: 15px;
         line-height: 130%;
+        transition: .6s ease-out;
+
+        &:hover {
+            background-color: #f84548;
+        }
     }
 </style>

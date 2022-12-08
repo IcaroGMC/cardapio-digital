@@ -4,7 +4,7 @@
         <main class="main-content">
             <section class="container-fluid">
                 <div class="return-content">
-                    <button><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
+                    <CoreReturnButton></CoreReturnButton>
                     <h2>{{ category.item.name | capitalize() }}</h2>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
@@ -20,9 +20,10 @@
                         }"
                         :card-name="item.name" 
                         :card-description="item.description" 
-                        :card-price="item.price" />
-                        <CoreNotFoundItems v-if="!products.items" />
+                        :card-price="item.price"
+                        :card-type="item.type"/>
                 </section>
+                <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
                 <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
                 <CorePagination />
             </section>
@@ -40,6 +41,7 @@ import CorePagination from "@/components/core/CorePagination.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import CoreMenuButton from "@/components/core/CoreMenuButton.vue";
 import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
+import CoreReturnButton from "@/components/core/CoreReturnButton.vue";
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';                               
 
@@ -69,7 +71,8 @@ export default {
         CorePagination,
         CoreSpinner,
         CoreMenuButton,
-        CoreNotFoundItems
+        CoreNotFoundItems,
+        CoreReturnButton
     },
 
     watch: {
