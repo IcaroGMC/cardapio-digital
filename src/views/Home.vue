@@ -103,8 +103,6 @@ export default {
 
                 const { records } = response.data;
 
-                console.log(records)
-
                 for (let index = 0; index < records.length; index++) {
                     this.get_category_id.push(records[index].category_id);
                     
@@ -120,15 +118,12 @@ export default {
 
                 this.number_of_products = count;
 
-                console.log(this.number_of_products)
-
             } catch({ errors }){
                 console.error(errors)
             }
         },
 
         filterCategory(itemId) {
-            console.log(this.categories.items[itemId].name);
             this.$router.push({
                 name: '/categoria',
                 params: {
