@@ -1,45 +1,81 @@
 <template>
     <div class="modal fade m-auto" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content rounded-5 position-absolute">
+            <div class="modal-content rounded-5">
                 <div class="modal-header border border-0">
-                    <button type="button" class="close-btn btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body m-2">
                     <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>{{ company.items }}</h1>
+                    <h1>Sauto Delivery LTDA</h1>
                     <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
                     <div class="phones d-flex flex-column my-3">
-                        <a href="tel:+8834116372">(88) 3411 - 6372</a>
-                        <a href="tel:+88996887667">(88) 9 9688 - 7667</a>
+                        <a href="#">(88) 3411 - 6372</a>
+                        <a href="#">(88) 9 9688 - 7667</a>
                     </div>
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
-                        <div class="d-flex align-items-center mb-4"
-                            v-for="item in days" v-bind:key="item.id">
-                            <h3 class="me-auto my-0">{{item.name}}</h3>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Domingo</h3>
                              <div class="workingtime d-flex flex-column">
-                                <p class="mb-0"
-                                    v-for="item in days.times" v-bind:key="item.id">
-                                    {{ item.start_time }}&nbsp;-&nbsp;{{ item.finish_time }}
-                                </p>
+                                <p class="mb-0">Fechado</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Segunda-Feira</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Terça-Feira</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Quarta-Feira</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Quinta-Feira</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Sexta-Feira</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
+                                <p class="mb-0">13:30 - 17:30</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <h3 class="me-auto my-0">Sábado</h3>
+                             <div class="workingtime d-flex flex-column">
+                                <p class="mb-0">08:00 - 12:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer d-flex flex-column align-items-start">
-                    <a 
-                        class="text-reset text-decoration-none" 
-                        type="button" href="tel:+8834116372">
-                        <img src="@/assets/img/phone.svg" alt="">
-                        <span class="font-weight-bold ml-2"> Ligar </span>
-                    </a>
-                    <a 
-                        class="text-reset text-decoration-none" 
-                        type="button" href="https://api.whatsapp.com/send?phone=558834116372">
-                        <img src="@/assets/img/number.svg" alt="">
-                        <span class="font-weight-bold ml-2">Falar no WhatsApp</span>
-                    </a>
+                    <a class="text-reset text-decoration-none" type="button" href="tel:+8834116372"><img src="@/assets/img/phone.svg" alt=""><span class="font-weight-bold ml-2"> Ligar </span></a>
+                    <a class="text-reset text-decoration-none" type="button" href="https://api.whatsapp.com/send?phone=558834116372"><img src="@/assets/img/number.svg" alt=""><span class="font-weight-bold ml-2">Falar no WhatsApp</span></a>
                 </div>
             </div>
         </div>
@@ -47,74 +83,13 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { baseURL } from '@/config/index.js'; 
 export default {
-    data() {
-        return {
-            name: 'InfoModal',
-            workingtime: {
-                items: []
-            },
-            days: [
-                {id: 1, name: 'Domingo', times: []},
-                {id: 2, name: 'Segunda-Feira', times: []},
-                {id: 3, name: 'Terça-Feira', times: []},
-                {id: 4, name: 'Quarta-Feira', times: []},
-                {id: 5, name: 'Quinta-Feira', times: []},
-                {id: 6, name: 'Sexta-Feira', times: []},
-                {id: 7, name: 'Sábado', times: []},
-            ],
-            filter: []
-        }
-    },
 
-    methods: {
-        async get_workingtime() {
-            try {
-                let response = await axios.get(baseURL + 'workingtime');
-
-                const { errors } = response.data;
-                if(errors) throw { errors };
-
-                const { records } = response.data;
-
-                console.log(records);
-
-                this.workingtime.items = records;
-
-                for (const day in this.days.id) {
-                    
-                    this.days[day].times = {
-                        start_time: this.workingtime[day].items.start_time,
-                        finish_time: this.workingtime[day].items.finish_time,
-                    }
-                    
-                }
-
-            } catch({ errors }){
-
-                console.error(errors);
-
-            }
-        },
-    },
-
-    created() {
-        this.get_workingtime();
-    }
 }
 </script>
 
 <style lang="scss" scoped>
     @import '@/scss/GeneralStyle.scss';
-
-    .modal-header {
-        .close-btn {
-            right: 1.5em;
-            top: 1.5em;
-        }
-    }
 
     p {
         margin-right: 150px;
@@ -182,26 +157,6 @@ export default {
         object-fit: cover;
         width: 142px;
         height: 36px;
-    }
-    .modal-body {
-        &::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        /* Track */
-        &::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        /* Handle */
-        &::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-
-        /* Handle on hover */
-        &::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
     }
 
     .modal-footer {

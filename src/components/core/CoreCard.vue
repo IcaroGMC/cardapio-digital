@@ -1,11 +1,12 @@
 <template>
     <button class="card"
-        v-on:click="showDetails(product)">
+        data-bs-toggle="modal" 
+        data-bs-target="#productBackdrop">
         <div class="card-img-content">
             <img 
                 :card-image-url="cardImageUrl" 
                 :src="cardImageUrl.name ? showCardImageURL : no_image"
-                loading="eager"
+                loading="lazy"
                 :alt="cardImageUrl.name">
         </div>
         <div class="card-text">
@@ -17,7 +18,6 @@
 </template>
 
 <script>
-import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 export default {
     props: {
@@ -26,6 +26,7 @@ export default {
         cardPrice: number(0),
         cardImageUrl: obj()
     },
+
     data() {
         return {
             showCardImageURL: `https://estagio.sauto.com.br//storage/${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
@@ -38,9 +39,6 @@ export default {
             }
         }
     },
-    components: {
-        ProductModal
-    }
 }
 </script>
 

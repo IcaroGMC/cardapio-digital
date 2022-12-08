@@ -5,14 +5,13 @@
             <section class="container-fluid">
                 <div class="return-content">
                     <button v-on:click="Back()"><img src="@/assets/img/rightArrow.svg" alt=""><p>Voltar</p></button>
+                    <button v-on:click="Back()" class="return-btn"><img src="@/assets/img/arrow-left.svg" alt=""></button>
                     <div>
                         <h2>Resultados para <span>“{{ $route.query.q | capitalize() }}”</span></h2>
-                        <p>{{ products.items.length }} resultados encontrados</p>
+                        <p>{{ products.items.length }} de {{ total_products }} resultado(s) encontrado(s)</p>
                     </div>
-                    <form v-on:submit.prevent>
+                    <form class="mx-auto" v-on:submit="search_products()" v-on:submit.prevent>
                         <CoreInput
-                            :name="input_name"
-                            v-on:submit="search_products()"
                             @inputChanged="defineSearch"
                             :widthsize="'large-100vw'"
                             class="searchinput"
@@ -23,6 +22,7 @@
                 <section class="cards">
                     <CoreCard :class="`${products.isLoading ? 'd-none' : null}`"
                         v-for="item in products.items" v-bind:key="item.id"
+                        :v-if="item.length"
                         :card-image-url="{
                             id:item.upload ? item.upload.id : null,
                             name:item.upload ? item.upload.name : null,
@@ -34,6 +34,7 @@
                         :card-price="item.price" />
                         
                 </section>
+                <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
                 <CorePagination />
             </section>
             <button class="menu-button" data-bs-toggle="modal" data-bs-target="#categoryBackdrop">
@@ -54,6 +55,7 @@ import CoreInput from "@/components/core/Input.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';
+import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
 
 export default {
     data() {
@@ -63,7 +65,8 @@ export default {
                 isLoading: true,
             },
             input_name: '',
-            filter: []
+            filter: [],
+            total_products: 0
         }
     },
     components: {
@@ -72,7 +75,8 @@ export default {
         CoreCard,
         CorePagination,
         CoreSpinner,
-        CoreInput
+        CoreInput,
+        CoreNotFoundItems
     },
 
     watch: {
@@ -89,11 +93,13 @@ export default {
 
     methods: {
         Back() {
-            this.$router.back();
+            this.$router.push('/');
         },
 
         defineSearch( data ) {
             this.input_name = data;
+
+            console.log(this.input_name)
         },
 
         search_products() {
@@ -124,6 +130,8 @@ export default {
                 if(errors) throw { errors };
 
                 const { records } = response.data;
+
+                this.total_products = records.length;
 
                 if (filterName) {
                     this.filter = records.filter(
@@ -165,7 +173,7 @@ export default {
             justify-content: center;
             width: 100%;
             min-height: 100vh;
-            padding-top: 98px;
+            padding-top: 100px;
 
             .container-fluid {
                 width: 100%;
@@ -197,6 +205,9 @@ export default {
                             text-align: center;
                             margin: 0;
                         }
+                    }
+                    .return-btn {
+                        display: none;
                     }
 
                     div {
@@ -263,23 +274,6 @@ export default {
         }
     }
 
-    @media screen and (max-width: 1360px) {
-        .site-container {
-
-            .main-content {
-                padding-top: 178px;
-                .container-fluid {
-
-                    .cards {
-                        width: 100%;
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                    }
-                }
-            }
-        }
-    }
-
     @media screen and (max-width: 1100px) {
         .site-container {
             max-width: 100% !important;
@@ -312,7 +306,7 @@ export default {
                         padding: 23px 12px;
 
                         button {
-                            display: flex;
+                            display: none;
                             border: 0;
                             background: 0;
                             font-style: normal;
@@ -332,6 +326,15 @@ export default {
                             p {
                                 display: none;
                                 margin: 0 !important;
+                            }
+                        }
+
+                        .return-btn {
+                            display: block;
+
+                            img {
+                                width: 26px;
+                                aspect-ratio: 1/1;
                             }
                         }
 

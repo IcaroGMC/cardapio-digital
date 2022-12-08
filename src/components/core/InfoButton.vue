@@ -1,10 +1,10 @@
 <template>
     <div class="info-container">
-        <button 
-        class="info-content" 
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#infoModal">
+        <button
+        type="button" 
+        data-bs-toggle="modal" 
+        data-bs-target="#infoBackdrop"
+        class="info-content">
             <div
                 :info-class="infoClass"
                 class="info">

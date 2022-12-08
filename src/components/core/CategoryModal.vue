@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="category-body" data-bs-dismiss="modal">
-                        <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="categories.isLoading"  />
+                        <CoreSpinner class="my-5" :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="categories.isLoading"  />
                         <button
                             @click="filterCategory(index)"
                             v-for="(item, index) in categories.items"
@@ -18,7 +18,7 @@
                             class="category-content">
                             <h1>{{ item.name }}</h1>
                             <div class="category-info">
-                                <span>3</span>
+                                <span>{{ number_of_products[item.id] || 0 }}</span>
                                 <button><img src="@/assets/img/rightArrow.svg" alt=""></button>
                             </div>
                         </button>
@@ -38,8 +38,10 @@ export default {
         return {
             categories: {
                 items: [],
-                isLoading: true
+                isLoading: true,
             },
+            get_category_id: [],
+            number_of_products: []
         }
     },
     components: {
@@ -53,7 +55,8 @@ export default {
 
                 let response = await axios.get(`${baseURL}categories`, {
                     params:{
-                        'page[size]': 1000
+                        'page[size]': 1000,
+                        'order_by[id]': 'asc',
                     }
                 });
 
@@ -66,10 +69,52 @@ export default {
 
                 this.categories.isLoading = false;
 
+                this.get_products();
+
             } catch({ errors }){
 
                 this.handle_server_errors(errors);
 
+            }
+        },
+
+        async get_products() {
+            try {
+
+                let response = await axios.get(`${baseURL}product`, {
+                    params:{
+                        'page[size]': 1000,
+                        'order_by[category_id]': 'asc',
+                    }
+                });
+
+                const { errors } = response.data;
+
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                console.log(records)
+
+                for (let index = 0; index < records.length; index++) {
+                    this.get_category_id.push(records[index].category_id);
+                    
+                }
+
+                var count = {}
+
+                this.get_category_id.forEach(
+                    function(i) { 
+                        count[i] = (count[i]||0) + 1;
+                    }
+                )
+
+                this.number_of_products = count;
+
+                console.log(this.number_of_products)
+
+            } catch({ errors }){
+                console.error(errors)
             }
         },
 
@@ -110,7 +155,7 @@ export default {
                 border-radius: 0px 24px 24px 0px;
 
                 .modal-header {
-                    border: 0;
+                    border-bottom: 1px solid #E9ECEF;
                     h1 {
                         font-style: normal;
                         font-weight: 800;
@@ -137,7 +182,6 @@ export default {
                         border: 3px solid #ffffff;
                     }
                     .category-body {
-                        border-bottom: 1px solid #E9ECEF;
                         .category-content {
                             text-decoration: none;
                             background: 0;

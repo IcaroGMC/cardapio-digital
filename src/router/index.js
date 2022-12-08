@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
@@ -8,7 +7,8 @@ const routes = [
   {
     path: "/",
     name: "/menu",
-    component: Home,
+    component: () =>
+      import("../views/Home.vue"),
   },
   {
     path: "/categoria/:name-:id",
@@ -25,9 +25,9 @@ const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    name: "NotFound",
+    name: "/notfound",
     component: () =>
-      import("../views/NotFound.vue"),
+      import("../views/Home.vue"),
   },
 ];
 

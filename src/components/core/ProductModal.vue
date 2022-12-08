@@ -1,6 +1,13 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div 
+        class="modal fade" 
+        id="productBackdrop" 
+        data-bs-keyboard="false" 
+        tabindex="-1" 
+        aria-labelledby="productBackdropLabel"
+        ref="modalElement"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -46,6 +53,7 @@ export default {
     data() {
         return {
             productCategories: true,
+            modalElement: null,
         }
     }
 }

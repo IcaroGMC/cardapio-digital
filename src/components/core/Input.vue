@@ -4,7 +4,7 @@
         :class="`${margin}`"
         :margin="margin">
         <div
-            :style="(widthsize == 'large-100vw') ? 'width:calc(100vw - 158px)' : null"
+            :style="(widthsize == 'large-100vw') ? 'width:calc(85vw);' : null"
             :widthsize="widthsize"
             class="input-content">
             <button type="submit"></button>

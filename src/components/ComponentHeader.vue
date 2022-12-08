@@ -11,7 +11,7 @@
                     @inputChanged="defineSearch"
                     name="search"
                     class="info-input"
-                    :margin="'py-1'" 
+                    :margin="'py-1'"
                     :placeholder="'O que você procura?'" 
                     :maxCharacters="30" />
                 </form>
@@ -104,7 +104,7 @@ export default {
             display: flex;
             justify-content: center;
             width: 100%;
-            box-shadow: 0px 9px 8px -6px rgba(158,158,158,0.67);
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
             z-index: 100;
             background-color: white;
             .navbar {
@@ -150,7 +150,6 @@ export default {
                 padding: 0;
                 .container-fluid {
                     display: flex;
-                    flex-direction: column;
                     align-items: center;
                     margin: 25px 179px;
                     padding: 0;
