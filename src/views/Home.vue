@@ -21,12 +21,13 @@
           <div class="group-content">
             <div class="group-34">
               <div
-                v-for="item in categories.items" 
+                @click="filterCategory(index)"
+                v-for="(item, index) in categories.items" 
                 :class="`${categories.isLoading ? 'd-none' : null}`"
                 :key="item.id" 
                 class="text-group">
                 <h3>{{ item.name }}</h3>
-                <span>{{ item.name.length }}</span>
+                <span>{{ number_of_products[item.id] || 0 }}</span>
                 <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>
@@ -52,6 +53,8 @@ export default {
                 items: [],
                 isLoading: true
             },
+            get_category_id: [],
+            number_of_products: []
     }
   },
   methods: {
@@ -61,7 +64,8 @@ export default {
 
                 let response = await axios.get(`${baseURL}categories`, {
                     params:{
-                        'page[size]': 1000
+                        'page[size]': 1000,
+                        'order_by[id]': 'asc',
                     }
                 });
 
@@ -74,12 +78,69 @@ export default {
 
                 this.categories.isLoading = false;
 
+                this.get_products();
+
             } catch({ errors }){
 
                 this.handle_server_errors(errors);
 
             }
         },
+
+        async get_products() {
+            try {
+
+                let response = await axios.get(`${baseURL}product`, {
+                    params:{
+                        'page[size]': 1000,
+                        'order_by[category_id]': 'asc',
+                    }
+                });
+
+                const { errors } = response.data;
+
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+
+                console.log(records)
+
+                for (let index = 0; index < records.length; index++) {
+                    this.get_category_id.push(records[index].category_id);
+                    
+                }
+
+                var count = {}
+
+                this.get_category_id.forEach(
+                    function(i) { 
+                        count[i] = (count[i]||0) + 1;
+                    }
+                )
+
+                this.number_of_products = count;
+
+                console.log(this.number_of_products)
+
+            } catch({ errors }){
+                console.error(errors)
+            }
+        },
+
+        filterCategory(itemId) {
+            console.log(this.categories.items[itemId].name);
+            this.$router.push({
+                name: '/categoria',
+                params: {
+                    name: this.categories.items[itemId].name.toLowerCase(),
+                    id: this.categories.items[itemId].id
+                },
+            }).catch(error => {
+                if (error.name != "NavigationDuplicated") {
+                    throw error;
+                }
+            });
+        }
       },
   created() {
         this.get_categories();
