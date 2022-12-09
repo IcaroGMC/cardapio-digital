@@ -27,11 +27,10 @@
                             <h3 class="me-auto my-0">{{ item.name }}</h3>
                              <div class="workingtime d-flex flex-column justify-content-center">
                                 <p 
-                                    v-for="work in item.workingtime" :v-if="item.workingtime.length" v-bind:key="work.id" 
+                                    v-for="work in item.workingtime" v-bind:key="work.id" 
                                     class="mb-0">
                                     {{ work.start_time | timeFormat('short') }}&nbsp;-&nbsp;{{ work.finish_time | timeFormat('short') }}
                                 </p>
-                                <p class="mb-0" v-if="!item.workingtime.length">fechado</p>
                             </div>
                         </div>
                     </div>
@@ -63,7 +62,7 @@ export default {
             ],
             company: {
                 items: []
-            }
+            },
         }
     },
 
