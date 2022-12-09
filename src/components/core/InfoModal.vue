@@ -26,7 +26,7 @@
                                 <p 
                                     v-for="work in item.workingtime" :v-if="item.workingtime.length" v-bind:key="work.id" 
                                     class="mb-0">
-                                    {{ `${work.start_time}-${work.finish_time}` }}
+                                    {{ work.start_time | timeFormat('short') }}&nbsp;-&nbsp;{{ work.finish_time | timeFormat('short') }}
                                 </p>
                                 <p class="mb-0" v-if="!item.workingtime.length">fechado</p>
                             </div>

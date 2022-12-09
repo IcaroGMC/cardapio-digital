@@ -4,9 +4,11 @@
         data-bs-target="#productBackdrop">
         <div class="card-img-content">
             <img
-                :card-image-url="cardImageUrl" 
-                :src="cardImageUrl.name ? showCardImageURL : no_image"
-                loading="lazy"
+                v-on:load="loadImage()"
+                draggable="false" class="unselectable"
+                :card-image-url="cardImageUrl"
+                loading="eager" 
+                :src="cardImageUrl.name && loadCardImage ? showCardImageURL : no_image"
                 :alt="cardImageUrl.name">
         </div>
         <div class="card-text">
@@ -38,13 +40,21 @@ export default {
                 description: this.cardDescription,
                 price: this.cardPrice,
                 imageURL: this.cardImageUrl
-            }
+            },
+            loadCardImage: false,
         }
     },
+
+    methods: {
+        loadImage() {
+            this.loadCardImage = true;
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
     .card {
         width: 100%;
         height: 336px;

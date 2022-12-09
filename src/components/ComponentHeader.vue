@@ -9,7 +9,7 @@
                 to="/" 
                 replace>
                 <img 
-                draggable="false" 
+                draggable="false"
                 class="unselectable" 
                 src="@/assets/img/logo.svg" 
                 alt="" 

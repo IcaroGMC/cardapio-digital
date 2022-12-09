@@ -21,11 +21,12 @@
           <h1>Cardápio</h1>
         </div>  
         <div class="group-content">
-          <div class="group-34">
+          <div :style="(categories.isLoading || product_isLoading) ? 'height:8em;' : ''" class="group-34 position-relative">
+            <CoreSpinner :spinnerSize="'w-100 h-100 position-absolute top-50'" :spinner-class="''" :isLoading="(categories.isLoading || product_isLoading)"  />
             <div
               @click="filterCategory(index)"
               v-for="(item, index) in categories.items" 
-              :class="`${categories.isLoading ? 'd-none' : null}`"
+              :class="`${(categories.isLoading || product_isLoading) ? 'd-none' : null}`"
               :key="item.id" 
               class="text-group">
               <h3>{{ item.name }}</h3>
@@ -41,6 +42,7 @@
 </template>
 
 <script>
+import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import InfoButton from "@/components/core/InfoButton.vue";
 import Input from "@/components/core/Input.vue";
 import axios from 'axios';
@@ -56,9 +58,19 @@ export default {
           isLoading: true
       },
       get_category_id: [],
-      number_of_products: []
+      number_of_products: [],
+      product_isLoading: true
     }
   },
+
+  components: {
+    InfoButton,
+    Input,
+    ComponentFooter,
+    CoreSpinner
+  },
+
+
   methods: {
     async get_categories() {
         try {
@@ -92,6 +104,8 @@ export default {
     async get_products() {
         try {
 
+          this.product_isLoading = true;
+
             let response = await axios.get(`${baseURL}product`, {
                 params:{
                     'page[size]': 1000,
@@ -120,6 +134,8 @@ export default {
 
             this.number_of_products = count;
 
+            this.product_isLoading = false;
+
         } catch({ errors }){
             console.error(errors)
         }
@@ -142,11 +158,6 @@ export default {
   created() {
         this.get_categories();
       },
-  components: {
-    InfoButton,
-    Input,
-    ComponentFooter
-  }
 };
 </script>
 
