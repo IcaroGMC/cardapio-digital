@@ -9,13 +9,16 @@
                 <div class="modal-header border border-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body m-2">
-                    <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" src="@/assets/img/logo.svg" alt=""></a>
-                    <h1>Sauto Tecnologia LTDA</h1>
-                    <h4>Vila Gonçalves, 45 - Centro - Russas/CE</h4>
+                <div
+                    v-for="item in company.items"
+                    :key="item.id"
+                    class="modal-body m-2">
+                    <a href="" data-bs-dismiss="modal" aria-label="Close"><img class="mb-4" 
+                    :src="'https://estagio.sauto.com.br//storage/company/'+item.upload.id+'/'+item.upload.name" alt=""></a>
+                    <h1>{{ item.name }}</h1>
+                    <h4>{{ item.street }}, {{ item.number }} - {{ item.district }} - {{ item.city.name }}/{{item.city.state.uf}}</h4>
                     <div class="phones d-flex flex-column my-3">
-                        <a href="#">(88) 3411 - 6372</a>
-                        <a href="#">(88) 9 9688 - 7667</a>
+                        <a href="#">{{ item.phone_number }}</a>
                     </div>
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
