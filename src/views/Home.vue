@@ -14,7 +14,7 @@
     </header>
     <main class="main-content">
       <div class="slider-section">
-        <Slider class="content" />
+        <CoreSlider class="content" />
       </div>
       <div class="cardapio">
         <div class="main-text">
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import CoreSlider from "@/components/core/CoreSlider.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import InfoButton from "@/components/core/InfoButton.vue";
 import Input from "@/components/core/Input.vue";
@@ -67,7 +68,8 @@ export default {
     InfoButton,
     Input,
     ComponentFooter,
-    CoreSpinner
+    CoreSpinner,
+    CoreSlider
   },
 
 
