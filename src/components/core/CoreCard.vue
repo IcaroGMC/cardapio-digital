@@ -1,6 +1,6 @@
 <template>
     <button class="card">
-        <div v-on:click="changeShow(true)">
+        <div class="content" v-on:click="changeShow(true)">
             <div class="card-img-content">
                 <img
                     v-on:load="loadImage()"
@@ -172,6 +172,10 @@ export default {
         border-radius: 24px;
         padding: 0;
         overflow: hidden;
+
+        .content {
+            width: 100%;
+        }
         .card-img-content {
             overflow: hidden;
             width: 100%;
@@ -211,6 +215,9 @@ export default {
             }
 
             p {
+                inline-size: 100%;
+                word-break: break-word;
+                hyphens: manual;
                 text-align: start;
                 font-style: normal;
                 font-weight: 400;
@@ -359,6 +366,11 @@ export default {
             margin-bottom: 0;
             padding: 0;
             overflow: hidden;
+
+            .content {
+                display: flex;
+                flex-direction: row;
+            }
 
             .card-img-content {
                 overflow: hidden;

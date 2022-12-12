@@ -29,7 +29,7 @@ export default {
             ],
 
             style: {
-                'width': `35%`,
+                'width': `30%`,
                 'height': '100%',
                 'margin-right': '48px',
                 'border-radius': '24px',
@@ -89,7 +89,6 @@ export default {
         object-fit: cover;
         width: 100%;
         height: 100%;
-        aspect-ratio: 12/8;
         border-radius: 24px;
 
         &:active {

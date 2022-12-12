@@ -9,7 +9,7 @@
                         </slot>
                         <button 
                         type="button" 
-                        class="btn-close btn-close-white" 
+                        class="btn-close" 
                         v-on:click="modalClose()">
                         </button>
                     </div>
@@ -60,6 +60,7 @@ export default {
                 margin: 0 auto;
                 height: 500px !important;
                 width: 420px !important;
+                max-width: 100vw;
                 border: 1px solid rgba($color: #2c2c2c, $alpha: 0.1);
                 transform: scale(calc(100% - 1px));
                 overflow: hidden;
@@ -71,6 +72,7 @@ export default {
                     border: 0;
 
                     button {
+                        color: black;
                         position: absolute;
                         top: 16px;
                         right: 16px;
