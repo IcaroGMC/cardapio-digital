@@ -29,10 +29,10 @@
                             
                         }"
                         :card-name="item.name"
+                        :card-tag="item.tag"
                         :card-description="item.description" 
                         :card-price="item.price"
                         :card-type="item.type"/>
-                        
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
                 <CorePagination />
@@ -63,6 +63,7 @@ export default {
                 items: [],
                 isLoading: true,
             },
+            
             input_name: '',
             filter: [],
             total_products: 0

@@ -1,30 +1,65 @@
 <template>
-    <button class="card"
-        data-bs-toggle="modal" 
-        data-bs-target="#productBackdrop">
-        <div class="card-img-content">
+    <button class="card">
+        <div v-on:click="changeShow(true)">
+            <div class="card-img-content">
+                <img
+                    v-on:load="loadImage()"
+                    draggable="false" class="unselectable"
+                    :card-image-url="cardImageUrl"
+                    loading="eager" 
+                    :src="cardImageUrl.name && loadCardImage ? showCardImageURL : no_image"
+                    :alt="cardImageUrl.name">
+            </div>
+            <div class="card-text">
+                <h1 :card-id="cardId" :card-tag="cardTag" :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
+                <p :card-description="cardDescription">{{ cardDescription | str_limit(40) }}</p>
+                <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
+                <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
+            </div>
+        </div>
+
+        <ProductModal @closeModal="changeShow(false)" v-if="showModal">
             <img
-                v-on:load="loadImage()"
-                draggable="false" class="unselectable"
+                slot="image"
+                draggable="false" class="unselectable modal-img"
                 :card-image-url="cardImageUrl"
                 loading="eager" 
                 :src="cardImageUrl.name && loadCardImage ? showCardImageURL : no_image"
                 :alt="cardImageUrl.name">
-        </div>
-        <div class="card-text">
-            <h1 :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
-            <p :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
-            <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
-            <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
-        </div>
+            
+            <div slot="body" v-if="!card.productgroup.items.length" class="modal-body">
+                <small class="tag">{{ cardTag | tag() }}</small>
+                <h1>{{ cardName }}</h1>
+                <p>{{ cardDescription }}</p>
+                <span class="price mt-auto">{{ cardPrice | toCurrency() }}</span>
+            </div>
+            <div slot="body" v-if="card.productgroup.items.length" class="modal-body">
+                <h1>{{ cardName }}</h1>
+                <h3>{{ card.productgroup.items[0].name }}</h3>
+                <div class="subcategories-content">
+                    <div v-for="item in card.productgroup.productgroupitem.items" v-bind:key="item.id" class="subcategories-body">
+                        <div class="subcategories-info">
+                            <h4>{{ item.name }}</h4>
+                            <small class="tag">{{ item.tag }}</small>
+                        </div>
+                        <span class="price">{{ item.price | toCurrency() }}</span>
+                    </div>
+                </div>
+            </div>
+        </ProductModal>
     </button>
 </template>
 
 <script>
+import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
+import axios from 'axios';
+import { baseURL } from '@/config/index.js';
 export default {
     props: {
+        cardId: number(0),
         cardName: str(''),
+        cardTag: number(0),
         cardDescription: str(''),
         cardPrice: number(0),
         cardType: number(0),
@@ -36,19 +71,94 @@ export default {
             showCardImageURL: `https://estagio.sauto.com.br//storage/${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
             no_image: require('@/assets/img/no_image.jpg'),
             card: {
+                id: this.cardId,
                 name: this.cardName,
                 description: this.cardDescription,
                 price: this.cardPrice,
-                imageURL: this.cardImageUrl
+                imageURL: this.cardImageUrl,
+
+                productgroup: {
+                    items: [],
+
+                    productgroupitem: {
+                        items: []
+                    }
+                }
             },
             loadCardImage: false,
+            showModal: false,
+            productCategories: false,
         }
+    },
+
+    components: {
+        ProductModal
     },
 
     methods: {
         loadImage() {
             this.loadCardImage = true;
-        }
+        },
+
+        changeShow(bool) {
+            this.get_productsgroup(this.card.id);
+            this.showModal = bool;
+        },
+
+        async get_productsgroup(id) {
+            try {
+
+                let response = await axios.get(baseURL + 'productgroup', {
+                    params:{
+                        'page[size]': 1000,
+                        'filter_by[product_id]': id,
+                    }
+                });
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+                
+                if (records.length) {
+                    this.card.productgroup.items = records;
+
+                    this.get_productsgroupitem(this.card.productgroup.items[0].id)
+                }
+
+            } catch({ errors }){
+
+                console.error(errors);
+
+            }
+        },
+
+        async get_productsgroupitem(id) {
+            try {
+
+                let response = await axios.get(baseURL + 'productgroupitem', {
+                    params:{
+                        'page[size]': 1000,
+                        'filter_by[product_group_id]': id,
+                    }
+                });
+
+                const { errors } = response.data;
+                if(errors) throw { errors };
+
+                const { records } = response.data;
+                
+                this.card.productgroup.productgroupitem.items = records;
+
+
+            } catch({ errors }){
+
+                console.error(errors);
+
+            }
+        },
+
+        
     }
 }
 </script>
@@ -92,6 +202,7 @@ export default {
             
             h1 {
                 text-align: start;
+                margin-top: 0;
                 font-style: normal;
                 font-weight: 800;
                 font-size: 18px;
@@ -105,6 +216,7 @@ export default {
                 font-weight: 400;
                 font-size: 15px;
                 line-height: 150%;
+                margin: 0;
                 color: #868E96;
             }
 
@@ -123,6 +235,113 @@ export default {
                     line-height: 130%;
                     color: #ADB5BD;
                 }
+            }
+        }
+        .modal-img {
+            border-radius: 0;
+            height: 223px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            padding: 28px 31px;
+            small {
+                display: flex;
+                align-items: center;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 140%;
+                color: #868E96;
+            }
+
+            h1 {
+                font-style: normal;
+                font-weight: 800;
+                font-size: 18px;
+                line-height: 140%;
+                color: #343A40;
+            }
+
+            h3 {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 15px;
+                line-height: 130%;
+                color: #343A40;
+            }
+
+            p {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 150%;
+                color: #868E96;
+            }
+
+            .price {
+                margin-top: auto;
+            }
+            .categories-content {
+                display: flex;
+                .categories {
+                    padding: 3px 14px;
+                    border-radius: 25px;
+                    background-color: #E9ECEF;
+                    margin: 8px 0;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 150%;
+
+                    /* identical to box height, or 18px */
+
+                    /* grey / g3 */
+                    color: #868E96;
+                }
+            }
+            .subcategories-content {
+                width: 100%;
+                .subcategories-body {
+                    position: relative;
+                    padding: 9px 0;
+                    display: flex;
+                    width: 100%;
+                    border-bottom: 1px solid #E9ECEF;
+
+                    :nth-child(2) {
+                        margin-left: auto !important;
+                    }
+
+                    .subcategories-info {
+                        display: flex;
+
+                        h4 {
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 130%;
+                            color: #495057;
+                            margin: 0;
+                        }
+
+                        small {
+                            margin-left: 6px !important;
+                        }
+                    }
+                }
+            }
+
+            span {
+                font-style: normal;
+                font-weight: 800;
+                font-size: 18px;
+                line-height: 130%;
+                color: #F75B5D;
             }
         }
     }

@@ -9,7 +9,7 @@
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
-                    <CoreCard 
+                    <CoreCard
                         :class="`${products.isLoading ? 'd-none' : null}`"
                         v-for="item in products.items" v-bind:key="item.id"
                         :v-if="item.length"
@@ -18,7 +18,9 @@
                             name:item.upload ? item.upload.name : null,
                             scope:item.upload ? item.upload.scope : null    
                         }"
-                        :card-name="item.name" 
+                        :card-id="item.id"
+                        :card-name="item.name"
+                        :card-tag="item.tag"
                         :card-description="item.description" 
                         :card-price="item.price"
                         :card-type="item.type"/>
@@ -114,6 +116,8 @@ export default {
                 this.metadata.numbers_of_pages = Math.ceil(this.metadata.quantity / this.metadata.items_per_page);
 
                 this.products.items = records;
+
+                console.log(this.products.items);
 
                 this.products.isLoading = false;
 

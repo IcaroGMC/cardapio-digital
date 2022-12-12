@@ -88,7 +88,7 @@ export default {
                         ...d,
                         workingtime: records.filter(({day_id}) => d.id === day_id)
                     }
-                })
+                });
 
                 this.days = composed;
 
