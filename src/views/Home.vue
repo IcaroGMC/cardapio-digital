@@ -200,8 +200,9 @@ export default {
     .main-content {
       width: 100%;
       min-height: 100vh;
-      .slider-content {
+      .slider-section {
         width: 100%;
+        height: 40vh;
         display: flex;
         justify-content: center;
       }
