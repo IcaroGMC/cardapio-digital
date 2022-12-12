@@ -9,7 +9,9 @@
             data-bs-target="#infoModal"></span>
         </div>
         <info-button :info-class="'d-none'" />
-        <Input :placeholder="'O que você procura?'" :maxCharacters="46" />
+        <form class="mx-auto" v-on:submit="search_products()" v-on:submit.prevent>
+          <Input @inputChanged="defineSearch" :placeholder="'O que você procura?'" :maxCharacters="46" />
+        </form>
       </div>
     </header>
     <main class="main-content">
@@ -58,6 +60,7 @@ export default {
           items: [],
           isLoading: true
       },
+      input_name: '',
       get_category_id: [],
       number_of_products: [],
       product_isLoading: true
@@ -71,7 +74,6 @@ export default {
     CoreSpinner,
     CoreSlider
   },
-
 
   methods: {
     async get_categories() {
@@ -141,6 +143,23 @@ export default {
         } catch({ errors }){
             console.error(errors)
         }
+    },
+
+    defineSearch( data ) {
+      this.input_name = data;
+    },
+
+    search_products() {
+      this.$router.push({
+        path: '/busca', 
+        query: { 
+          q: this.input_name.toLowerCase()
+        } 
+      }).catch(error => {
+        if (error.name != "NavigationDuplicated") {
+          throw error;
+        }
+      });
     },
 
     filterCategory(itemId) {

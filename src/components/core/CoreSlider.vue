@@ -4,7 +4,7 @@
         <slider ref="slider" :options="options">
             <!-- slideritem wrapped package with the components you need -->
             <slideritem v-for="(item,index) in slides" :key="index" :style="style">
-                <img class="slide-img" :src="`
+                <img draggable="false" class="unselectable slide-img" :src="`
                     https://estagio.sauto.com.br//storage/${item.upload.scope}/${item.upload_id}/${item.upload.name}`" alt="">    
             </slideritem>
             <!-- Customizable loading -->
@@ -84,11 +84,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
     .slide-img {
+        object-fit: cover;
         width: 100%;
         height: 100%;
         aspect-ratio: 12/8;
         border-radius: 24px;
+
+        &:active {
+            cursor: grab;
+        }
     }
 
     .slider-item {
