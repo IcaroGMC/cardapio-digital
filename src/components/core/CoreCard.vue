@@ -12,7 +12,7 @@
             </div>
             <div class="card-text">
                 <h1 :card-id="cardId" :card-tag="cardTag" :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
-                <p :card-description="cardDescription">{{ cardDescription | str_limit(40) }}</p>
+                <p :title="cardDescription" :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
                 <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
                 <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
             </div>

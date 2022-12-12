@@ -8,12 +8,13 @@
                     https://estagio.sauto.com.br//storage/${item.upload.scope}/${item.upload_id}/${item.upload.name}`" alt="">    
             </slideritem>
             <!-- Customizable loading -->
-            <div slot="loading">loading...</div>
+            <CoreSpinner slot="loading"></CoreSpinner>
         </slider>
     </div>
 </template>
 
 <script>
+import CoreSpinner from '@/components/core/CoreSpinner.vue';
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';
 import { slider, slideritem } from 'vue-concise-slider'
@@ -21,6 +22,7 @@ export default {
     components: {
         slider,
         slideritem,
+        CoreSpinner
     },
     data() {
         return {

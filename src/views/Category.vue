@@ -27,7 +27,6 @@
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
                 <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
-                <CorePagination />
             </section>
            
         </main>
@@ -39,7 +38,6 @@
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
-import CorePagination from "@/components/core/CorePagination.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import CoreMenuButton from "@/components/core/CoreMenuButton.vue";
 import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
@@ -70,7 +68,6 @@ export default {
         ComponentHeader,
         ComponentFooter,
         CoreCard,
-        CorePagination,
         CoreSpinner,
         CoreMenuButton,
         CoreNotFoundItems,
