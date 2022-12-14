@@ -84,6 +84,7 @@ export default {
     @import '@/scss/GeneralStyle.scss';
     .slide-img {
         object-fit: cover;
+        cursor: pointer;
         width: 100%;
         height: 100%;
         border-radius: 24px;

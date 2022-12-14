@@ -81,7 +81,7 @@ export default {
 
             } catch({ errors }){
 
-                this.handle_server_errors(errors);
+                console.error(errors);
 
             }
         },
