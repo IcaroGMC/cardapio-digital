@@ -102,8 +102,10 @@ export default {
         transform:scale(0.9);
         transition-timing-function: ease;
         transition-duration: 300ms;
+        opacity: 0.45;
     }
     .slider-item.slider-active {
         transform:scale(1.0);
+        opacity: 1.0 !important;
     }
 </style>

@@ -16,6 +16,7 @@
                 <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
                 <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
             </div>
+            <img class="select-button" src="@/assets/img/rightArrow.svg" alt="">
         </div>
 
         <ProductModal @closeModal="changeShow(false)" v-if="showModal">
@@ -30,19 +31,21 @@
             <div slot="body" v-if="!card.productgroup.items.length" class="modal-body">
                 <small class="tag">{{ cardTag | tag() }}</small>
                 <h1>{{ cardName }}</h1>
-                <p>{{ cardDescription }}</p>
+                <p>{{ cardDescription | str_limit(200) }}</p>
                 <span class="price mt-auto">{{ cardPrice | toCurrency() }}</span>
             </div>
             <div slot="body" v-if="card.productgroup.items.length" class="modal-body">
                 <h1>{{ cardName }}</h1>
-                <h3>{{ card.productgroup.items[0].name }}</h3>
-                <div class="subcategories-content">
-                    <div v-for="item in card.productgroup.productgroupitem.items" v-bind:key="item.id" class="subcategories-body">
-                        <div class="subcategories-info">
-                            <h4>{{ item.name }}</h4>
-                            <small class="tag">{{ item.tag }}</small>
+                <div v-for="item in card.productgroup.items" v-bind:key="item.id">
+                    <h3>{{ item.name }}</h3>
+                    <div class="subcategories-content">
+                        <div v-for="itemInfo in card.productgroup.productgroupitem.items" v-bind:key="itemInfo.id" class="subcategories-body">
+                            <div class="subcategories-info">
+                                <h4>{{ itemInfo.name }}</h4>
+                                <small class="tag">{{ itemInfo.tag | tag() }}</small>
+                            </div>
+                            <span class="price">{{ itemInfo.price | toCurrency() }}</span>
                         </div>
-                        <span class="price">{{ item.price | toCurrency() }}</span>
                     </div>
                 </div>
             </div>
@@ -120,10 +123,12 @@ export default {
 
                 const { records } = response.data;
                 
+                console.log(records);
+
                 if (records.length) {
                     this.card.productgroup.items = records;
 
-                    this.get_productsgroupitem(this.card.productgroup.items[0].id)
+                    this.get_productsgroupitem(this.card.productgroup.items[0].id);
                 }
 
             } catch({ errors }){
@@ -150,6 +155,7 @@ export default {
                 
                 this.card.productgroup.productgroupitem.items = records;
 
+                console.log(this.card.productgroup.productgroupitem.items);
 
             } catch({ errors }){
 
@@ -186,13 +192,13 @@ export default {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform .25s ease-out;
-                filter: saturate(85%);
+                transition: transform .25s ease-in-out;
+                filter: saturate(95%);
             }
         }
 
         &:hover .card-img-content img {
-            transform: scale(100%);
+            transform: scale(103%);
             filter: saturate(100%);
         }
 
@@ -253,6 +259,7 @@ export default {
 
         .modal-body {
             display: flex;
+            overflow-y: scroll;
             flex-direction: column;
             background-color: white;
             padding: 28px 31px;
@@ -357,6 +364,7 @@ export default {
         .card {
             display: flex;
             flex-direction: row;
+            align-items: center;
             height: 140px;
             width: 100%;
             border: none;
@@ -369,14 +377,24 @@ export default {
 
             .content {
                 display: flex;
+                align-items: center;
+                height: fit-content;
+                align-items: center;
                 flex-direction: row;
+
+                .select-button {
+                    transform: rotate(180deg);
+                    position: absolute;
+                    right: 0;
+                    align-self: center;
+                }
             }
 
             .card-img-content {
                 overflow: hidden;
                 width: auto;
                 min-width: fit-content;
-                height: auto;
+                height: fit-content;
 
                 img {
                     transform: scale(100%);
@@ -387,6 +405,7 @@ export default {
                 }
             }
             .card-text {
+                height: fit-content;
                 padding: 0;
                 margin-left: 16px;
                 

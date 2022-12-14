@@ -46,7 +46,7 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.4);
         display: table;
         transition: opacity 0.3s ease;
 
@@ -60,7 +60,8 @@ export default {
                 margin: 0 auto;
                 height: 500px !important;
                 width: 420px !important;
-                max-width: 100vw;
+                max-width: 90vw;
+                max-height: 100vh;
                 border: 1px solid rgba($color: #2c2c2c, $alpha: 0.1);
                 transform: scale(calc(100% - 1px));
                 overflow: hidden;
@@ -72,7 +73,7 @@ export default {
                     border: 0;
 
                     button {
-                        color: black;
+                        color: transparent;
                         position: absolute;
                         top: 16px;
                         right: 16px;

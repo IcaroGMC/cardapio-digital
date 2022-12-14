@@ -28,6 +28,7 @@
                             scope:item.upload ? item.upload.scope : null,
                             
                         }"
+                        :card-id="item.id"
                         :card-name="item.name"
                         :card-tag="item.tag"
                         :card-description="item.description" 
@@ -270,7 +271,8 @@ export default {
                         width: 100%;
                         display: flex;
                         flex-direction: column;
-                        padding: 120px 18px 0 18px;
+                        padding: 95px 18px 0 18px;
+                        gap: 0;
 
                         :last-child {
                             margin-bottom: 0 !important;

@@ -217,7 +217,6 @@ export default {
         .site-container {
 
             .main-content {
-                padding-top: 178px;
                 .container-fluid {
                     .cards {
                         width: 100%;
@@ -295,8 +294,9 @@ export default {
                     .cards {
                         width: 100%;
                         display: flex;
+                        gap: 0;
                         flex-direction: column;
-                        padding: 120px 18px 0 18px;
+                        padding: 95px 18px 0 18px;
                     }
                 }
             }
