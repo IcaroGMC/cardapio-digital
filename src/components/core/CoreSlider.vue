@@ -7,7 +7,6 @@
                 <img draggable="false" class="unselectable slide-img" :src="`
                     https://estagio.sauto.com.br//storage/${item.upload.scope}/${item.upload_id}/${item.upload.name}`" alt="">    
             </slideritem>
-            <!-- Customizable loading -->
             <CoreSpinner slot="loading"></CoreSpinner>
         </slider>
     </div>
@@ -26,9 +25,7 @@ export default {
     },
     data() {
         return {
-            slides: [
-                
-            ],
+            slides: [],
 
             style: {
                 'width': `30%`,
@@ -44,7 +41,7 @@ export default {
                 slidesToScroll: 1,
                 infinite: 3,
                 pagination: false,
-                autoplay: 2000,
+                autoplay: 6000,
                 loop:true,
                 loopedSlides: 3,
             }
@@ -68,8 +65,6 @@ export default {
                 const { records } = response.data;
 
                 this.slides = records;
-
-                console.log(this.slides);
 
             } catch({ errors }){
 

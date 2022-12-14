@@ -33,6 +33,7 @@ export default {
                 margin: 0 179px;
 
                 :last-child {
+                    text-align: end;
                     margin-left: auto;
                 }
 

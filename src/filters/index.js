@@ -29,7 +29,7 @@ Vue.filter('capitalize', function (value) {
 });
 
 Vue.filter('timeFormat', function (value, size) {
-    let timeString = value;
+    let timeString = String(value);
 
     let regExTime = /([0-9]?[0-9]):([0-9][0-9]):([0-9][0-9])/;
     let regExTimeArr = regExTime.exec(timeString).splice(1, 3);

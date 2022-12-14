@@ -114,8 +114,6 @@ export default {
 
                 this.products.items = records;
 
-                console.log(this.products.items);
-
                 this.products.isLoading = false;
 
             } catch({ errors }){

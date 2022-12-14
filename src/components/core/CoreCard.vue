@@ -122,8 +122,6 @@ export default {
                 if(errors) throw { errors };
 
                 const { records } = response.data;
-                
-                console.log(records);
 
                 if (records.length) {
                     this.card.productgroup.items = records;
@@ -155,8 +153,6 @@ export default {
                 
                 this.card.productgroup.productgroupitem.items = records;
 
-                console.log(this.card.productgroup.productgroupitem.items);
-
             } catch({ errors }){
 
                 console.error(errors);
@@ -181,6 +177,9 @@ export default {
 
         .content {
             width: 100%;
+            .select-button {
+                display: none;
+            }
         }
         .card-img-content {
             overflow: hidden;
@@ -383,6 +382,7 @@ export default {
                 flex-direction: row;
 
                 .select-button {
+                    display: block;
                     transform: rotate(180deg);
                     position: absolute;
                     right: 0;
