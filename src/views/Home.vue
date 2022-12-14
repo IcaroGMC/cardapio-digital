@@ -189,7 +189,7 @@ export default {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: white;
+    background-color: $white;
     .header-container {
       width: 100%;
       margin: 43px 0;
@@ -230,7 +230,7 @@ export default {
         overflow-x: scroll;
         padding: 10px 0;
         &::-webkit-scrollbar-track {
-          background-color: white;
+          background-color: $white;
         }
         &::-webkit-scrollbar {
           height: 4px;
@@ -257,7 +257,7 @@ export default {
             font-size: 36px;
             line-height: 48.6px;
             font-weight: bolder;
-            color: #343A40;
+            color: $gray-800;
             font-size: 36px;
             line-height: 48.6px;
             display: grid;
@@ -283,14 +283,14 @@ export default {
               align-items: center;
               border-bottom: 1px solid #DEE2E6;
               h3 {
-                color: #343A40;
+                color: $gray-800;
                 font-weight: 700;
                 font-size: 18px;
                 line-height: 23.4px;
               }
               a {
                 font-weight: 200;
-                color: #868E96;
+                color: $gray-300;
                 margin-left: 8px;
               }
               span {
@@ -300,7 +300,7 @@ export default {
                 justify-content: center;
                 border-radius: 25px;
                 padding: 1px 8px;
-                color: #868E96;
+                color: $gray-300;
                 font-size: 14px;
                 margin-left: auto;
                 width: 33px;

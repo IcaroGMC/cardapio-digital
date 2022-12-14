@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
+    
     button {
         display: flex;
         border: 0;
@@ -29,7 +31,7 @@ export default {
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
-        color: #868E96;
+        color: $gray-300;
 
         img {
             margin-right: 2px;

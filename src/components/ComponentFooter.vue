@@ -47,7 +47,7 @@ export default {
                     /* identical to box height, or 21px */
 
                     /* grey / g3 */
-                    color: #868E96;
+                    color: $gray-300;
 
                     span {
                         font-weight: 800;
@@ -83,7 +83,7 @@ export default {
                         /* identical to box height, or 21px */
 
                         /* grey / g3 */
-                        color: #868E96;
+                        color: $gray-300;
 
                         span {
                             font-weight: 800;

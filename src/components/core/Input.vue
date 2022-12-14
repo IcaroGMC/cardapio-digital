@@ -67,10 +67,12 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
+
     #navbarSupportedContent {
         .input-content {
             position: relative;
-            background-color: #E9ECEF;
+            background-color: $gray-100;
             width: 480px;
             height: 48px;
             border-radius: 25px;
@@ -135,7 +137,7 @@
             margin: auto;
             
             .input-content {
-                background-color: #E9ECEF;
+                background-color: $gray-100;
                 width: 340px;
                 height: 48px;
                 border-radius: 25px;
@@ -150,7 +152,7 @@
                     width: 100%;
                     height: 20px;
                     font-size: 15px;
-                    color: #868E96;
+                    color: $gray-300;
                     margin-left: 14px;
                     :focus {
                         border: none;

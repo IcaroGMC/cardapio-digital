@@ -187,14 +187,14 @@ export default {
                             margin-left: auto;
                         }
                         h2 {
-                            color: #343A40;
+                            color: $gray-800;
                             font-style: normal;
                             font-weight: 800;
                             font-size: 24px;
                             margin: 0;
 
                             span {
-                                color: #F75B5D;
+                                color: $main-color-700;
                             }
                         }
 
@@ -204,7 +204,7 @@ export default {
                             font-size: 15px;
                             line-height: 150%;
                             text-align: right;
-                            color: #868E96;
+                            color: $gray-300;
                         }
                     }
                     .searchinput {
@@ -244,7 +244,7 @@ export default {
                     .return-content {
                         position: fixed;
                         z-index: 100;
-                        background-color: white;
+                        background-color: $white;
                         box-shadow: 0px 9px 8px -6px rgba(
                             158,158,158,0.67
                         );

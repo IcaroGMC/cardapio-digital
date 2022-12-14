@@ -144,6 +144,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
     .modal {
         .modal-dialog {
             height: 100%;
@@ -159,13 +160,13 @@ export default {
                 border-radius: 0px 24px 24px 0px;
 
                 .modal-header {
-                    border-bottom: 1px solid #E9ECEF;
+                    border-bottom: 1px solid $gray-100;
                     h1 {
                         font-style: normal;
                         font-weight: 800;
                         font-size: 24px;
                         line-height: 140%;
-                        color: #F75B5D;
+                        color: $main-color-700;
                     }
                 }
 
@@ -193,7 +194,7 @@ export default {
                             display: flex;
                             width: 100%;
                             align-items: center;
-                            border-bottom: 1px solid #E9ECEF;
+                            border-bottom: 1px solid $gray-100;
 
                             &:hover .category-info button{
                                 margin-left: 8px;
@@ -206,7 +207,7 @@ export default {
                                 font-weight: 700;
                                 font-size: 18px;
                                 line-height: 130%;
-                                color: #343A40;
+                                color: $gray-800;
                                 
                             }
 
@@ -218,11 +219,11 @@ export default {
                                 padding: 10px;
 
                                 span {
-                                    color: #868E96;
+                                    color: $gray-300;
                                     flex: none;
                                     order: 0;
                                     flex-grow: 0;
-                                    background-color: #E9ECEF;
+                                    background-color: $gray-100;
                                     padding: 1px 8px;
                                     border-radius: 24px;
                                 }

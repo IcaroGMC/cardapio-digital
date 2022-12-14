@@ -56,7 +56,7 @@ export default {
                     font-style: normal;
                     font-weight: 400;
                     font-size: 15px;
-                    color: #868E96;
+                    color: $gray-300;
                     margin: 0px;
                 }
             }

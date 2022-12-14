@@ -2,6 +2,19 @@
     'https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap'
 );
 
+$max-width: 1500px;
+
+$main-color-800:#f84548;
+$main-color-700:#F75B5D;
+
+$gray-800: #343A40;
+$gray-600: #495057;
+$gray-300: #868E96;
+$gray-100: #E9ECEF;
+
+$white: #ffffff;
+
+
 @import "./fontawesome.scss";
 
   * {
@@ -27,9 +40,10 @@
     outline: none;
 }
 
-$max-width: 1500px;
-
-$gravityAnimation: 2;
+::selection {
+  color: $white;
+  background: rgba($color: $main-color-700, $alpha: 0.85);
+}
 
 i {
     margin: 0;
@@ -47,28 +61,4 @@ i {
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
-}
-
-@mixin keyframes($animation-name) {
-        @-webkit-keyframes #{$animation-name} {
-            @content;
-        }
-        @keyframes #{$animation-name} {
-            @content;
-        }
-    }
-
-    @mixin animation($str) {
-    -webkit-animation: #{$str};
-    animation: #{$str};
-    }
-
-    @include keyframes(gravity) {
-    0% {
-        margin-top: 60px;
-    }
-    100% {
-        margin-top: 30px;
-    }
-
 }

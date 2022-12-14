@@ -70,7 +70,7 @@ export default {
                     .notfound-text {
                         width: 75%;
                         h1 {
-                        color: #F75B5D;
+                        color: $main-color-700;
                         font-size: 8em;
                         font-weight: bolder;
                         margin: 55px 0;
@@ -78,7 +78,7 @@ export default {
 
                         p {
                             font-size: 20px;
-                            color: #868E96;
+                            color: $gray-300;
                             font-weight: 400;
                         }
                     }
@@ -142,7 +142,7 @@ export default {
                             margin-left: 0;
                             word-break: keep-all;
                             h1 {
-                            color: #F75B5D;
+                            color: $main-color-700;
                             font-size: 8em;
                             font-weight: bolder;
                             margin: 55px 0;
@@ -150,7 +150,7 @@ export default {
 
                             p {
                                 font-size: 20px;
-                                color: #868E96;
+                                color: $gray-300;
                                 font-weight: 400;
                             }
                         }

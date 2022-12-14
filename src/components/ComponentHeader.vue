@@ -87,7 +87,7 @@ export default {
         width: 100%;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
         z-index: 100;
-        background-color: white;
+        background-color: $white;
         .navbar {
             width: $max-width;
             padding: 0;
@@ -117,7 +117,7 @@ export default {
             justify-content: center;
             width: 100%;
             z-index: 100;
-            background-color: white;
+            background-color: $white;
             .navbar {
                 width: $max-width;
                 padding: 0;
@@ -154,7 +154,7 @@ export default {
             justify-content: center;
             width: 100%;
             z-index: 100;
-            background-color: white;
+            background-color: $white;
             .navbar {
                 width: $max-width;
                 padding: 0;

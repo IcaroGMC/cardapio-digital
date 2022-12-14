@@ -136,28 +136,28 @@ export default {
         font-weight: 800;
         font-size: 24px;
         line-height: 25.2px;
-        color: #343A40;
+        color: $gray-800;
     }
 
     h3 {
         font-weight: 800;
         font-size: 17px;
         line-height: 22.5px;
-        color: #343A40;
+        color: $gray-800;
     }
 
     h4{
         font-weight: 400;
         font-size: 15px;
         line-height: 22.5px;
-        color: #868E96;
+        color: $gray-300;
     }
 
     .phones a {
         font-weight: 400;
         font-size: 15px;
         line-height: 22.5px;
-        color: #868E96;
+        color: $gray-300;
         text-decoration: none;
     }
 
@@ -169,25 +169,25 @@ export default {
         font-weight: 800;
         font-size: 20px;
         line-height: 25.2px;
-        color: #343A40;
+        color: $gray-800;
     }
 
     p {
         font-weight: 400;
         font-size: 15px;
         line-height: 22.5px;
-        color: #868E96;
+        color: $gray-300;
     }
 
     p strong {
         font-weight: 800;
         font-size: 15px;
         line-height: 22.5px;
-        color: #343A40;
+        color: $gray-800;
     }
 
     .modal-footer {
-        border-top: 1px solid #E9ECEF;
+        border-top: 1px solid $gray-100;
     }
 
     .modal-body {
@@ -224,7 +224,7 @@ export default {
 
     .modal-footer {
         i {
-            color: #F75B5D;
+            color: $main-color-700;
             font-weight: 500;
             font-size: 18px;
             margin-right: 10px;

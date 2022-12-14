@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
+    
     i {
         font-size: 4em;
         margin-bottom: 10px;
@@ -33,7 +35,7 @@ export default {
     }
 
     i, h3, h4 {
-        color: #868e96;
+        color: $gray-300;
         text-align: center;
     }
 </style>

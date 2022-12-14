@@ -216,7 +216,7 @@ export default {
                 font-weight: 800;
                 font-size: 18px;
                 line-height: 130%;
-                color: #343A40;
+                color: $gray-800;
             }
 
             p {
@@ -229,7 +229,7 @@ export default {
                 font-size: 15px;
                 line-height: 150%;
                 margin: 0;
-                color: #868E96;
+                color: $gray-300;
             }
 
             span {
@@ -238,7 +238,7 @@ export default {
                 font-weight: 800;
                 font-size: 18px;
                 line-height: 130%;
-                color: #F75B5D;
+                color: $main-color-700;
 
                 small {
                     font-style: normal;
@@ -260,7 +260,7 @@ export default {
             display: flex;
             overflow-y: scroll;
             flex-direction: column;
-            background-color: white;
+            background-color: $white;
             padding: 28px 31px;
             small {
                 display: flex;
@@ -269,7 +269,7 @@ export default {
                 font-weight: 400;
                 font-size: 12px;
                 line-height: 140%;
-                color: #868E96;
+                color: $gray-300;
             }
 
             h1 {
@@ -277,7 +277,7 @@ export default {
                 font-weight: 800;
                 font-size: 18px;
                 line-height: 140%;
-                color: #343A40;
+                color: $gray-800;
             }
 
             h3 {
@@ -285,7 +285,7 @@ export default {
                 font-weight: 700;
                 font-size: 15px;
                 line-height: 130%;
-                color: #343A40;
+                color: $gray-800;
             }
 
             p {
@@ -293,7 +293,7 @@ export default {
                 font-weight: 400;
                 font-size: 15px;
                 line-height: 150%;
-                color: #868E96;
+                color: $gray-300;
             }
 
             .price {
@@ -304,7 +304,7 @@ export default {
                 .categories {
                     padding: 3px 14px;
                     border-radius: 25px;
-                    background-color: #E9ECEF;
+                    background-color: $gray-100;
                     margin: 8px 0;
                     font-style: normal;
                     font-weight: 400;
@@ -314,7 +314,7 @@ export default {
                     /* identical to box height, or 18px */
 
                     /* grey / g3 */
-                    color: #868E96;
+                    color: $gray-300;
                 }
             }
             .subcategories-content {
@@ -324,7 +324,7 @@ export default {
                     padding: 9px 0;
                     display: flex;
                     width: 100%;
-                    border-bottom: 1px solid #E9ECEF;
+                    border-bottom: 1px solid $gray-100;
 
                     :nth-child(2) {
                         margin-left: auto !important;
@@ -338,7 +338,7 @@ export default {
                             font-weight: 400;
                             font-size: 18px;
                             line-height: 130%;
-                            color: #495057;
+                            color: $gray-600;
                             margin: 0;
                         }
 
@@ -354,7 +354,7 @@ export default {
                 font-weight: 800;
                 font-size: 18px;
                 line-height: 130%;
-                color: #F75B5D;
+                color: $main-color-700;
             }
         }
     }
@@ -414,7 +414,7 @@ export default {
                     font-weight: 800;
                     font-size: 18px;
                     line-height: 130%;
-                    color: #343A40;
+                    color: $gray-800;
                 }
 
                 p {
@@ -422,7 +422,7 @@ export default {
                     font-weight: 400;
                     font-size: 15px;
                     line-height: 150%;
-                    color: #868E96;
+                    color: $gray-300;
                 }
 
                 span {
@@ -431,7 +431,7 @@ export default {
                     font-weight: 800;
                     font-size: 18px;
                     line-height: 130%;
-                    color: #F75B5D;
+                    color: $main-color-700;
                 }
             }
         }

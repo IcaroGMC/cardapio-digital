@@ -174,7 +174,7 @@ export default {
                         font-style: normal;
                         font-weight: 400;
                         font-size: 18px;
-                        color: #868E96;
+                        color: $gray-300;
                         padding-left: 15px;
                         padding-bottom: 12px;
 
@@ -192,7 +192,7 @@ export default {
 
                     h2 {
                         padding-left: 4px;
-                        color: #343A40;
+                        color: $gray-800;
                         font-style: normal;
                         font-weight: 800;
                         font-size: 24px;
@@ -248,7 +248,7 @@ export default {
                     .return-content {
                         position: fixed;
                         z-index: 100;
-                        background-color: white;
+                        background-color: $white;
                         box-shadow: 0px 9px 8px -6px rgba(
                             158,158,158,0.67
                         );
@@ -265,7 +265,7 @@ export default {
                             font-style: normal;
                             font-weight: 400;
                             font-size: 18px;
-                            color: #868E96;
+                            color: $gray-300;
 
                             img {
                                 align-self: center;
@@ -282,7 +282,7 @@ export default {
                         }
 
                         h2 {
-                            color: #343A40;
+                            color: $gray-800;
                             font-style: normal;
                             font-weight: 800;
                             font-size: 24px;

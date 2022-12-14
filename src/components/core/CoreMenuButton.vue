@@ -26,12 +26,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '@/scss/GeneralStyle.scss';
     .menu-button {
         position: fixed;
         z-index: 4;
         bottom: 51px;
-        color: white;
-        background-color: #F75B5D;
+        color: $white;
+        background-color: $main-color-700;
         border: none;
         box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
         width: 135px;
@@ -44,7 +45,7 @@ export default {
         transition: .6s ease-out;
 
         &:hover {
-            background-color: #f84548;
+            background-color: $main-color-800;
         }
     }
 </style>
