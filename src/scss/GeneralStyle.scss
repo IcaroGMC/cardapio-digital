@@ -17,27 +17,27 @@ $white: #ffffff;
 
 @import "./fontawesome.scss";
 
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #979191 #ffffff;
-  }
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #979191 #ffffff;
+}
 
-  *::-webkit-scrollbar {
-    width: 12px;
-  }
+*::-webkit-scrollbar {
+  width: 12px;
+}
 
-  *::-webkit-scrollbar-track {
-    background: #ffffff transparent;
-  }
+*::-webkit-scrollbar-track {
+  background: #ffffff transparent;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #979191;
-    border-radius: 17px;
-   
-  }
+*::-webkit-scrollbar-thumb {
+  background-color: #979191;
+  border-radius: 17px;
+  
+}
 
 *:focus {
-    outline: none;
+  outline: none;
 }
 
 ::selection {
@@ -46,8 +46,8 @@ $white: #ffffff;
 }
 
 i {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 * {
@@ -56,9 +56,9 @@ i {
 }
 
 .unselectable {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
