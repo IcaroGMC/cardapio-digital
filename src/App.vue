@@ -19,19 +19,6 @@ export default {
     return {
       isLoading: true,
     }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
-
-    setTimeout(() => {
-      this.isLoadingSkeleton = false;
-    }, 5000);
-
-    setTimeout(() => {
-      this.isLoaded = true;
-    }, 5000);
   }
 }
 </script>

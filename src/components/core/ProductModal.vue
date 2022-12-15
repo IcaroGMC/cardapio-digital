@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     <slot name="body">
-                        
+                        <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="true"  />
                     </slot>
                 </div>
             </div>
@@ -23,11 +23,16 @@
 </template>
 
 <script>
+import CoreSpinner from '@/components/core/CoreSpinner.vue';
 export default {
     data() {
         return {
             productCategories: true,
         }
+    },
+
+    components: {
+        CoreSpinner
     },
 
     methods: {

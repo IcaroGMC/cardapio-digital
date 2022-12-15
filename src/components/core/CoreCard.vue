@@ -8,7 +8,7 @@
                     :card-image-url="cardImageUrl"
                     loading="eager" 
                     :src="cardImageUrl.name && loadCardImage ? showCardImageURL : no_image"
-                    :alt="cardImageUrl.name">
+                    :alt="cardImageUrl.name && loadCardImage ? cardImageUrl.name : null">
             </div>
             <div class="card-text">
                 <h1 :card-id="cardId" :card-tag="cardTag" :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
@@ -36,10 +36,10 @@
             </div>
             <div slot="body" v-if="card.productgroup.items.length" class="modal-body">
                 <h1>{{ cardName }}</h1>
-                <div v-for="item in card.productgroup.items" v-bind:key="item.id">
+                <div v-for="(item, index) in card.productgroup.items" v-bind:key="item.id">
                     <h3>{{ item.name }}</h3>
                     <div class="subcategories-content">
-                        <div v-for="itemInfo in card.productgroup.productgroupitem.items" v-bind:key="itemInfo.id" class="subcategories-body">
+                        <div v-for="itemInfo in card.productgroup.productgroupitem.items[index]" v-bind:key="itemInfo.id" class="subcategories-body">
                             <div class="subcategories-info">
                                 <h4>{{ itemInfo.name }}</h4>
                                 <small class="tag">{{ itemInfo.tag | tag() }}</small>
@@ -57,7 +57,7 @@
 import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 import axios from 'axios';
-import { baseURL } from '@/config/index.js';
+import { baseURL, uploadURL } from '@/config/index.js';
 export default {
     props: {
         cardId: number(0),
@@ -71,7 +71,7 @@ export default {
 
     data() {
         return {
-            showCardImageURL: `https://estagio.sauto.com.br//storage/${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
+            showCardImageURL: `${uploadURL}${this.cardImageUrl.scope}/${this.cardImageUrl.id}/${this.cardImageUrl.name}`,
             no_image: require('@/assets/img/no_image.jpg'),
             card: {
                 id: this.cardId,
@@ -92,7 +92,7 @@ export default {
             showModal: false,
             productCategories: false,
         }
-    },
+    }, 
 
     components: {
         ProductModal
@@ -114,6 +114,7 @@ export default {
                 let response = await axios.get(baseURL + 'productgroup', {
                     params:{
                         'page[size]': 1000,
+                        'order_by[id]': 'asc',
                         'filter_by[product_id]': id,
                     }
                 });
@@ -126,7 +127,7 @@ export default {
                 if (records.length) {
                     this.card.productgroup.items = records;
 
-                    this.get_productsgroupitem(this.card.productgroup.items[0].id);
+                    this.get_productsgroupitem(this.card.productgroup.items);
                 }
 
             } catch({ errors }){
@@ -136,22 +137,35 @@ export default {
             }
         },
 
-        async get_productsgroupitem(id) {
+        async get_productsgroupitem(items) {
+
+            let arr = [];
+
+            items.forEach((value) => {    
+                arr.push(value.id);
+            });
+
             try {
 
-                let response = await axios.get(baseURL + 'productgroupitem', {
-                    params:{
-                        'page[size]': 1000,
-                        'filter_by[product_group_id]': id,
-                    }
+                arr.forEach(id => {
+                    axios.get(baseURL + 'productgroupitem', {
+                        params:{
+                            'page[size]': 1000,
+                            'filter_by[product_group_id]': id,
+                        }
+                    }).then(response => {
+                        const { errors } = response.data;
+                        if(errors) throw { errors };
+
+                        const { records } = response.data;
+                        
+                        this.card.productgroup.productgroupitem.items.push(records);
+                    })
+
+                    
                 });
 
-                const { errors } = response.data;
-                if(errors) throw { errors };
-
-                const { records } = response.data;
                 
-                this.card.productgroup.productgroupitem.items = records;
 
             } catch({ errors }){
 
@@ -217,6 +231,7 @@ export default {
                 font-size: 18px;
                 line-height: 130%;
                 color: $gray-800;
+                margin-bottom: 0 !important;
             }
 
             p {
@@ -262,6 +277,7 @@ export default {
             flex-direction: column;
             background-color: $white;
             padding: 28px 31px;
+
             small {
                 display: flex;
                 align-items: center;
@@ -281,6 +297,7 @@ export default {
             }
 
             h3 {
+                margin-top: 10px;
                 font-style: normal;
                 font-weight: 700;
                 font-size: 15px;

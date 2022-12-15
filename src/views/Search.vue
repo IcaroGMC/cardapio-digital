@@ -7,7 +7,7 @@
                     <CoreReturnButton></CoreReturnButton>
                     <div>
                         <h2>Resultados para <span>“{{ $route.query.q | capitalize() }}”</span></h2>
-                        <p>{{ products.items.length }} de {{ total_products }} resultado(s) encontrado(s)</p>
+                        <p>{{ products.items.length }} resultado(s) encontrado(s)</p>
                     </div>
                     <form class="mx-auto" v-on:submit="search_products()" v-on:submit.prevent>
                         <CoreInput
@@ -64,8 +64,7 @@ export default {
             },
             
             input_name: '',
-            filter: [],
-            total_products: 0
+            filter: []
         }
     },
     components: {
@@ -117,7 +116,8 @@ export default {
                 let response = await axios.get(baseURL + 'product', {
                     params:{
                         'page[size]': 1000,
-                        'order_by[name]': 'asc'
+                        'order_by[name]': 'asc',
+                        'filter_by[name][like]': filterName
                     }
                 });
 
@@ -126,17 +126,7 @@ export default {
 
                 const { records } = response.data;
 
-                this.total_products = records.length;
-
-                if (filterName) {
-                    this.filter = records.filter(
-                        item => item.name.toLowerCase().includes(filterName.toLowerCase())
-                    );
-
-                    this.products.items = this.filter;
-                } else {
-                    this.products.items = records;
-                }
+                this.products.items = records;
 
                 this.products.isLoading = false;
 
