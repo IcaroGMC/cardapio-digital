@@ -133,13 +133,21 @@ export default {
 
             var formatter = Number(currentHour.replace(/:/g,"").slice(0,4));
 
+            console.log(`
+                start_time:${start_time}
+                finish_time:${finish_time}
+                formatter:${formatter}
+            `)
+
             let dontWork = [];
 
             for (let index = 0; index < searchResult[0].workingtime.length; index++) {
-                if (formatter <= start_time[index] && formatter >= finish_time[index]) {
+                if (formatter <= start_time[index] || formatter >= finish_time[index]) {
                     dontWork.push(index)
                 }
             }
+
+            console.log(`${dontWork.length}/${searchResult[0].workingtime.length}`)
 
             if (dontWork.length != searchResult[0].workingtime.length) {
                 this.infoText = 'Aberto Agora';
