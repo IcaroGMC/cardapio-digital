@@ -32,8 +32,8 @@
               :key="item.id" 
               class="text-group">
               <h3>{{ item.name }}</h3>
-              <span>{{ number_of_products[item.id] || 0 }}</span>
-              <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+              <span class="me-4">{{ number_of_products[item.id] || 0 }}</span>
+              <img class="select-button" src="@/assets/img/rightArrow.svg" alt="">
               </div>
           </div>
         </div>
@@ -270,6 +270,13 @@ export default {
           justify-content: space-around;
           width: 100%;
           max-width: $max-width;
+          .select-button {
+            display: block;
+            transform: rotate(180deg);
+            position: absolute;
+            right: 0;
+            align-self: center;
+          }
           .group-34 {
             cursor: pointer;
             width: 100%;
