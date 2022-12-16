@@ -19,7 +19,8 @@
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
-                    <CoreCard :class="`${products.isLoading ? 'd-none' : null}`"
+                    <CoreCard 
+                        :class="`${products.isLoading ? 'd-none' : null}`"
                         v-for="item in products.items" v-bind:key="item.id"
                         :v-if="item.length"
                         :card-image-url="{
@@ -36,7 +37,7 @@
                         :card-type="item.type"/>
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
-                <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
+                <CoreMenuButton button-name="Cardápio"></CoreMenuButton>
             </section>
         </main>
         <ComponentFooter></ComponentFooter>
