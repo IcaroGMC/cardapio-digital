@@ -28,15 +28,15 @@
                 :src="cardImageUrl.name && loadCardImage ? showCardImageURL : no_image"
                 :alt="cardImageUrl.name">
             
-            <div slot="body" v-if="!card.productgroup.items.length" class="modal-body">
+            <div slot="body" v-if="!cardType" class="modal-body">
                 <small class="tag">{{ cardTag | tag() }}</small>
                 <h1>{{ cardName }}</h1>
                 <p>{{ cardDescription | str_limit(200) }}</p>
                 <span class="price mt-auto">{{ cardPrice | toCurrency() }}</span>
             </div>
-            <div slot="body" v-if="card.productgroup.items.length" class="modal-body">
+            <div slot="body" v-if="cardType" class="modal-body">
                 <h1>{{ cardName }}</h1>
-                <div v-for="(item, index) in card.productgroup.items" v-bind:key="item.id">
+                <div class="d-flex flex-column" v-for="(item, index) in card.productgroup.items" v-bind:key="item.id">
                     <h3>{{ item.name }}</h3>
                     <div class="subcategories-content">
                         <div v-for="itemInfo in card.productgroup.productgroupitem.items[index]" v-bind:key="itemInfo.id" class="subcategories-body">
@@ -160,12 +160,8 @@ export default {
                         const { records } = response.data;
                         
                         this.card.productgroup.productgroupitem.items.push(records);
-                    })
-
-                    
+                    });
                 });
-
-                
 
             } catch({ errors }){
 
@@ -173,8 +169,6 @@ export default {
 
             }
         },
-
-        
     }
 }
 </script>
@@ -293,14 +287,16 @@ export default {
                 font-weight: 800;
                 font-size: 18px;
                 line-height: 140%;
+                margin: 0;
                 color: $gray-800;
             }
 
             h3 {
-                margin-top: 10px;
+                width: fit-content;
                 font-style: normal;
                 font-weight: 700;
-                font-size: 15px;
+                font-size: 18px;
+                margin-top: 30px;
                 line-height: 130%;
                 color: $gray-800;
             }
@@ -308,8 +304,8 @@ export default {
             p {
                 font-style: normal;
                 font-weight: 400;
-                font-size: 15px;
-                line-height: 150%;
+                font-size: 14px;
+                line-height: 130%;
                 color: $gray-300;
             }
 

@@ -23,6 +23,7 @@
 
 <script>
 import { str, bool, number } from '@/utils/props';
+import { hour } from '@/utils/times.js'
 import axios from 'axios';
 import { baseURL } from '@/config/index.js';
 import CoreSpinner from '@/components/core/CoreSpinner.vue';
@@ -63,6 +64,9 @@ export default {
     mounted() {
         if (!this.load) {
             this.get_workingtime();
+            setInterval(() => {
+                this.get_workingtime();
+            }, hour);
             this.load = true;
         }
     },
