@@ -1,24 +1,17 @@
-# cardapio-digital-category
+# Cardápio Digital
 
-## Project setup
-```
-npm install
-```
+#### *O nosso Projeto _Cardápio Digital_ iniciado no dia 16 de Novembro*
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![This is an image](https://cardapio.estagio.sauto.com.br/assets/img/logo.d62a4f44.svg)
 
-### Compiles and minifies for production
+##### _Logo do Projeto_
+
+Alguns `Comandos Básicos Git`:
 ```
-npm run build
+git status
+git add
+git commit
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Como Customizar o Projeto?
+Entre no Site Oficial [Vue.js](https://cli.vuejs.org/config/).
