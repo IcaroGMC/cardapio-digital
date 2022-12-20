@@ -9,7 +9,7 @@ module.exports = {
     configureWebpack: {
 
         devServer: {
-            //https: true,
+            https: true,
             hot: true,
             port: 8082,
             host: '192.168.0.73',

@@ -6,6 +6,19 @@
                 <div class="return-content">
                     <CoreReturnButton></CoreReturnButton>
                     <h2>{{ category.item.name | capitalize() }}</h2>
+                    <div class="button-content d-flex position-relative ms-auto me-2">
+                        <CoreButton
+                            class="d-none-ss"
+                            :style="'background: none !important; box-shadow: none'"
+                            :button-icon="'fa-solid fa-cart-shopping'">
+                            <span 
+                                slot="card-span" 
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                99+
+                                <span class="visually-hidden">unread messages</span>
+                            </span>
+                        </CoreButton>
+                    </div>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
@@ -26,7 +39,14 @@
                         :card-type="item.type"/>
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
-                <CoreMenuButton :button-name="'Cardápio'"></CoreMenuButton>
+                <CoreButton
+                    data-bs-toggle="modal" 
+                    data-bs-target="#categoryBackdrop"
+                    class="position-fixed"
+                    :style="'width: 135px; height: 48px;'"
+                    :button-icon="'fa-solid fa-bars'" 
+                    button-name="Cardápio">
+                </CoreButton>
             </section>
            
         </main>
@@ -39,7 +59,7 @@ import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
-import CoreMenuButton from "@/components/core/CoreMenuButton.vue";
+import CoreButton from "@/components/core/CoreButton.vue";
 import CoreNotFoundItems from "@/components/core/CoreNotFoundItems.vue";
 import CoreReturnButton from "@/components/core/CoreReturnButton.vue";
 import axios from 'axios';
@@ -69,7 +89,7 @@ export default {
         ComponentFooter,
         CoreCard,
         CoreSpinner,
-        CoreMenuButton,
+        CoreButton,
         CoreNotFoundItems,
         CoreReturnButton
     },
@@ -147,7 +167,6 @@ export default {
     @import '@/scss/GeneralStyle.scss';
     .site-container {
         max-width: 100% !important;
-
         .main-content {
             display: flex;
             justify-content: center;
@@ -198,6 +217,11 @@ export default {
                         font-size: 24px;
                         margin: 0;
                         padding-left: 23px;
+                    }
+                    .button-content {
+                        span {
+                            font-size: 55%;
+                        }
                     }
                 }
 

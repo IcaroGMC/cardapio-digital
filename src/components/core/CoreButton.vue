@@ -1,13 +1,14 @@
 <template>
-    <button 
-    :button-name="buttonName" 
-    class="menu-button" 
-    data-bs-toggle="modal" 
-    data-bs-target="#categoryBackdrop">
-        <img src="@/assets/img/list.svg" 
-        alt="" 
-        srcset="">
+    <button
+    :button-name="buttonName"
+    :button-icon="buttonIcon"
+    :style="buttonStyle"
+    :class="`menu-button ${buttonClass}`">
+        <i :class="buttonIcon"></i>
         {{ buttonName }}
+        <slot name="card-span">
+
+        </slot>
     </button>
 </template>
 
@@ -15,11 +16,15 @@
 import { str } from "@/utils/props.js";
 export default {
     props: {
-        buttonName: str('')
+        buttonName: str(''),
+        buttonIcon: str(''),
+        buttonClass: str(''),
+        buttonStyle: str('')
     },
+
     data() {
         return {
-            name: 'CoreMenuButton'
+            name: 'CoreButton'
         }
     }
 }
@@ -28,15 +33,12 @@ export default {
 <style lang="scss" scoped>
     @import '@/scss/GeneralStyle.scss';
     .menu-button {
-        position: fixed;
-        z-index: 4;
+        z-index: 1000;
         bottom: 51px;
         color: $white;
         background-color: $main-color-700;
         border: none;
         box-shadow: 6px 9px 8px -8px rgba(158,158,158,0.67);
-        width: 135px;
-        height: 48px;
         border-radius: 25px;
         font-style: normal;
         font-weight: 700;
@@ -46,6 +48,22 @@ export default {
 
         &:hover {
             background-color: $main-color-800;
+        }
+
+        i{
+            margin: auto 0;
+            width: min-content;
+            height: min-content;
+            aspect-ratio: 1/1;
+        }
+    }
+    .d-none-ss {
+        display: none !important;
+    }
+
+    @media screen and (max-width: 1100px) {
+        .d-none-ss {
+            display: block !important;
         }
     }
 </style>

@@ -168,6 +168,12 @@ export default {
                         line-height: 140%;
                         color: $main-color-700;
                     }
+
+                    button {
+                        position: absolute;
+                        top: 25px;
+                        right: 25px;
+                    }
                 }
 
                 .modal-body {

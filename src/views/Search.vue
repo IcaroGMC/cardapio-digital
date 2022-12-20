@@ -37,7 +37,14 @@
                         :card-type="item.type"/>
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
-                <CoreMenuButton button-name="Cardápio"></CoreMenuButton>
+                <CoreButton
+                    data-bs-toggle="modal" 
+                    data-bs-target="#categoryBackdrop"
+                    class="position-fixed"
+                    :style="'width: 135px; height: 48px;'"
+                    :button-icon="'fa-solid fa-bars'" 
+                    button-name="Cardápio">
+                </CoreButton>
             </section>
         </main>
         <ComponentFooter></ComponentFooter>
@@ -45,7 +52,7 @@
 </template>
 
 <script>
-import CoreMenuButton from '@/components/core/CoreMenuButton.vue';
+import CoreButton from '@/components/core/CoreButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
@@ -75,7 +82,7 @@ export default {
         CoreSpinner,
         CoreInput,
         CoreNotFoundItems,
-        CoreMenuButton,
+        CoreButton,
         CoreReturnButton
     },
 

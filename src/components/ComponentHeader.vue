@@ -28,12 +28,25 @@
                 :remove-info="'yes-ss'" 
                 class="info-button">
                 </InfoButton>
+                <div class="button-content position-relative">
+                    <CoreButton
+                        :style="'background: none !important; box-shadow: none; color: #868E96; font-size: 20px;'"
+                        :button-icon="'fa-solid fa-cart-shopping'">
+                        <span
+                            slot="card-span" 
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            99+
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </CoreButton>
+                </div>
             </div>
         </nav>
     </header>
 </template>
 
 <script>
+import CoreButton from "@/components/core/CoreButton.vue";
 import InfoButton from "@/components/core/InfoButton.vue";
 import CoreInput from "@/components/core/Input.vue";
 import { str, bool, number } from '@/utils/props';
@@ -54,7 +67,8 @@ export default {
     },
     components: {
         InfoButton,
-        CoreInput
+        CoreInput,
+        CoreButton
     },
 
     methods: {
@@ -102,6 +116,11 @@ export default {
                         width: 100%;
                     }
                 }
+                .button-content {
+                    span {
+                        font-size: 55%;
+                    }
+                }
             }
         }
     }
@@ -128,19 +147,13 @@ export default {
                     padding: 0;
 
                     a {
-                        order: 1;
                         img {
                             width: 100%;
                         }
                     }
 
                     .info-input {
-                        order: 3;
                         margin-top: 10px !important;
-                    }
-
-                    .info-button {
-                        order: 2;
                     }
                 }
             }
@@ -165,16 +178,9 @@ export default {
                     padding: 0;
 
                     a {
-                        order: 0;
                         img {
                             width: 100%;
                         }
-                    }
-                    .info-input {
-                        order: 1;
-                    }
-                    .info-button {
-                        order: 2;
                     }
                 }
             }
