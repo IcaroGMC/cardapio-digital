@@ -9,6 +9,7 @@
             class="input-content">
             <button type="submit"></button>
             <input
+                @keyup.enter="emitChanged"
                 @change="emitChanged"
                 v-model="inputName"
                 class="search"
@@ -98,6 +99,13 @@
             input::placeholder {
                 font-weight: 600;
                 color: #474b50;
+            }
+
+            input::-webkit-search-decoration,
+            input::-webkit-search-cancel-button,
+            input::-webkit-search-results-button,
+            input::-webkit-search-results-decoration {
+                display: none; 
             }
 
             button {

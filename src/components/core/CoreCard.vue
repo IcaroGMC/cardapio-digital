@@ -14,7 +14,7 @@
                 <h1 :card-id="cardId" :card-tag="cardTag" :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
                 <p :title="cardDescription" :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
                 <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
-                <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ cardPrice | toCurrency() }}</span>
+                <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ card.smallPrice | toCurrency() }}</span>
             </div>
             <img class="select-button" src="@/assets/img/rightArrow.svg" alt="">
         </div>
@@ -79,6 +79,7 @@ export default {
                 description: this.cardDescription,
                 price: this.cardPrice,
                 imageURL: this.cardImageUrl,
+                smallPrice: 0,
 
                 productgroup: {
                     items: [],
@@ -98,13 +99,20 @@ export default {
         ProductModal
     },
 
+    mounted() {
+        this.get_productsgroup(this.card.id);
+    },
+
     methods: {
         loadImage() {
             this.loadCardImage = true;
         },
 
         changeShow(bool) {
-            this.get_productsgroup(this.card.id);
+            if (bool == true) {
+                this.get_productsgroup(this.card.id);
+            }
+
             this.showModal = bool;
         },
 
@@ -158,8 +166,16 @@ export default {
                         if(errors) throw { errors };
 
                         const { records } = response.data;
+
+                        let allPrices = [];
+
+                        for (let index = 0; index < records.length; index++) {
+                            allPrices.push(records[index].price);
+                        }
+                        this.card.smallPrice = Math.min(...allPrices);
                         
                         this.card.productgroup.productgroupitem.items.push(records);
+
                     });
                 });
 
@@ -263,6 +279,7 @@ export default {
             height: 223px;
             object-fit: cover;
             width: 100%;
+            border-bottom: 1.2px solid $gray-100;
         }
 
         .modal-body {

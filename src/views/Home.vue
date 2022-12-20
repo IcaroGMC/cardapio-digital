@@ -163,17 +163,17 @@ export default {
     },
 
     filterCategory(itemId) {
-        this.$router.push({
-            name: '/categoria',
-            params: {
-                name: this.categories.items[itemId].name.toLowerCase(),
-                id: this.categories.items[itemId].id
-            },
-        }).catch(error => {
-            if (error.name != "NavigationDuplicated") {
-                throw error;
-            }
-        });
+      this.$router.push({
+        name: '/categoria',
+        params: {
+          name: this.categories.items[itemId].name.toLowerCase(),
+          id: this.categories.items[itemId].id
+        },
+      }).catch(error => {
+        if (error.name != "NavigationDuplicated") {
+          throw error;
+        }
+      });
     }
       },
   created() {
@@ -273,8 +273,6 @@ export default {
           .select-button {
             display: block;
             transform: rotate(180deg);
-            position: absolute;
-            right: 0;
             align-self: center;
           }
           .group-34 {
