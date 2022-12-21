@@ -11,10 +11,32 @@
                     :alt="cardImageUrl.name && loadCardImage ? cardImageUrl.name : null">
             </div>
             <div class="card-text">
-                <h1 :card-id="cardId" :card-tag="cardTag" :card-type="cardType" :card-name="cardName" tabindex="-1" aria-hidden="true">{{ cardName }}</h1>
-                <p :title="cardDescription" :card-description="cardDescription">{{ cardDescription | str_limit(45) }}</p>
-                <span v-if="!cardType" :card-price="cardPrice" class="price">{{ cardPrice | toCurrency() }}</span>
-                <span v-else :card-price="cardPrice" class="price"><small>a partir de&nbsp;</small>{{ card.smallPrice | toCurrency() }}</span>
+                <h1 
+                    :card-id="cardId" 
+                    :card-tag="cardTag" 
+                    :card-type="cardType" 
+                    :card-name="cardName" 
+                    tabindex="-1" 
+                    aria-hidden="true">
+                    {{ cardName }}
+                </h1>
+                <p 
+                    :title="cardDescription" 
+                    :card-description="cardDescription">
+                    {{ cardDescription | str_limit(45) }}
+                </p>
+                <span 
+                    v-if="!cardType" 
+                    :card-price="cardPrice" 
+                    class="price">
+                    {{ cardPrice | toCurrency() }}
+                </span>
+                <span 
+                v-else 
+                    :card-price="cardPrice" 
+                    class="price">
+                    <small>a partir de&nbsp;</small>{{ card.smallPrice | toCurrency() }}
+                </span>
             </div>
             <img class="select-button" src="@/assets/img/rightArrow.svg" alt="">
         </div>
@@ -32,19 +54,32 @@
                 <small class="tag">{{ cardTag | tag() }}</small>
                 <h1>{{ cardName }}</h1>
                 <p>{{ cardDescription | str_limit(200) }}</p>
-                <span class="price mt-auto">{{ cardPrice | toCurrency() }}</span>
+                <CoreButton 
+                    class="mt-auto py-2 mx-2" 
+                    :button-price="cardPrice" 
+                    :button-name="`Adicionar a partir de `">
+                </CoreButton>
             </div>
             <div slot="body" v-if="cardType" class="modal-body">
                 <h1>{{ cardName }}</h1>
-                <div class="d-flex flex-column" v-for="(item, index) in card.productgroup.items" v-bind:key="item.id">
+                <div 
+                    class="d-flex flex-column" 
+                    v-for="(item, index) in card.productgroup.items" 
+                    v-bind:key="item.id">
                     <h3>{{ item.name }}</h3>
                     <div class="subcategories-content">
-                        <div v-for="itemInfo in card.productgroup.productgroupitem.items[index]" v-bind:key="itemInfo.id" class="subcategories-body">
+                        <div 
+                            v-for="itemInfo in card.productgroup.productgroupitem.items[index]" 
+                            v-bind:key="itemInfo.id" 
+                            class="subcategories-body">
                             <div class="subcategories-info">
                                 <h4>{{ itemInfo.name }}</h4>
                                 <small class="tag">{{ itemInfo.tag | tag() }}</small>
                             </div>
-                            <span class="price">{{ itemInfo.price | toCurrency() }}</span>
+                            <CoreButton 
+                                class="mt-auto py-1 px-2" 
+                                :button-price="itemInfo.price">
+                            </CoreButton>
                         </div>
                     </div>
                 </div>
@@ -54,6 +89,7 @@
 </template>
 
 <script>
+import CoreButton from '@/components/core/CoreButton.vue';
 import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 import axios from 'axios';
@@ -96,7 +132,8 @@ export default {
     }, 
 
     components: {
-        ProductModal
+        ProductModal,
+        CoreButton
     },
 
     mounted() {

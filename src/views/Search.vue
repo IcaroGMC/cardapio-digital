@@ -16,6 +16,9 @@
                             class="searchinput"
                             :maxCharacters="50" />
                     </form>
+                    <div class="button-content d-flex my-auto position-relative me-3">
+                        <CoreCartButton button-hidden="d-none-ss"></CoreCartButton>
+                    </div>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
                 <section class="cards">
@@ -52,6 +55,7 @@
 </template>
 
 <script>
+import CoreCartButton from '@/components/core/CoreCartButton.vue';
 import CoreButton from '@/components/core/CoreButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
@@ -83,7 +87,8 @@ export default {
         CoreInput,
         CoreNotFoundItems,
         CoreButton,
-        CoreReturnButton
+        CoreReturnButton,
+        CoreCartButton
     },
 
     watch: {
@@ -207,6 +212,9 @@ export default {
                     }
                     .searchinput {
                         display: none;
+                    }
+                    .button-content {
+                        height: min-content;
                     }
                 }
 

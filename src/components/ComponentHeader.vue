@@ -29,16 +29,7 @@
                 class="info-button">
                 </InfoButton>
                 <div class="button-content position-relative">
-                    <CoreButton
-                        :style="'background: none !important; box-shadow: none; color: #868E96; font-size: 20px;'"
-                        :button-icon="'fa-solid fa-cart-shopping'">
-                        <span
-                            slot="card-span" 
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            99+
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    </CoreButton>
+                    <CoreCartButton></CoreCartButton>
                 </div>
             </div>
         </nav>
@@ -46,6 +37,7 @@
 </template>
 
 <script>
+import CoreCartButton from "@/components/core/CoreCartButton.vue";
 import CoreButton from "@/components/core/CoreButton.vue";
 import InfoButton from "@/components/core/InfoButton.vue";
 import CoreInput from "@/components/core/Input.vue";
@@ -68,7 +60,8 @@ export default {
     components: {
         InfoButton,
         CoreInput,
-        CoreButton
+        CoreButton,
+        CoreCartButton
     },
 
     methods: {
@@ -114,11 +107,6 @@ export default {
                     img {
                         image-rendering: optimizeQuality;
                         width: 100%;
-                    }
-                }
-                .button-content {
-                    span {
-                        font-size: 55%;
                     }
                 }
             }

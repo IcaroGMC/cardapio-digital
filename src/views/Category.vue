@@ -7,17 +7,7 @@
                     <CoreReturnButton></CoreReturnButton>
                     <h2>{{ category.item.name | capitalize() }}</h2>
                     <div class="button-content d-flex position-relative ms-auto me-2">
-                        <CoreButton
-                            class="d-none-ss"
-                            :style="'background: none !important; box-shadow: none'"
-                            :button-icon="'fa-solid fa-cart-shopping'">
-                            <span 
-                                slot="card-span" 
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                99+
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
-                        </CoreButton>
+                        <CoreCartButton button-hidden="d-none-ss"></CoreCartButton>
                     </div>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
@@ -55,6 +45,7 @@
 </template>
 
 <script>
+import CoreCartButton from '@/components/core/CoreCartButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
 import CoreCard from "@/components/core/CoreCard.vue";
@@ -91,7 +82,8 @@ export default {
         CoreSpinner,
         CoreButton,
         CoreNotFoundItems,
-        CoreReturnButton
+        CoreReturnButton,
+        CoreCartButton
     },
 
     watch: {

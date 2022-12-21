@@ -1,11 +1,12 @@
 <template>
     <button
     :button-name="buttonName"
+    :button-price="buttonPrice"
     :button-icon="buttonIcon"
     :style="buttonStyle"
     :class="`menu-button ${buttonClass}`">
         <i :class="buttonIcon"></i>
-        {{ buttonName }}
+        {{ buttonName }}{{ buttonPrice | toCurrency() }}
         <slot name="card-span">
 
         </slot>
@@ -13,10 +14,13 @@
 </template>
 
 <script>
-import { str } from "@/utils/props.js";
+import { str, number } from "@/utils/props.js";
 export default {
+    name: 'CoreButton',
+
     props: {
         buttonName: str(''),
+        buttonPrice: number(),
         buttonIcon: str(''),
         buttonClass: str(''),
         buttonStyle: str('')
