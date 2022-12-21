@@ -54,7 +54,8 @@
                 <small class="tag">{{ cardTag | tag() }}</small>
                 <h1>{{ cardName }}</h1>
                 <p>{{ cardDescription | str_limit(200) }}</p>
-                <CoreButton 
+                <CoreButton
+                    v-on:click="addToCart()"
                     class="mt-auto py-2 mx-2" 
                     :button-price="cardPrice" 
                     :button-name="`Adicionar a partir de `">
@@ -141,6 +142,11 @@ export default {
     },
 
     methods: {
+
+        addToCart() {
+            this.$emit('addToCart');
+        },
+
         loadImage() {
             this.loadCardImage = true;
         },

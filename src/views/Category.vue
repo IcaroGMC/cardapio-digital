@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import CoreCartButton from '@/components/core/CoreCartButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
@@ -102,6 +103,7 @@ export default {
     },
 
     methods: {
+
         async get_products(filterId) {
             try {
 
@@ -117,12 +119,7 @@ export default {
                 const { errors } = response.data;
                 if(errors) throw { errors };
 
-                const { records, metadata } = response.data;
-
-                this.metadata = metadata;
-                this.metadata.items_per_page = metadata.pagination.items_per_page;
-                this.metadata.quantity = metadata.quantity;
-                this.metadata.numbers_of_pages = Math.ceil(this.metadata.quantity / this.metadata.items_per_page);
+                const { records } = response.data;
 
                 this.products.items = records;
 

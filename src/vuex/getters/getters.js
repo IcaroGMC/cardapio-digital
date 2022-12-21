@@ -3,6 +3,9 @@ export default {
     PRODUCTS(state) {
         return state.products;
     },
+    SUBCATEGORIES(state) {
+        return state.productgroups;
+    },
     CART(state) {
         return state.cart;
     }
