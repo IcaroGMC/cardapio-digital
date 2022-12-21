@@ -4,12 +4,12 @@ import router from "./router";
 import store from "./vuex/store";
 import loader from "vue-ui-preloader";
 import SkeletonCards from 'vue-ultimate-skeleton-cards';
-import VueLazyload from 'vue-lazyload'
+import VueLazyload from 'vue-lazyload';
 
 import './filters'
 
-const loadimage = require('@/assets/img/no_image.jpg')
-const errorimage = require('@/assets/img/no_image.jpg')
+const loadimage = require('@/assets/img/no_image.jpg');
+const errorimage = require('@/assets/img/no_image.jpg');
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

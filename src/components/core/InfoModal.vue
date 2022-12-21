@@ -31,7 +31,7 @@
                                     class="mb-0">
                                     {{ work.start_time | timeFormat('short') }}&nbsp;-&nbsp;{{ work.finish_time | timeFormat('short') }}
                                 </p>
-                                <p v-if="!item.workingtime[0]">fechado</p>
+                                <p v-if="!item.workingtime">fechado</p>
                             </div>
                         </div>
                     </div>

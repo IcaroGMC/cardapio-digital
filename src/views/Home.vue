@@ -3,7 +3,7 @@
     <header class="header-container">
       <div class="header-content d-flex flex-column align-items-center">
         <div class="info-button w-100 d-flex justify-content-center">
-          <router-link to="/" replace><img class="unselectable logo" draggable="false" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>
+          <router-link to="/teste" replace><img class="unselectable logo" draggable="false" src="@/assets/img/logo.svg" alt="" srcset=""></router-link>
           <span 
             data-bs-toggle="modal"
             data-bs-target="#infoModal"></span>

@@ -45,6 +45,7 @@ export default {
 
 <style lang="scss" scoped>
     .modal-mask {
+        cursor: initial;
         position: fixed;
         z-index: 9998;
         top: 0;

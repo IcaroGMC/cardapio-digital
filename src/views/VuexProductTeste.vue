@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link to="/">voltar</router-link>
     <div 
         style="background-color: cyan" 
         v-for="item in PRODUCTS" :key="item.id">
@@ -30,16 +31,11 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     data() {
         return {
-            storage: []
         }
     },
 
     computed: {
         ...mapGetters(['PRODUCTS','SUBCATEGORIES', 'CART', 'CART_SIZE', 'TOTAL_PRICE']),
-    },
-
-    watch: {
-
     },
 
     methods: {
@@ -88,7 +84,7 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         this.get_products();
         this.get_subcategories();
         if (localStorage.data) {

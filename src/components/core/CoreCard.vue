@@ -25,7 +25,7 @@
                     :card-description="cardDescription">
                     {{ cardDescription | str_limit(45) }}
                 </p>
-                <span 
+                <span
                     v-if="!cardType" 
                     :card-price="cardPrice" 
                     class="price">
@@ -55,7 +55,7 @@
                 <h1>{{ cardName }}</h1>
                 <p>{{ cardDescription | str_limit(200) }}</p>
                 <CoreButton
-                    v-on:click="addToCart()"
+                    v-on:click.native="addToCart(card)"
                     class="mt-auto py-2 mx-2" 
                     :button-price="cardPrice" 
                     :button-name="`Adicionar a partir de `">
@@ -77,7 +77,8 @@
                                 <h4>{{ itemInfo.name }}</h4>
                                 <small class="tag">{{ itemInfo.tag | tag() }}</small>
                             </div>
-                            <CoreButton 
+                            <CoreButton
+                                v-on:click.native="addToCart(itemInfo)"
                                 class="mt-auto py-1 px-2" 
                                 :button-price="itemInfo.price">
                             </CoreButton>
@@ -95,6 +96,7 @@ import ProductModal from '@/components/core/ProductModal.vue';
 import { str, number, obj } from "@/utils/props";
 import axios from 'axios';
 import { baseURL, uploadURL } from '@/config/index.js';
+import { mapActions, mapGetters } from 'vuex';
 export default {
     props: {
         cardId: number(0),
@@ -143,8 +145,16 @@ export default {
 
     methods: {
 
-        addToCart() {
-            this.$emit('addToCart');
+        ...mapActions([
+            'GET_PRODUCTS_FROM_API', 
+            'GET_SUBCATEGORIES_FROM_API', 
+            'ADD_TO_CART', 
+            'DELETE_FROM_CART'
+        ]),
+
+        addToCart(data) {
+            this.ADD_TO_CART(data);
+            localStorage.setItem('cartStorage',JSON.stringify(data))
         },
 
         loadImage() {

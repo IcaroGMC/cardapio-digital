@@ -3,17 +3,20 @@
     <InfoModal />
     <router-view />
     <CategoryModal />
+    <CartModal />
   </div>
 </template>
 
 <script>
+import CartModal from '@/components/core/CartModal.vue';
 import InfoModal from '@/components/core/InfoModal.vue';
 import CategoryModal from "@/components/core/CategoryModal.vue";
 
 export default {
   components: {
     InfoModal,
-    CategoryModal
+    CategoryModal,
+    CartModal
   },
   data () {
     return {

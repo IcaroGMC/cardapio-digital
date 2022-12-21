@@ -10,6 +10,8 @@ export default {
     SET_CART: (state, product) => {
         let allProductsSaves = [];
 
+        console.log(product);
+
         for (let index = 0; index < state.cart.length; index++) {
             allProductsSaves.push(state.cart[index].id);
         }
@@ -22,18 +24,7 @@ export default {
         }
     },
 
-    NUMBER_OF_PRODUCTS_IN_CART: (state) => {
-        return state.cart.length;
-    },
-
-    DELETE_FROM_CART: (state, id) => {
-        let arr = [];
-        for (let index = 0; index < state.cart.length; index++) {
-            if (state.cart[index].id !== id) {
-                arr.push(state.cart[index]);
-            }
-        }
-
-        state.cart = arr;
+    DELETE_FROM_CART: (state, index) => {
+        state.cart.splice(index, 1);
     }
 }

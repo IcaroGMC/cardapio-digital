@@ -51,3 +51,16 @@ Vue.filter('tag', function (value) {
 
     return tagFormatter;
 });
+
+Vue.filter('maxNumber', function (value, maxValue) {
+    if (isNaN(parseFloat(value))) {
+        return value;
+    }
+    
+    if (value > maxValue) {
+        var formatter = String(maxValue).concat('+');
+        return formatter;
+    }
+
+    return value;
+})
