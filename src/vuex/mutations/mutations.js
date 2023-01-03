@@ -16,10 +16,10 @@ export default {
 
         if (!allProductsSaves.includes(product.id)) {
             state.cart.push(product);
-            console.log(product);
+            //console.log(product);
             localStorage.setItem('localStorageCart', JSON.stringify(state.cart));
 
-            console.log(JSON.parse(localStorage.getItem('localStorageCart')));
+            //console.log(JSON.parse(localStorage.getItem('localStorageCart')));
 
         } else {
             console.log('Este Produto já foi adicionado ao Carrinho');

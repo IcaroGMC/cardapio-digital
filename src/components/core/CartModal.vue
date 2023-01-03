@@ -10,18 +10,17 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">Código</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Preço</th>
                                 <th scope="col">
-                                    Remover
                                     <CoreRemoveAll class="remove-button" v-if="CART.length"></CoreRemoveAll>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(cart, index) in CART" :key="cart.id">
-                                <th scope="row">{{ index }}</th>
+                                <th scope="row">{{ cart.tag | tag() || '-' }}</th>
                                 <td>{{ cart.name }}</td>
                                 <td>{{ cart.price | toCurrency() }}</td>
                                 <td>
@@ -41,12 +40,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <CoreButton
-                        :style="'width: 120px; height: 35px;'"
-                        v-on:click.native="sendMessageToWhatsapp()"
-                        button-icon="fa-solid fa-cart-shopping"  
-                        button-name="Comprar">
-                    </CoreButton>
+                    <CoreCellCartButton></CoreCellCartButton>
                 </div>
             </div>
         </div>
@@ -55,7 +49,7 @@
 
 <script>
 import CoreRemoveAll from '@/components/core/CoreRemoveAll.vue';
-import CoreButton from '@/components/core/CoreButton.vue';
+import CoreCellCartButton from '@/components/core/CoreCellCartButton.vue';
 import { mapActions, mapGetters } from 'vuex';
 export default {
     data() {
@@ -66,7 +60,7 @@ export default {
 
     components: {
         CoreRemoveAll,
-        CoreButton
+        CoreCellCartButton
     },
 
     computed: {
@@ -95,10 +89,6 @@ export default {
         deleteAllFromCart() {
             this.DELETE_ALL_FROM_CART();
         },
-
-        sendMessageToWhatsapp() {
-            let baseURL = 'https://api.whatsapp.com/send?'
-        }
     }
 }
 </script>
