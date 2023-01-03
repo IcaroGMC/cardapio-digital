@@ -11,6 +11,7 @@
 import CartModal from '@/components/core/CartModal.vue';
 import InfoModal from '@/components/core/InfoModal.vue';
 import CategoryModal from "@/components/core/CategoryModal.vue";
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -22,6 +23,14 @@ export default {
     return {
       isLoading: true,
     }
+  },
+  created() {
+    this.LOCALSTORAGE_ADD_TO_CART();
+  },
+  methods: {
+    ...mapActions([
+      'LOCALSTORAGE_ADD_TO_CART',
+    ]),
   }
 }
 </script>

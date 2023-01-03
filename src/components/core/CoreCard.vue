@@ -144,17 +144,16 @@ export default {
     },
 
     methods: {
-
         ...mapActions([
-            'GET_PRODUCTS_FROM_API', 
+            'GET_PRODUCTS_FROM_API',
             'GET_SUBCATEGORIES_FROM_API', 
-            'ADD_TO_CART', 
+            'ADD_TO_CART',
+            'LOCALSTORAGE_ADD_TO_CART',
             'DELETE_FROM_CART'
         ]),
 
         addToCart(data) {
             this.ADD_TO_CART(data);
-            localStorage.setItem('cartStorage',JSON.stringify(data))
         },
 
         loadImage() {
@@ -162,7 +161,7 @@ export default {
         },
 
         changeShow(bool) {
-            if (bool == true) {
+            if (!!bool) {
                 this.get_productsgroup(this.card.id);
             }
 

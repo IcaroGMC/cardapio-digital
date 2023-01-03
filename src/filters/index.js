@@ -43,11 +43,11 @@ Vue.filter('timeFormat', function (value, size) {
     return formatter;
 });
 
-Vue.filter('tag', function (value) {
+Vue.filter('tag', function (value, expression) {
     if (!value) return '';
 
     let tagFormatter;
-    tagFormatter = ''.concat('#', String(value));
+    tagFormatter = ''.concat(expression || '#', String(value));
 
     return tagFormatter;
 });

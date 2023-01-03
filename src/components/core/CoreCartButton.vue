@@ -9,7 +9,7 @@
         <span
             slot="card-span" 
             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            {{ CART_SIZE | maxNumber(10)}}
+            {{ CART_SIZE | maxNumber(9)}}
             <span class="visually-hidden">number of products: {{ CART_SIZE }}</span>
         </span>
     </CoreButton>

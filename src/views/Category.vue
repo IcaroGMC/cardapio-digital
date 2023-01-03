@@ -5,8 +5,6 @@
             <section class="container-fluid">
                 <div class="return-content">
                     <CoreReturnButton></CoreReturnButton>
-                    <button type="button" class="btn-primary alert-dismissible" data-bs-dismiss="alert" aria-label="Close">aaa</button>
-                    <CoreAlert></CoreAlert>
                     <h2>{{ category.item.name | capitalize() }}</h2>
                     <div class="button-content d-flex position-relative ms-auto me-2">
                         <CoreCartButton button-hidden="d-none-ss"></CoreCartButton>
@@ -48,7 +46,6 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import CoreAlert from '@/components/core/CoreAlert.vue';
 import CoreCartButton from '@/components/core/CoreCartButton.vue';
 import ComponentHeader from "@/components/ComponentHeader.vue";
 import ComponentFooter from "@/components/ComponentFooter.vue";
@@ -87,8 +84,7 @@ export default {
         CoreButton,
         CoreNotFoundItems,
         CoreReturnButton,
-        CoreCartButton,
-        CoreAlert
+        CoreCartButton
     },
 
     watch: {

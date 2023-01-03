@@ -5,6 +5,7 @@ import store from "./vuex/store";
 import loader from "vue-ui-preloader";
 import SkeletonCards from 'vue-ultimate-skeleton-cards';
 import VueLazyload from 'vue-lazyload';
+import notification from 'vue-notification-ui'
 
 import './filters'
 
@@ -16,6 +17,15 @@ Vue.use(VueLazyload, {
   error: errorimage,
   loading: loadimage,
   attempt: 1
+})
+
+Vue.use(notification, {
+  position: 'notification-top-right',
+  duration: 5000,
+  left: 20,
+  bottom: 20,
+  top: 20,
+  right: 40
 })
 
 Vue.use(loader);
