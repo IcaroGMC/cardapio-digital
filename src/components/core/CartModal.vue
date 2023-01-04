@@ -13,6 +13,8 @@
                                 <th scope="col">Código</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Preço</th>
+                                <th scope="col">Quantidade</th>
+                                <th scope="col">Total</th>
                                 <th scope="col">
                                     <CoreRemoveAll class="remove-button" v-if="CART.length"></CoreRemoveAll>
                                 </th>
@@ -23,14 +25,14 @@
                                 <th scope="row">{{ cart.tag | tag() || '-' }}</th>
                                 <td>{{ cart.name }}</td>
                                 <td>{{ cart.price | toCurrency() }}</td>
+                                <td><CoreQuantityButton /></td>
+                                <td>{{ 10 | toCurrency() }}</td>
                                 <td>
                                     <button v-on:click="removeToCart(index)"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr v-if="!CART.length">
-                                <th scope="row"></th>
-                                <td>Não há Nenhum Produto neste Carrinho</td>
-                                <td></td>
+                                <td colspan="5">Não há Nenhum Produto neste Carrinho</td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -48,6 +50,7 @@
 </template>
 
 <script>
+import CoreQuantityButton from '@/components/core/CoreQuantityButton.vue';
 import CoreRemoveAll from '@/components/core/CoreRemoveAll.vue';
 import CoreCellCartButton from '@/components/core/CoreCellCartButton.vue';
 import { mapActions, mapGetters } from 'vuex';
@@ -60,7 +63,8 @@ export default {
 
     components: {
         CoreRemoveAll,
-        CoreCellCartButton
+        CoreCellCartButton,
+        CoreQuantityButton
     },
 
     computed: {
@@ -141,6 +145,7 @@ export default {
                                 display: flex;
                                 .remove-button {
                                     margin-left: auto;
+                                    margin-right: 5px;
                                 }
                             }
                         }
@@ -148,10 +153,11 @@ export default {
 
                     tbody {
                         tr {
-                            box-shadow: 3px 3px 10px $gray-200;
+                            
                             th, td {
                                 padding: 2% 0;
                                 vertical-align: middle;
+                                border-bottom: 1px solid $gray-200;
                             }
 
                             th {

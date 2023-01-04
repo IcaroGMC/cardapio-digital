@@ -16,10 +16,7 @@ export default {
 
         if (!allProductsSaves.includes(product.id)) {
             state.cart.push(product);
-            //console.log(product);
             localStorage.setItem('localStorageCart', JSON.stringify(state.cart));
-
-            //console.log(JSON.parse(localStorage.getItem('localStorageCart')));
 
         } else {
             console.log('Este Produto já foi adicionado ao Carrinho');
@@ -39,5 +36,20 @@ export default {
     DELETE_ALL_FROM_CART: (state) => {
         state.cart = [];
         localStorage.removeItem('localStorageCart');
+    },
+
+    INCREMENT: (state, index) => {
+        console.log(state.cart[index]);
+        if (!state.cart[index].quantity) {
+            state.cart[index].quantity = 2;
+        } else {
+            state.cart[index].quantity++;
+        }
+    },
+
+    DECREMENT: (state, index) => {
+        if (state.cart[index].quantity > 1 ) {
+            state.cart[index].quantity--
+        }
     }
 }

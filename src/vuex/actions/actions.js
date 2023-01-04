@@ -10,5 +10,11 @@ export default {
     },
     LOCALSTORAGE_ADD_TO_CART({commit}) {
         commit('SET_CART_WITH_LOCALSTORAGE');
+    },
+    INCREMENT_CART_PRODUCT({commit}, index ) {
+        commit('INCREMENT', index)
+    },
+    DECREMENT_CART_PRODUCT({commit}, index ) {
+        commit('DECREMENT', index)
     }
 }

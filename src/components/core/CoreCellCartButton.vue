@@ -42,7 +42,7 @@ import { mapActions, mapGetters } from 'vuex';
     export default {
         data() {
             return {
-
+                testSRC: ''
             }
         },
 
@@ -109,7 +109,6 @@ import { mapActions, mapGetters } from 'vuex';
                         this.downloadCanvasAsImage();
                         this.sendMessageToWhatsapp();   
                     }, 500);
-                    
                 }
 
                 //font: https://stackoverflow.com/questions/12652769/rendering-html-elements-to-canvas
@@ -118,7 +117,6 @@ import { mapActions, mapGetters } from 'vuex';
             downloadCanvasAsImage(){
                 let canvasImage = document.getElementById('canvas').toDataURL('image/png');
 
-                // this can be used to download any image from webpage to local disk
                 let xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.onload = function () {
@@ -130,16 +128,15 @@ import { mapActions, mapGetters } from 'vuex';
                     a.click();
                     a.remove();
                 };
-                xhr.open('GET', canvasImage); // This is to download the canvas Image
+                xhr.open('GET', canvasImage);
                 xhr.send();
             },
 
             sendMessageToWhatsapp() {
                 let canvasImage = document.getElementById('canvas').toDataURL('image/png');
-                const base64Canvas = canvasImage.split(';base64,')[1];
-                console.log(String(base64Canvas));
+                const base64Canvas = canvasImage.split(';base64,');
                 var anchor = document.createElement('a');
-                anchor.href = `https://api.whatsapp.com/send?phone=5588999718009&image=${base64Canvas}&text=Olá`;
+                anchor.href = `https://api.whatsapp.com/send?phone=558899718009&source_url=${encodeURIComponent(canvasImage)}&text=Teste`;
                 anchor.target="_blank";
                 anchor.click();
             },

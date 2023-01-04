@@ -8,6 +8,13 @@ export default {
     CART(state) {
         return state.cart;
     },
+    CART_QUANTITY(state) {
+        let arr = [];
+        for (let index = 0; index < state.cart.length; index++) {
+            arr.push(state.cart[index].quantity || 1);
+        }
+        return arr;
+    },
     CART_ITEMS(state) {
         return state.cart;
     },
