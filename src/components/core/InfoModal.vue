@@ -23,7 +23,7 @@
                     <div class="mt-3">
                         <h2>Horários de funcionamento</h2>
                         <div class="d-flex align-items-center mb-3"
-                            v-for="item in days" v-bind:key="item.id" v-if="!!item.workingtime.length">
+                            v-for="item in workingDays" v-bind:key="item.id">
                             <h3 class="me-auto my-0">{{ item.name }}</h3>
                              <div class="workingtime d-flex flex-column justify-content-center">
                                 <p 
@@ -31,7 +31,6 @@
                                     class="mb-0">
                                     {{ work.start_time | timeFormat('short') }}&nbsp;-&nbsp;{{ work.finish_time | timeFormat('short') }}
                                 </p>
-                                <p v-if="!item.workingtime.length">fechado</p>
                             </div>
                         </div>
                     </div>
@@ -65,6 +64,12 @@ export default {
                 items: []
             },
         }
+    },
+
+    computed: {
+        workingDays: function () {
+            return this.days.filter(i => i.workingtime != 0)
+        },
     },
 
     methods: {

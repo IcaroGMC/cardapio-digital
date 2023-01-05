@@ -24,6 +24,7 @@
                         :card-id="item.id"
                         :card-name="item.name"
                         :card-tag="item.tag"
+                        :card-quantity="item.quantity"
                         :card-description="item.description" 
                         :card-price="item.price"
                         :card-type="item.type"/>

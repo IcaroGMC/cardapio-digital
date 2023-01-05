@@ -1,10 +1,23 @@
 export default {
-    SET_PRODUCTS_TO_STATE: (state, products) => {
-        state.products = products;
-    },
 
-    SET_SUBCATEGORIES_TO_STATE: (state, productgroups) => {
-        state.productgroups = productgroups;
+    SET_REQUISITION: (state, res) => {
+        var result = state.data.filter(obj => {
+            return obj.name == String(res.store);
+        });
+        if (!result.length) {
+            state.data.push({
+                name: res.store,
+                response: res.response
+            });
+        } else {
+            state.data = [];
+            state.data.push({
+                name: res.store,
+                response: res.response
+            });
+        }
+        
+        console.log(state.data);
     },
 
     SET_CART: (state, product) => {
@@ -39,17 +52,15 @@ export default {
     },
 
     INCREMENT: (state, index) => {
-        console.log(state.cart[index]);
-        if (!state.cart[index].quantity) {
-            state.cart[index].quantity = 2;
-        } else {
-            state.cart[index].quantity++;
-        }
+        state.cart[index].quantity++;
+        
+        localStorage.setItem('localStorageCart', JSON.stringify(state.cart));
     },
 
     DECREMENT: (state, index) => {
         if (state.cart[index].quantity > 1 ) {
             state.cart[index].quantity--
         }
+        localStorage.setItem('localStorageCart', JSON.stringify(state.cart));
     }
 }

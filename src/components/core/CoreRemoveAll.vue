@@ -20,7 +20,7 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
     computed: {
-        ...mapGetters(['PRODUCTS','SUBCATEGORIES', 'CART', 'CART_SIZE', 'TOTAL_PRICE']),
+        ...mapGetters(['CART', 'CART_SIZE', 'TOTAL_PRICE']),
     },
 
     methods: {

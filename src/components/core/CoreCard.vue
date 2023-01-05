@@ -15,7 +15,8 @@
                     :card-id="cardId" 
                     :card-tag="cardTag" 
                     :card-type="cardType" 
-                    :card-name="cardName" 
+                    :card-name="cardName"
+                    :card-quantity="cardQuantity"
                     tabindex="-1" 
                     aria-hidden="true">
                     {{ cardName }}
@@ -101,6 +102,7 @@ export default {
     props: {
         cardId: number(0),
         cardName: str(''),
+        cardQuantity: number(),
         cardTag: number(0),
         cardDescription: str(''),
         cardPrice: number(0),
@@ -115,8 +117,10 @@ export default {
             card: {
                 id: this.cardId,
                 name: this.cardName,
+                quantity: this.cardQuantity,
                 description: this.cardDescription,
                 price: this.cardPrice,
+                tag: this.cardTag,
                 imageURL: this.cardImageUrl,
                 smallPrice: 0,
 

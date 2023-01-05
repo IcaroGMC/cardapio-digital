@@ -23,10 +23,16 @@
                         <tbody>
                             <tr v-for="(cart, index) in CART" :key="cart.id">
                                 <th scope="row">{{ cart.tag | tag() || '-' }}</th>
-                                <td>{{ cart.name }}</td>
+                                <td>{{ cart.search_name || cart.name }}</td>
                                 <td>{{ cart.price | toCurrency() }}</td>
-                                <td><CoreQuantityButton /></td>
-                                <td>{{ 10 | toCurrency() }}</td>
+                                <td>
+                                    <div class="button-content">
+                                        <button v-on:click="decrement(index)">-</button>
+                                        <div class="quantity">{{ CART[index].quantity }}</div>
+                                        <button v-on:click="increment(index)">+</button>
+                                    </div>
+                                </td>
+                                <td>{{ CART_TOTAL[index] | toCurrency() }}</td>
                                 <td>
                                     <button v-on:click="removeToCart(index)"><i class="fa-solid fa-trash"></i></button>
                                 </td>
@@ -36,10 +42,12 @@
                                 <td></td>
                             </tr>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><p class="m-0" v-if="CART.length">Preço Total: {{ TOTAL_PRICE | toCurrency() }}</p></td>
+                            </tr>
+                        </tfoot>
                     </table>
-                    <div v-if="CART.length" class="total-price">
-                        <p>Preço Total: {{ TOTAL_PRICE | toCurrency() }}</p>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <CoreCellCartButton></CoreCellCartButton>
@@ -50,7 +58,6 @@
 </template>
 
 <script>
-import CoreQuantityButton from '@/components/core/CoreQuantityButton.vue';
 import CoreRemoveAll from '@/components/core/CoreRemoveAll.vue';
 import CoreCellCartButton from '@/components/core/CoreCellCartButton.vue';
 import { mapActions, mapGetters } from 'vuex';
@@ -63,15 +70,13 @@ export default {
 
     components: {
         CoreRemoveAll,
-        CoreCellCartButton,
-        CoreQuantityButton
+        CoreCellCartButton
     },
 
     computed: {
         ...mapGetters([
-            'PRODUCTS',
-            'SUBCATEGORIES',
             'CART',
+            'CART_TOTAL',
             'CART_SIZE',
             'TOTAL_PRICE'
         ]),
@@ -79,6 +84,8 @@ export default {
 
     methods: {
         ...mapActions([
+            'INCREMENT_CART_PRODUCT',
+            'DECREMENT_CART_PRODUCT',
             'GET_PRODUCTS_FROM_API', 
             'GET_SUBCATEGORIES_FROM_API', 
             'ADD_TO_CART',
@@ -93,7 +100,14 @@ export default {
         deleteAllFromCart() {
             this.DELETE_ALL_FROM_CART();
         },
-    }
+
+        increment(index) {
+            this.INCREMENT_CART_PRODUCT(index);
+        },
+        decrement(index) {
+            this.DECREMENT_CART_PRODUCT(index);
+        },
+    },
 }
 </script>
 
@@ -133,9 +147,16 @@ export default {
                         border: none;
                     }
 
-                    thead {
+                    thead, tfoot {
                         color: $white;
                         background-color: $main-color-700;
+                    }
+
+                    tr {
+                        height: 40px;
+                    }
+
+                    thead {
 
                         th {
                             &:first-of-type {
@@ -165,6 +186,30 @@ export default {
                             }
 
                             td {
+                                .button-content {
+                                    color: $gray-300;
+                                    min-width: fit-content;
+                                    width: 120px;
+                                    border-radius: 25px;
+                                    border: 1px solid $gray-200;
+                                    display: flex;
+                                    align-items: center;
+
+                                    .quantity {
+                                        padding: 0 10px;
+                                    }
+
+                                    button {
+                                        font-size: 18px;
+                                        font-weight: bolder;
+                                        color: $gray-300;
+                                        background: none;
+                                        border: none;
+                                        width: 38px;
+                                        height: 30px;
+                                    }
+                                }
+
                                 button {
                                     margin-right: auto;
                                     color: $white;
@@ -186,12 +231,6 @@ export default {
                             }
                         }
                     }
-                }
-
-                .total-price {
-                    color: $white;
-                    background-color: $main-color-700;
-                    width: 100%;
                 }
             }
             .modal-footer {
