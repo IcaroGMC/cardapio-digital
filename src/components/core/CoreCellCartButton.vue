@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p>{{ GENERIC_GET.product }}</p>
         <CoreButton
             v-on:click.native="updateCanvas()"
             :style="'width: 120px; height: 35px;'"
@@ -145,9 +146,11 @@ import { mapActions, mapGetters } from 'vuex';
                 let canvasImage = document.getElementById('canvas').toDataURL('image/png');
 
                 this.GENERAL_REQUISITION_API({
-                    url: ['list'],
-                    methods: 'POST',
-                    data: canvasImage
+                    url: ['product'],
+                    methods: 'GET',
+                    params: {
+                        'page[size]': 1000,
+                    }
                 });
 
                 // const base64Canvas = canvasImage.split(';base64,');

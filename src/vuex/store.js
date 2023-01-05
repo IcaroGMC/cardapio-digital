@@ -12,7 +12,7 @@ Vue.use(Vuex);
 
 let store = new Vuex.Store({
     state: {
-        data: [],
+        product: [],
         cart: [],
     },
     mutations,

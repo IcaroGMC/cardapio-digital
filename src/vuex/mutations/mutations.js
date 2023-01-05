@@ -1,23 +1,15 @@
 export default {
 
     SET_REQUISITION: (state, res) => {
-        var result = state.data.filter(obj => {
-            return obj.name == String(res.store);
-        });
-        if (!result.length) {
-            state.data.push({
-                name: res.store,
-                response: res.response
-            });
-        } else {
-            state.data = [];
-            state.data.push({
-                name: res.store,
-                response: res.response
-            });
-        }
+        let name = res.store;
+        switch (name) {
+            case 'product':
+                state.product = res.response;
+                break;
         
-        console.log(state.data);
+            default:
+                break;
+        }
     },
 
     SET_CART: (state, product) => {

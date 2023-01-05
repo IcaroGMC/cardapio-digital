@@ -1,6 +1,7 @@
 export default {
     GENERIC_GET(state) {
-        return state.data;
+        console.log(state.product)
+        return state.product;
     },
 
     CART(state) {
