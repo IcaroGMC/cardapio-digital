@@ -5,15 +5,22 @@
     class="header">
         <nav class="navbar">
             <div class="container-fluid">
-                <router-link 
-                to="/" 
-                replace>
-                <img 
-                draggable="false"
-                class="unselectable" 
-                src="@/assets/img/logo.svg" 
-                alt="" 
-                srcset="">
+                <div class="button-content position-relative">
+                    <CoreButton
+                        button-hidden="d-none-ss"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#categoryBackdrop"
+                        :style="'background: none !important; box-shadow: none; color: #f75b5d; font-size: 20px;'"
+                        :button-icon="'fa-solid fa-bars'">
+                    </CoreButton>
+                </div>
+                <router-link to="/" replace>
+                    <img 
+                    draggable="false"
+                    class="unselectable" 
+                    src="@/assets/img/logo.svg" 
+                    alt="" 
+                    srcset="">
                 </router-link>
                 <form v-on:submit.prevent v-on:submit="search_products()">
                     <CoreInput
@@ -28,9 +35,6 @@
                 :remove-info="'yes-ss'" 
                 class="info-button">
                 </InfoButton>
-                <div class="button-content position-relative">
-                    <CoreCartButton></CoreCartButton>
-                </div>
             </div>
         </nav>
     </header>

@@ -27,9 +27,19 @@ export default {
   created() {
     this.LOCALSTORAGE_ADD_TO_CART();
   },
+  mounted() {
+    this.GENERAL_REQUISITION_API({
+      url: 'company',
+      method: 'GET',
+      params: {
+        'page[size]': 1000,
+      }
+    })
+  },
   methods: {
     ...mapActions([
       'LOCALSTORAGE_ADD_TO_CART',
+      'GENERAL_REQUISITION_API'
     ]),
   }
 }

@@ -69,4 +69,12 @@ Vue.filter('unsetValue', function (value, character) {
     if (!value || null) return character;
 
     return value;
-})
+});
+
+Vue.filter('number', function (value) {
+    if (!value) return '';
+
+    var formatter = value.replace(/\D+/g, "");
+
+    return formatter;
+});

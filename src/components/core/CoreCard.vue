@@ -56,7 +56,7 @@
                 <h1>{{ cardName }}</h1>
                 <p>{{ cardDescription | str_limit(200) }}</p>
                 <CoreButton
-                    v-on:click.native="addToCart(card)"
+                    v-on:click.native="addToCart(card), modalClose()"
                     class="mt-auto py-2 mx-2" 
                     :button-price="cardPrice" 
                     :button-name="`Adicionar a partir de `">
@@ -79,7 +79,7 @@
                                 <small class="tag">{{ itemInfo.tag | tag() }}</small>
                             </div>
                             <CoreButton
-                                v-on:click.native="addToCart(itemInfo)"
+                                v-on:click.native="addToCart(itemInfo), modalClose()"
                                 class="mt-auto py-1 px-2" 
                                 :button-price="itemInfo.price">
                             </CoreButton>
@@ -158,6 +158,10 @@ export default {
 
         addToCart(data) {
             this.ADD_TO_CART(data);
+        },
+
+        modalClose() {
+            this.$emit('closeModal');
         },
 
         loadImage() {

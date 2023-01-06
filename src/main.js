@@ -5,7 +5,10 @@ import store from "./vuex/store";
 import loader from "vue-ui-preloader";
 import SkeletonCards from 'vue-ultimate-skeleton-cards';
 import VueLazyload from 'vue-lazyload';
-import notification from 'vue-notification-ui'
+import notification from 'vue-notification-ui';
+import VueSweetalert2 from 'vue-sweetalert2';
+
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 import './filters'
 
@@ -28,6 +31,7 @@ Vue.use(notification, {
   right: 40
 })
 
+Vue.use(VueSweetalert2);
 Vue.use(loader);
 Vue.use(VueLazyload);
 Vue.use(SkeletonCards);

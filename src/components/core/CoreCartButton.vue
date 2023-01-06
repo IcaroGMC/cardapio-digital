@@ -3,8 +3,8 @@
         data-bs-toggle="modal" 
         data-bs-target="#exampleModal"
         :button-hidden="buttonHidden"
-        :class="buttonHidden"
-        :style="'background: none !important; box-shadow: none; color: #868E96; font-size: 20px;'"
+        class="position-fixed"
+        :style="'width: 135px; height: 48px;'"
         :button-icon="'fa-solid fa-cart-shopping'">
         <span
             slot="card-span" 
@@ -44,6 +44,6 @@ export default {
 
 <style lang="scss" scoped>
     span {
-        font-size: 55%;
+        font-size: 75%;
     }
 </style>

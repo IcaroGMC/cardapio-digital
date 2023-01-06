@@ -38,12 +38,14 @@
           </div>
         </div>
       </div>
+      <CoreCartButton></CoreCartButton>
     </main>
     <component-footer />
   </div>
 </template>
 
 <script>
+import CoreCartButton from '@/components/core/CoreCartButton.vue';
 import CoreSlider from "@/components/core/CoreSlider.vue";
 import CoreSpinner from "@/components/core/CoreSpinner.vue";
 import InfoButton from "@/components/core/InfoButton.vue";
@@ -72,7 +74,8 @@ export default {
     Input,
     ComponentFooter,
     CoreSpinner,
-    CoreSlider
+    CoreSlider,
+    CoreCartButton
   },
 
   methods: {
@@ -217,6 +220,9 @@ export default {
       }
     }
     .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 100%;
       min-height: 100vh;
       .slider-section {

@@ -17,7 +17,14 @@
                             :maxCharacters="50" />
                     </form>
                     <div class="button-content d-flex my-auto position-relative me-3">
-                        <CoreCartButton button-hidden="d-none-ss"></CoreCartButton>
+                        <CoreButton
+                            button-hidden="d-none-ss"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#categoryBackdrop"
+                            :class="'d-none-ss'"
+                            :style="'background: none !important; box-shadow: none; color: #f75b5d; font-size: 20px;'"
+                            :button-icon="'fa-solid fa-bars'">
+                        </CoreButton>
                     </div>
                 </div>
                 <CoreSpinner :spinnerSize="'w-100 h-100'" :spinner-class="''" :isLoading="products.isLoading"  />
@@ -41,14 +48,7 @@
                         :card-type="item.type"/>
                 </section>
                 <CoreNotFoundItems v-if="(!products.items.length && !products.isLoading)" />
-                <CoreButton
-                    data-bs-toggle="modal" 
-                    data-bs-target="#categoryBackdrop"
-                    class="position-fixed"
-                    :style="'width: 135px; height: 48px;'"
-                    :button-icon="'fa-solid fa-bars'" 
-                    button-name="Cardápio">
-                </CoreButton>
+                <CoreCartButton></CoreCartButton>
             </section>
         </main>
         <ComponentFooter></ComponentFooter>

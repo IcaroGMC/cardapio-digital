@@ -27,6 +27,7 @@ import { transformToListString } from '@/utils/functions.js';
         computed: {
             ...mapGetters([
                 'GENERIC_GET',
+                'COMPANY',
                 'CART',
                 'CART_TOTAL',
                 'CART_SIZE',
@@ -45,7 +46,8 @@ import { transformToListString } from '@/utils/functions.js';
             sendMessageToWhatsapp() {
                 if (!!this.CART.length) {
                     var anchor = document.createElement('a');
-                    anchor.href = `https://api.whatsapp.com/send?phone=558899718009&text=${transformToListString([this.CART, this.CART_TOTAL, this.CART_SIZE, this.TOTAL_PRICE])}`;
+                    var phone = '55'.concat(this.$options.filters.number(this.COMPANY[0].phone_number));
+                    anchor.href = `https://wa.me/${phone}/?text=${transformToListString([this.CART, this.CART_TOTAL, this.CART_SIZE, this.TOTAL_PRICE])}`;
                     anchor.target="_blank";
                     anchor.click();
                 }

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 export default {
 
     SET_REQUISITION: (state, res) => {
@@ -5,6 +7,9 @@ export default {
         switch (name) {
             case 'product':
                 state.product = res.response;
+                break;
+            case 'company':
+                state.company = res.response;
                 break;
         
             default:
@@ -22,9 +27,22 @@ export default {
         if (!allProductsSaves.includes(product.id)) {
             state.cart.push(product);
             localStorage.setItem('localStorageCart', JSON.stringify(state.cart));
+            Vue.swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Produto Adicionado com Sucesso!',
+                showConfirmButton: false,
+                timer: 1500
+              });
 
         } else {
-            console.log('Este Produto já foi adicionado ao Carrinho');
+            Vue.swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Este Produto já foi adicionado ao Carrinho',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     },
 

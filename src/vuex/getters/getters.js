@@ -1,6 +1,6 @@
 export default {
-    GENERIC_GET(state) {
-        return state.product;
+    COMPANY(state) {
+        return state.company;
     },
 
     CART(state) {
