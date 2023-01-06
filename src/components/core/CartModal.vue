@@ -22,13 +22,13 @@
                         </thead>
                         <tbody>
                             <tr v-for="(cart, index) in CART" :key="cart.id">
-                                <th scope="row">{{ cart.tag | tag() || '-' }}</th>
-                                <td>{{ cart.search_name || cart.name }}</td>
-                                <td>{{ cart.price | toCurrency() }}</td>
+                                <th scope="row">{{ cart.tag | tag() | unsetValue('-') }}</th>
+                                <td>{{ cart.search_name || cart.name | unsetValue('-') }}</td>
+                                <td>{{ cart.price | toCurrency() | unsetValue('-') }}</td>
                                 <td>
                                     <div class="button-content">
                                         <button v-on:click="decrement(index)">-</button>
-                                        <div class="quantity">{{ CART[index].quantity }}</div>
+                                        <div class="quantity">{{ CART[index].quantity | unsetValue('-') }}</div>
                                         <button v-on:click="increment(index)">+</button>
                                     </div>
                                 </td>
@@ -44,7 +44,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6"><p class="m-0" v-if="CART.length">Preço Total: {{ TOTAL_PRICE | toCurrency() }}</p></td>
+                                <td colspan="3"><p class="m-0">Preço Total: {{ TOTAL_PRICE | toCurrency() }}</p></td>
+                                <td colspan="3"><p class="m-0">Quantidade: {{ CART_SIZE | unsetValue('0') }}</p></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -139,7 +140,7 @@ export default {
                 }
             }
             .modal-body {
-                padding: 10px 4em;
+                padding: 10px;
                 table {
                     border-collapse: separate;
                     border-spacing: 0 8px;

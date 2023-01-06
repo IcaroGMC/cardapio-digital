@@ -1,6 +1,5 @@
 export default {
     GENERIC_GET(state) {
-        console.log(state.product)
         return state.product;
     },
 

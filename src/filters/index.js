@@ -44,7 +44,7 @@ Vue.filter('timeFormat', function (value, size) {
 });
 
 Vue.filter('tag', function (value, expression) {
-    if (!value) return '';
+    if (!value) return '-';
 
     let tagFormatter;
     tagFormatter = ''.concat(expression || '#', String(value));
@@ -61,6 +61,12 @@ Vue.filter('maxNumber', function (value, maxValue) {
         var formatter = String(maxValue).concat('+');
         return formatter;
     }
+
+    return value;
+});
+
+Vue.filter('unsetValue', function (value, character) {
+    if (!value || null) return character;
 
     return value;
 })
